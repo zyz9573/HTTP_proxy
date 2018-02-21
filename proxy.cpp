@@ -7,7 +7,11 @@ int main(int argc, char ** argv){
 
 	proxy test_server;
 	test_server.create_socket_fd();
-	test_server.connect_host(test.getHostname(),test.getAgreement());
+	int status = test_server.connect_host(test.getHostname(),test.getAgreement());
+	std::cout<<"connect status is "<<status<<std::endl;
+	if(status==-1){
+		std::cout<<"connect fail"<<std::endl;
+	}
 	test_server.send_message(test.getOriginal_request());
 	std::string res = test_server.recv_message();
 	std::cout<<"recv message is "<<res<<std::endl;

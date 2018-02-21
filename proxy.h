@@ -36,11 +36,11 @@ public:
 		uri = std::string(http_request.substr(filter2,filter-filter2));
 	}
 	void print_request(){
-		std::cout<<"original_request is "<<original_request<<"s"<<std::endl;
-		std::cout<<"method is "<<method<<"s"<<std::endl;
-		std::cout<<"agreement is "<<agreement<<"s"<<std::endl;
-		std::cout<<"hostname is "<<hostname<<"s"<<std::endl;
-		std::cout<<"uri is "<<uri<<"s"<<std::endl;
+		std::cout<<"original_request is "<<original_request<<std::endl;
+		std::cout<<"method is "<<method<<std::endl;
+		std::cout<<"agreement is "<<agreement<<std::endl;
+		std::cout<<"hostname is "<<hostname<<std::endl;
+		std::cout<<"uri is "<<uri<<std::endl;
 	}
 	std::string getHostname(){
 		return hostname;
