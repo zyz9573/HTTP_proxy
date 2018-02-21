@@ -1,0 +1,4 @@
+GET http://people.duke.edu/~tkb13/courses/ece650/resources/awesome.txt HTTP/1.1
+Host:people.duke.edu
+
+
