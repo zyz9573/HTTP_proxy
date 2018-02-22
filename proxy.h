@@ -130,7 +130,12 @@ public:
 		if(socket_fd==0){
 			std::cout<<"socket not established"<<std::endl;
 		}
-		send(socket_fd,message,request.length(),0);
+		size_t sent=0;
+		do{
+			sent+=send(socket_fd,(char *)message+sent,sizeof(message),0);
+		}
+		while(sent<sizeof(message));
+		delete message;
 	}
 	std::string recv_message(int socket_fd){
 		char message[4096];
