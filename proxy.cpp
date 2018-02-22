@@ -20,8 +20,10 @@ int main(int argc, char ** argv){
 		}
 		test_server.send_message(test.getOriginal_request(),socket_fd);
 		std::string res = test_server.recv_message(socket_fd);
+		close(socket_fd)
 		std::cout<<"recv message is "<<res<<std::endl;
 		test_server.send_message(res,client_fd);
+		close(client_fd);
 	}
 	return EXIT_SUCCESS;
 }
