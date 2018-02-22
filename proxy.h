@@ -64,19 +64,26 @@ public:
 
 class proxy{
 private:
-	int socket_fd;
+	int host_socket_fd;
+	int port;
+	std::string hostname;
 public:
-	proxy(){
-		socket_fd = 0;
+	proxy(int port_num){
+		host_socket_fd = socket(AF_INET,SOCK_STREAM,0);
+		port = port_num;
+		char host[64];
+		gethostname(host,64);
+		hostname = std::string(host);
 	}
-	void create_socket_fd(){
-		socket_fd = socket(AF_INET,SOCK_STREAM,0);	
+	int create_socket_fd(){
+		int socket_fd = socket(AF_INET,SOCK_STREAM,0);
+		return socket_fd;	
 	}
-	void close_socket_fd(){
+	void close_socket_fd(int socket_fd){
 		close(socket_fd);
 		socket_fd=0;
 	}
-	int connect_host(std::string hostname,std::string agreement){
+	int connect_host(std::string hostname,std::string agreement,int socket_fd){
 	  	struct sockaddr_in server_in;
 	  	//memset(server_in,0,sizeof(server_in));
   		server_in.sin_family = AF_INET;
@@ -99,7 +106,7 @@ public:
 		int connect_status = connect(socket_fd,(struct sockaddr *)&server_in,sizeof(server_in));
 		return connect_status;
 	}
-	void send_message(std::string request){
+	void send_message(std::string request,int socket_fd){
 		char * message = new char[request.length()+1];
 		std::strcpy (message, request.c_str());
 		std::cout<<"send: "<<message<<std::endl;
@@ -108,13 +115,37 @@ public:
 		}
 		send(socket_fd,message,request.length(),0);
 	}
-	std::string recv_message(){
+	std::string recv_message(int socket_fd){
 		char message[4096];
 		memset(message,0,sizeof(message));
-		recv(socket_fd,&message,sizeof(message),0);
+		int cap=0;
+		std::string res;
+		do{
+			cap = recv(socket_fd,&message,sizeof(message),0);
+			res+=std::string(message);
+			memset(message,0,sizeof(message));
+		}
+		while(cap>=1460);
+		
 		//std::cout<<message<<std::endl;
-		std::string res(message);
 		return res;
+	}
+	void bind_addr(){
+		struct hostent * host_info = gethostbyname(hostname.c_str());
+		struct sockaddr_in server_in;
+  		server_in.sin_family = AF_INET;
+  		server_in.sin_port = htons(port);
+		memcpy(&server_in.sin_addr, host_info->h_addr_list[0], host_info->h_length);
+		int bind_status = bind(host_socket_fd,(struct sockaddr *)&server_in,sizeof(server_in));
+		if(bind_status<0){
+			std::cout<<"bind fail"<<std::endl;
+		}
+		listen(host_socket_fd,5);
+	}
+	int accept_connection(){
+		struct sockaddr_in incoming;
+		socklen_t len = sizeof(incoming);
+        return accept(host_socket_fd,(struct sockaddr*)&incoming,&len);
 	}
 };
 /*  

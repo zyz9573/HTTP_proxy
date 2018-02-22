@@ -1,22 +1,24 @@
 //created by panjoy 2/20/2018
 #include "proxy.h"
 int main(int argc, char ** argv){
-	std::string hr("GET http://people.duke.edu/~tkb13/courses/ece650/resources/awesome.txt HTTP/1.1\r\nHost:people.duke.edu\r\n\r\n");
+	//std::string hr("GET http://people.duke.edu/~tkb13/courses/ece650/resources/awesome.txt HTTP/1.1\r\nHost:people.duke.edu\r\n\r\n");
+	
+
+
+	proxy test_server(12345);
+	test_server.bind_addr();
+	int client_fd = test_server.accept_connection();
+	std::string hr = test_server.recv_message(client_fd);
 	request test(hr);
 	test.print_request();
-
-	proxy test_server;
-	test_server.create_socket_fd();
-	int status = test_server.connect_host(test.getHostname(),test.getAgreement());
+	int socket_fd = test_server.create_socket_fd();
+	int status = test_server.connect_host(test.getHostname(),test.getAgreement(),socket_fd);
 	std::cout<<"connect status is "<<status<<std::endl;
 	if(status==-1){
 		std::cout<<"connect fail"<<std::endl;
 	}
-	test_server.send_message(test.getOriginal_request());
-	std::string res = test_server.recv_message();
-	std::cout<<"recv message is "<<res<<std::endl;
-	std::cout<<res.length()<<std::endl;
-	res = test_server.recv_message();
+	test_server.send_message(test.getOriginal_request(),socket_fd);
+	std::string res = test_server.recv_message(socket_fd);
 	std::cout<<"recv message is "<<res<<std::endl;
 	return EXIT_SUCCESS;
 }
