@@ -92,6 +92,9 @@ public:
 		gethostname(host,64);
 		hostname = std::string(host);
 	}
+	~proxy(){
+	  close(host_socket_fd);
+	}
 	int create_socket_fd(){
 		int socket_fd = socket(AF_INET,SOCK_STREAM,0);
 		return socket_fd;	
@@ -105,7 +108,7 @@ public:
 	  	//memset(server_in,0,sizeof(server_in));
   		server_in.sin_family = AF_INET;
   		if(agreement.compare("http")==0){
-  			std::cout<<agreement<<std::endl;
+		  //std::cout<<agreement<<std::endl;
   			server_in.sin_port = htons(80);
   		}
   		else if(agreement.compare("https")==0){
@@ -126,15 +129,17 @@ public:
 	void send_message(std::string request,int socket_fd){
 		char * message = new char[request.length()+1];
 		std::strcpy (message, request.c_str());
-		std::cout<<"send: "<<message<<std::endl;
+		std::cout<<"lenth is "<<request.length()<<std::endl<<"send: "<<message<<std::endl;
 		if(socket_fd==0){
 			std::cout<<"socket not established"<<std::endl;
 		}
 		size_t sent=0;
 		do{
-			sent+=send(socket_fd,(char *)message+sent,sizeof(message),0);
+		  std::cout<<"sent "<<sent<<std::endl;
+		  sent+=send(socket_fd,(char *)message+sent,request.length(),0);
+			std::cout<<"now sent "<<sent<<std::endl;
 		}
-		while(sent<sizeof(message));
+		while(sent<request.length());
 		delete message;
 	}
 	std::string recv_message(int socket_fd){
