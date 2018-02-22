@@ -7,8 +7,6 @@ int main(int argc, char ** argv){
 	
 	test_server.bind_addr();
 	while(1){
-
-
 		int client_fd = test_server.accept_connection();
 		std::string hr = test_server.recv_message(client_fd);
 	
@@ -23,6 +21,7 @@ int main(int argc, char ** argv){
 		test_server.send_message(test.getOriginal_request(),socket_fd);
 		std::string res = test_server.recv_message(socket_fd);
 		std::cout<<"recv message is "<<res<<std::endl;
+		test_server.send_message(res,client_fd);
 	}
 	return EXIT_SUCCESS;
 }
