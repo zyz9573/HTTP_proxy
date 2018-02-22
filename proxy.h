@@ -26,14 +26,31 @@ public:
 		original_request = http_request;
 		std::size_t filter = http_request.find_first_of(" ");
 		method = std::string(http_request.substr(0,filter));
-		std::size_t filter3 = http_request.find_first_of(":");
-		agreement = http_request.substr(filter+1,filter3-filter-1);
-		std:: size_t filter2 = http_request.find_first_of("/");
-		http_request = http_request.substr(filter2+2);
-		filter2 = http_request.find_first_of("/");
-		hostname = std::string(http_request.substr(0,filter2));
-		filter = http_request.find_first_of(" ");
-		uri = std::string(http_request.substr(filter2,filter-filter2));
+		if(method.compare("GET")==0){
+			std::size_t filter3 = http_request.find_first_of(":");
+			agreement = http_request.substr(filter+1,filter3-filter-1);
+			std:: size_t filter2 = http_request.find_first_of("/");
+			http_request = http_request.substr(filter2+2);
+			filter2 = http_request.find_first_of("/");
+			hostname = std::string(http_request.substr(0,filter2));
+			filter = http_request.find_first_of(" ");
+			uri = std::string(http_request.substr(filter2,filter-filter2));
+		}
+		else if(method.compare("CONNECT")==0){
+			http_request = http_request.substr(filter+1);
+			filter = http_request.find_first_of(":");
+			hostname = std::string(http_request.substr(0,filter));
+			http_request = http_request.substr(filter+1);
+			filter = http_request.find_first_of(" ");
+			int port = atoi(http_request.substr(0,filter).c_str());
+			if(port==80){
+				agreement=std::string("http");
+			}
+			else if(port==443){
+				agreement=std::string("https");
+			}
+		}
+
 	}
 	void print_request(){
 		std::cout<<"original_request is "<<original_request<<std::endl;

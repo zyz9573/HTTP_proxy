@@ -1,14 +1,14 @@
 //created by panjoy 2/20/2018
 #include "proxy.h"
 int main(int argc, char ** argv){
-	//std::string hr("GET http://people.duke.edu/~tkb13/courses/ece650/resources/awesome.txt HTTP/1.1\r\nHost:people.duke.edu\r\n\r\n");
-	
-
+	//std::string hr("CONNECT www.google.com:443 HTTP/1.1\r\nHost: www.google.com\r\n\r\n");
 
 	proxy test_server(12345);
+	
 	test_server.bind_addr();
 	int client_fd = test_server.accept_connection();
 	std::string hr = test_server.recv_message(client_fd);
+	
 	request test(hr);
 	test.print_request();
 	int socket_fd = test_server.create_socket_fd();
