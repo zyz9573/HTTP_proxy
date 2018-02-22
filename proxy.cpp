@@ -15,5 +15,8 @@ int main(int argc, char ** argv){
 	test_server.send_message(test.getOriginal_request());
 	std::string res = test_server.recv_message();
 	std::cout<<"recv message is "<<res<<std::endl;
+	std::cout<<res.length()<<std::endl;
+	res = test_server.recv_message();
+	std::cout<<"recv message is "<<res<<std::endl;
 	return EXIT_SUCCESS;
 }

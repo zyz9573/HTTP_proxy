@@ -106,7 +106,7 @@ public:
 		if(socket_fd==0){
 			std::cout<<"socket not established"<<std::endl;
 		}
-		send(socket_fd,message,sizeof(message),0);
+		send(socket_fd,message,request.length(),0);
 	}
 	std::string recv_message(){
 		char message[4096];
