@@ -78,7 +78,6 @@ public:
 		return source;
 	}
 };
-
 class proxy{
 private:
 	int host_socket_fd;
@@ -101,7 +100,6 @@ public:
 	}
 	void close_socket_fd(int socket_fd){
 		close(socket_fd);
-		socket_fd=0;
 	}
 	int connect_host(std::string hostname,std::string agreement,int socket_fd){
 	  	struct sockaddr_in server_in;
@@ -129,33 +127,42 @@ public:
 	void send_message(std::string request,int socket_fd){
 		char * message = new char[request.length()+1];
 		std::strcpy (message, request.c_str());
-		std::cout<<"lenth is "<<request.length()<<std::endl<<"send: "<<message<<std::endl;
+		//std::cout<<"lenth is "<<request.length()<<std::endl<<"send: "<<message<<std::endl;
 		if(socket_fd==0){
 			std::cout<<"socket not established"<<std::endl;
 		}
 		size_t sent=0;
 		do{
-		  std::cout<<"sent "<<sent<<std::endl;
+		  //std::cout<<"sent "<<sent<<std::endl;
 		  sent+=send(socket_fd,(char *)message+sent,request.length(),0);
-			std::cout<<"now sent "<<sent<<std::endl;
+		  //std::cout<<"now sent "<<sent<<std::endl;
 		}
 		while(sent<request.length());
 		delete message;
 	}
 	std::string recv_message(int socket_fd){
-		char message[4096];
+		char message[1024];
 		memset(message,0,sizeof(message));
 		int cap=0;
 		std::string res;
-		do{
-			cap = recv(socket_fd,&message,sizeof(message),0);
-			res+=std::string(message);
-			memset(message,0,sizeof(message));
-		}
-		while(cap>=1460);
+		cap = recv(socket_fd,&message,sizeof(message),0);
+		std::cout<<"rec size is "<<cap<<"\r\n"<<"real size is "<<sizeof(message)<<"\r\n"<<std::endl;
+		res+=std::string(message);
+		memset(message,0,sizeof(message));
 		
 		//std::cout<<message<<std::endl;
 		return res;
+	}
+	void transfer(std::string request,int server_socket_fd,int client_socket_fd){
+		send_message(request,server_socket_fd);
+		int record = 0;
+		do{
+			std::string packet(recv_message(server_socket_fd));
+			record  = packet.length();
+			std::cout<<"record is "<<record<<"\r\n"<<"packet is "<<packet<<"\r\n"<<std::endl;
+			send_message(packet,client_socket_fd);
+		}
+		while(record>=1024);
 	}
 	void bind_addr(){
 		struct hostent * host_info = gethostbyname(hostname.c_str());

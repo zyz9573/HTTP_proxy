@@ -1,0 +1,41 @@
+rec size is 606
+real size is 1024
+
+original_request is GET http://www.baidu.com/ HTTP/1.1
+Host: www.baidu.com
+Proxy-Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.168 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Cookie: BAIDUID=10E66AA4A06FEFB4BD37CC4CB698F8D1:FG=1; BIDUPSID=10E66AA4A06FEFB4BD37CC4CB698F8D1; PSTM=1503850742; BD_UPN=12314753; BD_HOME=0; H_PS_PSSID=1449_21098_22074
+
+
+method is GET
+agreement is http
+hostname is www.baidu.com
+uri is /
+connect status is 0
+
+rec size is 363
+real size is 1024
+
+record is 363
+packet is HTTP/1.1 200 OK
+Date: Thu, 22 Feb 2018 23:34:48 GMT
+Server: Apache
+Last-Modified: Wed, 08 Feb 2017 07:55:35 GMT
+ETag: "1cd6-5480030886bc0"
+Accept-Ranges: bytes
+Cache-Control: max-age=1
+Expires: Thu, 22 Feb 2018 23:34:49 GMT
+Vary: Accept-Encoding,User-Agent
+Content-Encoding: gzip
+Content-Length: 3371
+Connection: Keep-Alive
+Content-Type: text/html
+
+
+
