@@ -1,30 +1,275 @@
-HTTP/1.1 200 OK
-Date: Thu, 22 Feb 2018 21:30:06 GMT
-Server: Apache
-Last-Modified: Thu, 08 Feb 2018 20:49:37 GMT
-ETag: "1af26068f-ab5-564b98cc4fa40"
-Accept-Ranges: bytes
-Content-Length: 2741
-Connection: close
-Content-Type: text/plain; charset=UTF-8
+rec size is 479
+capacity is 1024
 
- [m              [40;48;5;232m            [m              
-           [40;48;5;232m    [47;48;5;223m    [47;48;5;229m        [40;48;5;232m    [m          
-       [40;48;5;232m    [47;48;5;222m    [47;48;5;223m    [47;48;5;229m            [40;48;5;232m    [m      
-     [40;48;5;232m  [47;48;5;222m        [47;48;5;223m    [47;48;5;229m                [40;48;5;232m  [m    
-     [40;48;5;232m  [47;48;5;222m        [47;48;5;223m    [47;48;5;229m                [40;48;5;232m  [m    
-   [40;48;5;232m  [47;48;5;222m      [40;48;5;232m        [47;48;5;229m            [40;48;5;232m    [47;48;5;229m  [40;48;5;232m  [m  
-   [40;48;5;232m  [43;48;5;222m  [47;48;5;222m  [40;48;5;232m      [47;48;5;255m    [40;48;5;232m  [47;48;5;229m        [40;48;5;232m    [47;48;5;255m  [40;48;5;232m    [m  
- [40;48;5;232m  [43;48;5;222m    [47;48;5;222m  [40;48;5;232m    [47;48;5;255m      [40;48;5;232m  [47;48;5;229m        [40;48;5;232m    [47;48;5;255m    [40;48;5;232m    [m
- [40;48;5;232m  [43;48;5;222m    [47;48;5;222m  [40;48;5;232m  [47;48;5;255m        [40;48;5;232m  [47;48;5;229m        [40;48;5;232m  [47;48;5;255m      [40;48;5;232m    [m
- [40;48;5;232m  [43;48;5;222m      [40;48;5;232m          [47;48;5;223m    [47;48;5;229m      [40;48;5;232m        [47;48;5;229m  [40;48;5;232m  [m
- [40;48;5;232m  [43;48;5;222m      [47;48;5;222m          [47;48;5;223m      [47;48;5;229m            [47;48;5;223m  [40;48;5;232m  [m
- [40;48;5;232m  [43;48;5;222m        [40;48;5;232m                        [47;48;5;223m    [40;48;5;232m  [m
- [40;48;5;232m  [43;48;5;222m      [40;48;5;232m  [40;48;5;53m      [40;48;5;89m    [41;48;5;89m      [40;48;5;89m    [40;48;5;232m  [47;48;5;223m      [40;48;5;232m  [m
-   [40;48;5;232m  [43;48;5;222m    [40;48;5;232m  [40;48;5;53m          [40;48;5;89m          [40;48;5;232m  [47;48;5;222m    [40;48;5;232m  [m  
-   [40;48;5;232m  [43;48;5;222m    [40;48;5;232m  [40;48;5;53m          [40;48;5;89m          [40;48;5;232m  [47;48;5;222m    [40;48;5;232m  [m  
-     [40;48;5;232m  [43;48;5;222m    [40;48;5;232m  [45;48;5;210m    [47;48;5;217m    [47;48;5;224m  [40;48;5;89m        [40;48;5;232m  [47;48;5;222m  [40;48;5;232m  [m    
-     [40;48;5;232m  [43;48;5;222m      [40;48;5;232m  [45;48;5;210m  [47;48;5;217m      [47;48;5;224m  [40;48;5;89m    [40;48;5;232m  [47;48;5;222m    [40;48;5;232m  [m    
-       [40;48;5;232m    [43;48;5;222m    [40;48;5;232m              [47;48;5;222m  [40;48;5;232m    [m      
-           [40;48;5;232m    [43;48;5;222m            [40;48;5;232m    [m          
-               [40;48;5;232m            [m              
+original_request is GET http://people.duke.edu/~bmr23/ece650/class.html HTTP/1.1
+Host: people.duke.edu
+Proxy-Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.167 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+
+
+method is GET
+agreement is http
+hostname is people.duke.edu
+uri is /~bmr23/ece650/class.html
+connect status is 0
+
+rec size is 1024
+capacity is 1024
+
+total is 1027
+packet is
+ HTTP/1.1 200 OK
+Date: Fri, 23 Feb 2018 17:01:04 GMT
+Server: Apache
+Last-Modified: Tue, 20 Feb 2018 13:23:56 GMT
+ETag: "1b23b1dd0-1b83-565a4b901566a"
+Accept-Ranges: bytes
+Content-Length: 7043
+Connection: close
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>ECE 650 - Spring 2018</title>
+<link rel="stylesheet" href="../style.css" type="text/css">
+</head>
+
+<body >
+
+<div class="content">
+<h1> ECE 650: Systems Programming & Engineering</h1> 
+<h2> Section 01, Spring 2018 </h2>
+<h3> Teer 203 - Tues/Thurs 8:30-9:45am </h3>
+
+This course focuses on a range of topics that are central to both the design of operating systems and the programming system-level software. Students will apply knowledge of basic concepts in operating systems, networking, and programming towards these two areas. Topics covered will include concurrency, process manap@
+
+oversize packet
+
+rec size is 436
+capacity is 1024
+
+total is 1463
+packet is
+ gement, hypervisors, networking, security, databases, and file systems. Students will be expected to demonstrate their understanding in these areas through a series of programming assignments covering these topics.
+
+<br><br>  
+
+<strong> Pre-requisite:</strong> ECE 550 and ECE 551
+
+<H3>Contact Info</H3>
+<UL>
+<LI> <B>Professor:</B> Brian Rogers <BR>
+     E-mail: brian.m.rogers at duke <BR>
+     Office Hours:
+ <UL>
+<LI> Location: Hudso
+
+rec size is 528
+capacity is 1024
+
+original_request is GET http://people.duke.edu/~bmr23/ece650/class.html HTTP/1.1
+Host: people.duke.edu
+Proxy-Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.167 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Range: bytes=1204-1204
+If-Range: "1b23b1dd0-1b83-565a4b901566a"
+
+
+method is GET
+agreement is http
+hostname is people.duke.edu
+uri is /~bmr23/ece650/class.html
+connect status is 0
+
+rec size is 307
+capacity is 1024
+
+total is 307
+packet is
+ HTTP/1.1 206 Partial Content
+Date: Fri, 23 Feb 2018 17:01:15 GMT
+Server: Apache
+Last-Modified: Tue, 20 Feb 2018 13:23:56 GMT
+ETag: "1b23b1dd0-1b83-565a4b901566a"
+Accept-Ranges: bytes
+Content-Length: 1
+Content-Range: bytes 1204-1204/7043
+Connection: close
+Content-Type: text/html; charset=UTF-8
+
+3
+
+rec size is 528
+capacity is 1024
+
+original_request is GET http://people.duke.edu/~bmr23/ece650/class.html HTTP/1.1
+Host: people.duke.edu
+Proxy-Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.167 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+Range: bytes=1204-7042
+If-Range: "1b23b1dd0-1b83-565a4b901566a"
+
+
+method is GET
+agreement is http
+hostname is people.duke.edu
+uri is /~bmr23/ece650/class.html
+connect status is 0
+
+rec size is 1024
+capacity is 1024
+
+total is 1027
+packet is
+ HTTP/1.1 206 Partial Content
+Date: Fri, 23 Feb 2018 17:01:15 GMT
+Server: Apache
+Last-Modified: Tue, 20 Feb 2018 13:23:56 GMT
+ETag: "1b23b1dd0-1b83-565a4b901566a"
+Accept-Ranges: bytes
+Content-Length: 5839
+Content-Range: bytes 1204-7042/7043
+Connection: close
+Content-Type: text/html; charset=UTF-8
+
+32
+<LI> Tuesday, 12:00&ndash;1:00pm
+<LI> Other times by appointment
+</UL>
+<br>
+<br>
+<LI> <B>TA:</B> Olympios Petrakis <BR>
+     E-mail: olympios.petrakis at duke <BR>
+     Office Hours:
+<UL>
+<LI> Location: CIEMAS 3rd floor fishbowl (3602)
+<LI> Time: Monday, 12:00&ndash;1:30pm
+</UL>
+<br>
+<BR>
+<LI> <B>TA:</B> Nian Liu <BR>
+     E-mail: n.liu at duke <BR>
+     Office Hours:
+<UL>
+<LI> Location: Teer 114
+<LI> Time: Thursday, 4:30&ndash;6:00pm
+</UL>
+</UL>
+
+
+<H3>Course Resources</H3> 
+<UL> 
+
+<LI> <a href="syllabus.pdf">Course Syllabus</a>
+<LI>We will be using <a href="https://piazza.com/class/jc7ptwillgl6xh">Piazza</a> for class discussions/questions etc. 
+<LI>We will also use a <a href="https://sakai.duke.edu/pop@
+
+oversize packet
+
+rec size is 436
+capacity is 1024
+
+total is 1463
+packet is
+ rtal/site/62c1576d-339a-4ab4-a95d-6805d8765abf">sakai class site</a> for assignment submission and as a grade book.
+<LI> The Section 02 course site (<a href="http://people.duke.edu/~tkb13/courses/ece650/">link</a>) - Equivalent content from Prof. Bletsch's section.
+</UL>
+
+<H3>Assignments</H3>
+<UL>
+<LI> <a href="homework/hw1.pdf">Assignment #1</a> (due Wednesday 1/24 @ 11:59pm Eastern - submit to Sakai drop box)
+<UL>
+<LI> <a href="ho
+
+rec size is 479
+capacity is 1024
+
+original_request is GET http://people.duke.edu/~bmr23/ece650/class.html HTTP/1.1
+Host: people.duke.edu
+Proxy-Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.167 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8
+Accept-Encoding: gzip, deflate
+Accept-Language: zh-CN,zh;q=0.9
+
+
+method is GET
+agreement is http
+hostname is people.duke.edu
+uri is /~bmr23/ece650/class.html
+connect status is 0
+
+rec size is 1024
+capacity is 1024
+
+total is 1027
+packet is
+ HTTP/1.1 200 OK
+Date: Fri, 23 Feb 2018 17:01:38 GMT
+Server: Apache
+Last-Modified: Tue, 20 Feb 2018 13:23:56 GMT
+ETag: "1b23b1dd0-1b83-565a4b901566a"
+Accept-Ranges: bytes
+Content-Length: 7043
+Connection: close
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>ECE 650 - Spring 2018</title>
+<link rel="stylesheet" href="../style.css" type="text/css">
+</head>
+
+<body >
+
+<div class="content">
+<h1> ECE 650: Systems Programming & Engineering</h1> 
+<h2> Section 01, Spring 2018 </h2>
+<h3> Teer 203 - Tues/Thurs 8:30-9:45am </h3>
+
+This course focuses on a range of topics that are central to both the design of operating systems and the programming system-level software. Students will apply knowledge of basic concepts in operating systems, networking, and programming towards these two areas. Topics covered will include concurrency, process manap@
+
+oversize packet
+
+rec size is 436
+capacity is 1024
+
+total is 1463
+packet is
+ gement, hypervisors, networking, security, databases, and file systems. Students will be expected to demonstrate their understanding in these areas through a series of programming assignments covering these topics.
+
+<br><br>  
+
+<strong> Pre-requisite:</strong> ECE 550 and ECE 551
+
+<H3>Contact Info</H3>
+<UL>
+<LI> <B>Professor:</B> Brian Rogers <BR>
+     E-mail: brian.m.rogers at duke <BR>
+     Office Hours:
+ <UL>
+<LI> Location: Hudso
+

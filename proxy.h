@@ -12,7 +12,147 @@
 #include <sys/socket.h>
 #include <netdb.h>
 #include <time.h>
+#include <map>
+#include <vector>
+class response{
+private:
+	std::string status_line;
+	std::map<std::string,std::string> kv_table;
+	std::vector<char> file;
+	int file_size; 
+	int packet_num;
+	void initial(char data[]){
+		std::string http_response(data);
+		if(packet_num==0){
+			size_t flag = http_response.find_first_of("\r\n");
+			status_line = http_response.substr(0,flag);
+			http_response = http_response.substr(flag+2);
+			while(flag!=std::string::npos){ 
+				flag = http_response.find_first_of("\n");
+				std::string temp(http_response.substr(0,flag));
+				http_response = http_response.substr(flag+1);
+				int colon = temp.find_first_of(":");
+				kv_table.insert(std::pair<std::string,std::string>(temp.substr(0,colon),temp.substr(colon+2)));
+				if(http_response.substr(4).find_first_of("\r")==std::string::npos){
+					break ; 
+				}
+			}
+		}
+	}
+public:
+	response(){
+		packet_num=0;
+		file_size = 0;
+		//file = std::vector<char>();
+		//std::string status_line();
+		//std::map<std::string,std::string> kv_table();	
+	}
+	void print_response(){
+		std::cout<<status_line<<std::endl;
+		std::map<std::string,std::string>::iterator it = kv_table.begin();
+		while(it != kv_table.end()){
+			std::cout<<"KEY: "<<it->first<<" VALUE: "<<it->second<<std::endl;
+			it++;
+		}
+	}
+	std::string get_status_line(){
+		return status_line;
+	}
+	void update_file(char data[]){
+		if(file_size==0){
+			initial(data);
+		}
+		for(size_t i=0;i<sizeof(*data);++i){
+			file.push_back(data[i]);
+		}
+		file_size = file.size();
+		packet_num++;
+	}
+	size_t get_content_length(){
+		std::map<std::string,std::string>::iterator it = kv_table.find("Content-Length");
+		if(it!=kv_table.end()){
+			return (size_t)atoi(it->second.c_str());
+		}
+		else{
+			return 0;
+		}
+	}
+};
 class request{
+private:
+	std::string core;//core is request_line
+	std::string original_request;
+	std::map<std::string,std::string> kv_table;
+	std::string content;
+	size_t uid;
+public:
+	request(std::string http_request,size_t id){
+		size_t div = http_request.find_first_of("\r\n\r\n");
+		if(div!=std::string::npos && (div+4)<http_request.length()){
+			std::string content = http_request.substr(div+4);
+			//http_request = http_request.substr(0,div+2);
+		}
+		uid = id;
+		original_request = http_request;
+		size_t flag = http_request.find_first_of("\r\n");
+		core = http_request.substr(0,flag);
+		http_request = http_request.substr(flag+2);
+		while(flag!=std::string::npos){ 
+			flag = http_request.find_first_of("\n");
+			std::string temp(http_request.substr(0,flag));
+			http_request = http_request.substr(flag+1);
+			int colon = temp.find_first_of(":");
+			kv_table.insert(std::pair<std::string,std::string>(temp.substr(0,colon),temp.substr(colon+2)));
+			if(http_request.length()<4){
+				break ; 
+			}
+		}
+	}
+	void print_request(){
+		std::cout<<core<<std::endl;
+		std::map<std::string,std::string>::iterator it = kv_table.begin();
+		while(it != kv_table.end()){
+			std::cout<<"KEY: "<<it->first<<" VALUE: "<<it->second<<std::endl;
+			it++;
+		}
+	}
+	void erase_header(std::string key){
+		std::map<std::string,std::string>::iterator it = kv_table.find(key);
+		if(it!=kv_table.end()){
+			kv_table.erase(key);		
+		}
+		else{
+			std::cout<<"NOT SUCH KEY"<<std::endl;
+		}
+
+	}
+	void add_header(std::string key, std::string value){
+		value +="\r";
+		kv_table.insert(std::pair<std::string,std::string>(key,value));
+	}
+	std::string get_request_line(){
+		return core;
+	}
+	std::string getOriginal_request(){
+		return original_request;
+	}
+	std::string get_new_request(){
+		std::string res(core);
+		res +="\r\n";
+		std::map<std::string,std::string>::iterator it = kv_table.begin();
+		while(it != kv_table.end()){
+			res+=it->first;
+			res+=": ";
+			res+=it->second;
+			res+="\n";
+			it++;
+		}
+		res+="\r\n";
+		return res;		
+	}
+};
+
+class request_line{
 private:
 	std::string original_request;
 	std::string method;
@@ -21,7 +161,7 @@ private:
 	std::string source;
 	std::string uri;
 public:
-	request(std::string http_request){
+	request_line(std::string http_request){
 //"GET http://people.duke.edu/~tkb13/courses/ece650/resources/awesome.txt HTTP/1.1\r\nHost:people.duke.edu\r\n\r\n"
 		original_request = http_request;
 		std::size_t filter = http_request.find_first_of(" ");
@@ -52,8 +192,8 @@ public:
 		}
 
 	}
-	void print_request(){
-		std::cout<<"original_request is "<<original_request<<std::endl;
+	void print_request_line(){
+		std::cout<<"original_request_line is "<<original_request<<std::endl;
 		std::cout<<"method is "<<method<<std::endl;
 		std::cout<<"agreement is "<<agreement<<std::endl;
 		std::cout<<"hostname is "<<hostname<<std::endl;
@@ -76,6 +216,24 @@ public:
 	}
 	std::string getSource(){
 		return source;
+	}
+};
+class cache{
+private:
+	std::map<std::string , response > database;
+public:
+	void add_to_cache(std::string request_line,response http_response){
+		database.insert(std::pair<std::string,response>(request_line,http_response));
+	}
+	void delete_from_cache(std::string request_line){
+		if(database.empty()){
+			std::cout<<"cache is empty, can not delete"<<std::endl;
+			return ;
+		}
+		std::map<std::string , response>::iterator it = database.find(request_line);
+		if(it != database.end()){
+			database.erase(request_line);
+		}
 	}
 };
 class proxy{
@@ -124,45 +282,48 @@ public:
 		int connect_status = connect(socket_fd,(struct sockaddr *)&server_in,sizeof(server_in));
 		return connect_status;
 	}
-	void send_message(std::string request,int socket_fd){
-		char * message = new char[request.length()+1];
-		std::strcpy (message, request.c_str());
+	size_t send_message(std::string request,int socket_fd){
+		
 		//std::cout<<"lenth is "<<request.length()<<std::endl<<"send: "<<message<<std::endl;
 		if(socket_fd==0){
 			std::cout<<"socket not established"<<std::endl;
 		}
 		size_t sent=0;
 		do{
-		  //std::cout<<"sent "<<sent<<std::endl;
-		  sent+=send(socket_fd,(char *)message+sent,request.length(),0);
-		  //std::cout<<"now sent "<<sent<<std::endl;
+			char message[1024];
+			memset(message,0,sizeof(message));
+			
+			if(request.length()<sizeof(message)){
+				memcpy(message, request.substr(sent,1024).c_str(),request.length());
+				sent+=send(socket_fd,message,request.length(),0);
+			}
+			else{
+				memcpy(message, request.substr(sent,1024).c_str(),sizeof(message));
+				sent+=send(socket_fd,message,sizeof(message),0);	
+			}
+			std::cout<<"rl "<<request.length()<<std::endl;		
+			std::cout<<"sent "<<sent<<std::endl;
+			if(request.length()<sizeof(message)){
+				break;
+			}
 		}
 		while(sent<request.length());
-		delete message;
+		return sent;
 	}
-	std::string recv_message(int socket_fd){
-		char message[1024];
-		memset(message,0,sizeof(message));
-		int cap=0;
-		std::string res;
-		cap = recv(socket_fd,&message,sizeof(message),0);
-		std::cout<<"rec size is "<<cap<<"\r\n"<<"real size is "<<sizeof(message)<<"\r\n"<<std::endl;
-		res+=std::string(message);
-		memset(message,0,sizeof(message));
+	std::string recv_message(int socket_fd,size_t cl){
 		
-		//std::cout<<message<<std::endl;
-		return res;
-	}
-	void transfer(std::string request,int server_socket_fd,int client_socket_fd){
-		send_message(request,server_socket_fd);
-		int record = 0;
+		size_t cap=0;
+		std::string res;		
 		do{
-			std::string packet(recv_message(server_socket_fd));
-			record  = packet.length();
-			std::cout<<"record is "<<record<<"\r\n"<<"packet is "<<packet<<"\r\n"<<std::endl;
-			send_message(packet,client_socket_fd);
+			char message[1024];
+			memset(message,0,sizeof(message));
+			cap+=recv(socket_fd,&message,sizeof(message),0);
+			res+=std::string(message);
+			if(cap<1024){return std::string(message);}
 		}
-		while(record>=1024);
+		while(cap<cl);	
+		//std::cout<<message<<std::endl;
+		return res;//std::string("DONE\n");
 	}
 	void bind_addr(){
 		struct hostent * host_info = gethostbyname(hostname.c_str());
