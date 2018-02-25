@@ -19,21 +19,25 @@ private:
 	std::string status_line;
 	std::map<std::string,std::string> kv_table;
 	std::vector<char> file;
-	int file_size; 
+	size_t file_size; 
+	size_t header_size;
 	int packet_num;
 	void initial(char data[]){
 		std::string http_response(data);
+		header_size = http_response.find_first_of("\r\n\r\n")+4;
 		if(packet_num==0){
 			size_t flag = http_response.find_first_of("\r\n");
 			status_line = http_response.substr(0,flag);
 			http_response = http_response.substr(flag+2);
+
 			while(flag!=std::string::npos){ 
 				flag = http_response.find_first_of("\n");
 				std::string temp(http_response.substr(0,flag));
+				std::cout<<temp<<std::endl;
 				http_response = http_response.substr(flag+1);
 				int colon = temp.find_first_of(":");
 				kv_table.insert(std::pair<std::string,std::string>(temp.substr(0,colon),temp.substr(colon+2)));
-				if(http_response.substr(4).find_first_of("\r")==std::string::npos){
+				if(http_response.substr(2).find_first_of("\r")==std::string::npos){
 					break ; 
 				}
 			}
@@ -54,15 +58,19 @@ public:
 			std::cout<<"KEY: "<<it->first<<" VALUE: "<<it->second<<std::endl;
 			it++;
 		}
+		for(size_t i=0;i<file_size;++i){
+			std::cout<<file.at(i);
+		}
+		std::cout<<std::endl;
 	}
 	std::string get_status_line(){
 		return status_line;
 	}
-	void update_file(char data[]){
+	void update_file(char data[],size_t len){
 		if(file_size==0){
 			initial(data);
 		}
-		for(size_t i=0;i<sizeof(*data);++i){
+		for(size_t i=0;i<len;++i){
 			file.push_back(data[i]);
 		}
 		file_size = file.size();
@@ -76,6 +84,9 @@ public:
 		else{
 			return 0;
 		}
+	}
+	std::vector<char> get_file(){
+		return file;
 	}
 };
 class request{
@@ -282,7 +293,36 @@ public:
 		int connect_status = connect(socket_fd,(struct sockaddr *)&server_in,sizeof(server_in));
 		return connect_status;
 	}
-	size_t send_message(std::string request,int socket_fd){
+	size_t send_message(std::vector<char> file,int socket_fd){
+		if(socket_fd==0){
+			std::cout<<"socket not established"<<std::endl;
+		}		
+		size_t sent=0;
+		std::cout<<"rl "<<file.size()<<std::endl;
+		do{
+			char message[1024];
+			memset(message,0,sizeof(message));
+			
+			if(file.size()<sizeof(message)){
+				memcpy(message,&file.data()[0],file.size());
+				std::cout<<"message is------------------------------------------------"<<std::endl<<message<<std::endl;
+				sent+=send(socket_fd,message,file.size(),0);
+			}
+			else{
+				memcpy(message, &file.data()[sent],sizeof(message));
+				sent+=send(socket_fd,message,sizeof(message),0);	
+			}
+		
+			std::cout<<"sent "<<sent<<std::endl;
+			if(file.size()<sizeof(message)){
+				break;
+			}
+		}
+		while(sent<file.size());
+		return sent;
+	}
+
+	size_t send_request(std::string request,int socket_fd){//
 		
 		//std::cout<<"lenth is "<<request.length()<<std::endl<<"send: "<<message<<std::endl;
 		if(socket_fd==0){
@@ -310,19 +350,21 @@ public:
 		while(sent<request.length());
 		return sent;
 	}
-	std::string recv_message(int socket_fd,size_t cl){
+	std::string recv_message(int socket_fd,response * http_response){
 		
 		size_t cap=0;
 		std::string res;		
 		do{
 			char message[1024];
 			memset(message,0,sizeof(message));
-			cap+=recv(socket_fd,&message,sizeof(message),0);
+			size_t temp=recv(socket_fd,&message,sizeof(message),0);
+			cap+=temp;
+			http_response->update_file(message,temp);
 			res+=std::string(message);
 			if(cap<1024){return std::string(message);}
 		}
-		while(cap<cl);	
-		//std::cout<<message<<std::endl;
+		while(cap<http_response->get_content_length());	
+		//
 		return res;//std::string("DONE\n");
 	}
 	void bind_addr(){

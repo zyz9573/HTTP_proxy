@@ -7,7 +7,8 @@ int main(int argc, char ** argv){
 	test_server.bind_addr();
 	while(1){
 		int client_fd = test_server.accept_connection();
-		std::string hr = test_server.recv_message(client_fd,1024);	
+		response http_response;
+		std::string hr = test_server.recv_message(client_fd,&http_response);	
 		request test(hr,1);
 		test.print_request();
 		request_line zyz(test.get_request_line());
@@ -20,19 +21,24 @@ int main(int argc, char ** argv){
 		}
 		if(zyz.getMethod().compare("GET")==0){
 			std::cout<<"-------------GET--------------"<<std::endl;
-			test_server.send_message(test.getOriginal_request(),socket_fd);
-			std::string ans = test_server.recv_message(socket_fd,7043);
-			size_t sent = test_server.send_message(ans,client_fd);
+			test_server.send_request(test.getOriginal_request(),socket_fd);
+			response temp;
+			std::string ans = test_server.recv_message(socket_fd,&temp);
+			//std::cout<<temp.get_content_length()<<std::endl;
+			temp.print_response();
+			size_t sent = test_server.send_message(temp.get_file(),client_fd);
+			//size_t sent = test_server.send_request(ans,client_fd);
 			//
 			std::cout<<sent<<std::endl;
 		}
 		else if(zyz.getMethod().compare("CONNECT")==0){
 			std::cout<<"-------------CONNECT--------------"<<std::endl;
 			std::cout<<test.getOriginal_request();
-			test_server.send_message(test.getOriginal_request(),socket_fd);
-			std::string ans = test_server.recv_message(socket_fd,1024);
+			test_server.send_request(test.getOriginal_request(),socket_fd);
+			response temp;
+			std::string ans = test_server.recv_message(socket_fd,&temp);
 			std::cout<<ans<<std::endl;
-			size_t sent = test_server.send_message("200 OK\r\n",client_fd);
+			size_t sent = test_server.send_request("200 OK\r\n",client_fd);
 			std::cout<<sent<<std::endl;			
 		}
 
