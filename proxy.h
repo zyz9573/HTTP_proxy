@@ -27,6 +27,9 @@ public:
 	request(){
 		content = new std::vector<char>();
 	}
+	~request(){
+		delete content;
+	}
 	void parse_request_line(std::string http_request){
 		request_line = http_request;
 		std::size_t filter = http_request.find_first_of(" ");
@@ -114,6 +117,9 @@ public:
 	response(){
 		content = new std::vector<char>();
 	}
+	~response(){
+		delete content;
+	}
 	void parse_status_line(std::string http_response){
 		status_line = http_response;
 		size_t filter = http_response.find_first_of(" ");
@@ -171,17 +177,17 @@ public:
 };
 class cache{
 private:
-	std::map<std::string , response > database;
+	std::map<std::string , response * > database;
 public:
-	void add_to_cache(std::string request_line,response http_response){
-		database.insert(std::pair<std::string,response>(request_line,http_response));
+	void add_to_cache(std::string request_line,response * http_response){
+		database.insert(std::pair<std::string,response*>(request_line,http_response));
 	}
 	void delete_from_cache(std::string request_line){
 		if(database.empty()){
 			std::cout<<"cache is empty, can not delete"<<std::endl;
 			return ;
 		}
-		std::map<std::string , response>::iterator it = database.find(request_line);
+		std::map<std::string , response *>::iterator it = database.find(request_line);
 		if(it != database.end()){
 			database.erase(request_line);
 		}
@@ -227,6 +233,7 @@ public:
   		}
   		struct hostent * host_info = gethostbyname(hostname.c_str());
   		if ( host_info == NULL ) {
+  			std::cout<<"host info is null"<<std::endl;
     		exit(EXIT_FAILURE);
   		}
 		memcpy(&server_in.sin_addr, host_info->h_addr_list[0], host_info->h_length);
@@ -238,7 +245,7 @@ public:
 			std::cout<<"socket not established"<<std::endl;
 		}
 		size_t sent=0;
-		std::cout<<"size is "<<content->size()<<std::endl;
+		//std::cout<<"size is "<<content->size()<<std::endl;
 		do{
 			char message[1024];
 			memset(message,0,sizeof(message));
@@ -253,7 +260,7 @@ public:
 			if(content->size()<sizeof(message)){
 				break;
 			}
-			std::cout<<sent<<std::endl;
+			//std::cout<<sent<<std::endl;
 		}
 		while(sent<content->size());
 		return sent;
@@ -270,9 +277,10 @@ public:
 	void recv_request_header(request * HTTP, int socket_fd){
 		char message[1024];
 		memset(message,0,sizeof(message));
-		size_t cap=recv(socket_fd,&message,sizeof(message),0);
-		std::cout<<cap<<std::endl;
+		size_t cap = recv(socket_fd,&message,sizeof(message),0);
+		std::cout<<message<<std::endl;
 		std::string temp(message);
+		size_t sign=0;
 		size_t filter=0;
 		while((filter = temp.find_first_of("\r\n"))!= 0 ){
 			if(HTTP->get_request_line().length()==0){
@@ -282,12 +290,20 @@ public:
 				HTTP->add_kv(temp.substr(0,filter));
 			}
 			temp = temp.substr(filter+2);
+			sign+=filter;
+			sign+=2;
+		}
+		sign+=2;
+		if(sign<cap){
+			for(size_t i =sign;i<1024;++i){
+				HTTP->get_content()->push_back(message[i]);
+			}
 		}
 	}
 	void recv_response_header(response * HTTP, int socket_fd){
 		char message[1024];
 		memset(message,0,sizeof(message));
-		recv(socket_fd,&message,sizeof(message),0);
+		size_t cap = recv(socket_fd,&message,sizeof(message),0);
 		std::string temp(message);
 		size_t sign=0;
 		size_t filter=0;
@@ -303,11 +319,21 @@ public:
 			sign+=2;
 		}
 		sign+=2;
-		if(sign<1024){
+		if(sign<cap){
 			for(size_t i =sign;i<1024;++i){
 				HTTP->get_content()->push_back(message[i]);
 			}
 		}
+	}
+	void test_recv_message(int socket_fd, std::vector<char> * v){
+		size_t cap=0;	
+		do{
+			char message[1024];
+			memset(message,0,sizeof(message));
+			cap=recv(socket_fd,&message,sizeof(message),0);
+			std::cout<<"content size is "<<cap<<std::endl;
+		}
+		while(cap!=0);	
 	}
 	void recv_message(int socket_fd, std::vector<char> * v){		
 		size_t cap=0;	
@@ -318,7 +344,7 @@ public:
 			v->push_back(message[0]);
 		}
 		while(cap!=0);
-		std::cout<<"content size is "<<v->size()<<std::endl;
+		//
 	}
 	void bind_addr(){
 		struct hostent * host_info = gethostbyname(hostname.c_str());
