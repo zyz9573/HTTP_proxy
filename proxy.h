@@ -29,6 +29,7 @@ private:
 	std::string uri;
 	std::map<std::string,std::string> kv_table;
 	std::vector<char> * content;
+	int port_num;
 public:
 	request(int id){
 		uid = id;
@@ -50,6 +51,18 @@ public:
 			hostname = std::string(http_request.substr(0,filter2));
 			filter = http_request.find_first_of(" ");
 			uri = std::string(http_request.substr(filter2,filter-filter2));
+			if((filter = hostname.find_first_of(":"))!=std::string::npos){
+				port_num = atoi(hostname.substr(filter+1).c_str());
+				hostname = hostname.substr(0,filter);
+			}
+			else{
+				if(agreement.compare("http")==0){
+					port_num = 80;
+  				}
+  				else if(agreement.compare("https")==0){
+  					port_num = 443;
+  				}
+			}
 		}
 		else if(method.compare("CONNECT")==0){
 			http_request = http_request.substr(filter+1);
@@ -57,14 +70,9 @@ public:
 			hostname = std::string(http_request.substr(0,filter));
 			http_request = http_request.substr(filter+1);
 			filter = http_request.find_first_of(" ");
-			int port = atoi(http_request.substr(0,filter).c_str());
-			if(port==80){
-				agreement=std::string("http");
-			}
-			else if(port==443){
-				agreement=std::string("https");
-			}
+			port_num = atoi(http_request.substr(0,filter).c_str());
 		}
+
 	}
 	void add_kv(std::string temp){
 		if(temp.length()==0){return ;}
@@ -113,6 +121,9 @@ public:
 			return it->second.substr(filter+1);
 		}
 		return "INVALID";
+	}
+	int get_portnum(){
+		return port_num;
 	}
 	std::string get_hostname(){
 		return hostname;
@@ -277,23 +288,15 @@ public:
 	void close_socket_fd(int socket_fd){
 		close(socket_fd);
 	}
-	int connect_host(std::string hostname,std::string agreement,int socket_fd){
+	int connect_host(std::string hostname,int port,int socket_fd){
 	  	struct sockaddr_in server_in;
 	  	//memset(server_in,0,sizeof(server_in));
   		server_in.sin_family = AF_INET;
-  		if(agreement.compare("http")==0){
-		  //std::cout<<agreement<<std::endl;
-  			server_in.sin_port = htons(80);
-  		}
-  		else if(agreement.compare("https")==0){
-  			server_in.sin_port = htons(443);
-  		}
-  		else{
-  			server_in.sin_port = htons(atoi(agreement.c_str()));
-  		}
+  		server_in.sin_port = htons(port);
+  		
   		struct hostent * host_info = gethostbyname(hostname.c_str());
   		if ( host_info == NULL ) {
-  			std::cout<<"host info is null"<<std::endl;
+  			std::cout<<hostname<<" host info is null"<<std::endl;
     		exit(EXIT_FAILURE);
   		}
 		memcpy(&server_in.sin_addr, host_info->h_addr_list[0], host_info->h_length);

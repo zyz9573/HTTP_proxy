@@ -36,7 +36,7 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 		if(Http_request.get_method().compare("GET")==0){
 
 			int socket_fd = test_server->create_socket_fd();
-			int status = test_server->connect_host(Http_request.get_hostname(),Http_request.get_agreement(),socket_fd);
+			int status = test_server->connect_host(Http_request.get_hostname(),Http_request.get_portnum(),socket_fd);
 			std::cout<<"GET method, connect status is "<<status<<"\r\n"<<std::endl;
 			if(status==-1){
 				std::cout<<"connect fail"<<std::endl;
@@ -47,6 +47,12 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			response Http_response(Http_request.get_uid());
 			test_server->recv_response_header(&Http_response,socket_fd);
 			test_server->recv_message(socket_fd,Http_response.get_content(),Http_response.get_length());
+			
+
+			//doing cahce
+			
+
+
 			//std::cout<<Http_response.get_content()->size()<<std::endl;
 			test_server->send_header(Http_response.get_response(),socket_fd);
 			//std::cout<<Http_response.get_response();
@@ -59,7 +65,7 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			//std::cout<<"************************\r\n";
 			int socket_fd = test_server->create_socket_fd();
 			std::cout<<Http_request.get_port()<<std::endl;
-			int status = test_server->connect_host(Http_request.get_hostname(),Http_request.get_port(),socket_fd);
+			int status = test_server->connect_host(Http_request.get_hostname(),Http_request.get_portnum(),socket_fd);
 			std::cout<<"Connect method, connect status is "<<status<<"\r\n"<<std::endl;
 			//std::cout<<Http_request.get_length()<<std::endl;
 			if(status==-1){
@@ -96,6 +102,19 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 				std::cout<<"Tunnel closed"<<std::endl;
 				close(socket_fd);	
 			}		
+		}
+		else if(Http_request.get_method().compare("POST")==0){
+			int socket_fd = test_server->create_socket_fd();
+			std::cout<<Http_request.get_port()<<std::endl;
+			int status = test_server->connect_host(Http_request.get_hostname(),Http_request.get_portnum(),socket_fd);
+			std::cout<<"Connect method, connect status is "<<status<<"\r\n"<<std::endl;
+			//std::cout<<Http_request.get_length()<<std::endl;
+			if(status==-1){
+				std::cout<<"connect fail"<<std::endl;
+				exit(EXIT_FAILURE);
+			}
+			std::cout<<"-------------POST--------------\r\n";
+
 		}	
 		close(client_fd);
 		std::cout<<"thread "<<std::this_thread::get_id()<<" end"<<std::endl;
