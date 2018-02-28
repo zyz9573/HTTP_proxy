@@ -14,8 +14,10 @@
 #include <time.h>
 #include <map>
 #include <vector>
+#include <pthread.h>
 class request{
 private:
+	int uid;
 	std::string request_line;
 	std::string method;
 	std::string agreement; 
@@ -24,7 +26,8 @@ private:
 	std::map<std::string,std::string> kv_table;
 	std::vector<char> * content;
 public:
-	request(){
+	request(int id){
+		uid = id;
 		content = new std::vector<char>();
 	}
 	~request(){
@@ -63,6 +66,7 @@ public:
 		if(temp.length()==0){return ;}
 		size_t colon = temp.find_first_of(":");
 		if(colon == std::string::npos){
+			std::cout<<temp<<std::endl;
 			std::cout<<"invalid KV"<<std::endl;
 			return ;
 		}
@@ -80,11 +84,31 @@ public:
 			res+="\r\n";
 			res+=it->first;
 			res+=": ";
-			res+=it->second;
+			if(it->first.compare("Connection")==0){
+				res+="close";
+			}
+			else{
+				res+=it->second;
+			}
 			++it;
 		}
 		res+="\r\n\r\n";
 		return res;
+	}
+	size_t get_length(){
+		std::map<std::string,std::string>::iterator it = kv_table.find("Content-Length");
+		if(it!=kv_table.end()){
+			return (size_t)atoi(it->second.c_str());
+		}
+		return 0;		
+	}
+	std::string get_port(){
+		std::map<std::string,std::string>::iterator it = kv_table.find("Host");
+		if(it!=kv_table.end()){
+			size_t filter = it->second.find_first_of(":");
+			return it->second.substr(filter+1);
+		}
+		return "INVALID";
 	}
 	std::string get_hostname(){
 		return hostname;
@@ -107,6 +131,7 @@ public:
 };
 class response{
 private:
+	int uid;
 	std::string status_line;
 	int status;
 	std::string agreement;
@@ -114,8 +139,22 @@ private:
 	std::map<std::string,std::string> kv_table;
 	std::vector<char> * content;
 public:
-	response(){
+	response(int id){
+		uid =id;
 		content = new std::vector<char>();
+	}
+	response(const response &rhs){
+		uid = rhs.uid;
+		status_line = rhs.status_line;
+		status = rhs.status;
+		agreement = rhs.agreement;
+		detail = rhs.detail;
+		std::map<std::string,std::string>::const_iterator it = rhs.kv_table.begin();
+		while(it!=rhs.kv_table.end()){
+			kv_table.insert(std::pair<std::string,std::string>(it->first,it->second));
+		}
+		content = new std::vector<char>(*rhs.content);
+
 	}
 	~response(){
 		delete content;
@@ -158,6 +197,13 @@ public:
 		}
 		res+="\r\n\r\n";
 		return res;
+	}
+	size_t get_length(){
+		std::map<std::string,std::string>::iterator it = kv_table.find("Content-Length");
+		if(it!=kv_table.end()){
+			return (size_t)atoi(it->second.c_str());
+		}
+		return 0;		
 	}
 	int get_status(){
 		return status;
@@ -228,8 +274,7 @@ public:
   			server_in.sin_port = htons(443);
   		}
   		else{
-  			std::cout<<"agreement invalid"<<std::endl;
-  			return -1;
+  			server_in.sin_port = htons(atoi(agreement.c_str()));
   		}
   		struct hostent * host_info = gethostbyname(hostname.c_str());
   		if ( host_info == NULL ) {
@@ -240,29 +285,38 @@ public:
 		int connect_status = connect(socket_fd,(struct sockaddr *)&server_in,sizeof(server_in));
 		return connect_status;
 	}
+	int transfer_TLS(int sour_fd,int dest_fd){
+		std::vector<char> temp;
+		temp.resize(8192);
+		size_t cap;
+		cap = recv(sour_fd,&temp.data()[0],8192,0);
+		temp.resize(cap);
+		std::cout<<"get "<<cap<<" from "<<sour_fd;
+		if(cap==0){
+			std::cout<<"TUNNEL CLOSED\r\n";
+			return -1;
+		}
+		send(dest_fd,&temp.data()[0],cap,0);
+		std::cout<<" send "<<cap<<" to "<<dest_fd<<std::endl;
+		return 0;
+	}
 	size_t send_message(int socket_fd, std::vector<char> * content){
 		if(socket_fd==0){
 			std::cout<<"socket not established"<<std::endl;
 		}
 		size_t sent=0;
 		//std::cout<<"size is "<<content->size()<<std::endl;
-		do{
-			char message[1024];
-			memset(message,0,sizeof(message));
-			if((content->size()-sent)<sizeof(message)){
-				memcpy(message,&(content->data()[sent]),(content->size()-sent));
-				sent+=send(socket_fd,message,(content->size()-sent),0);
+		while(1){
+			if(sent+1024 < content->size()){
+				sent+=send(socket_fd,&(content->data()[sent]),1024,0);
 			}
 			else{
-				memcpy(message,&(content->data()[sent]),sizeof(message));
-				sent+=send(socket_fd,message,sizeof(message),0);	
-			}
-			if(content->size()<sizeof(message)){
+				sent+=send(socket_fd,&(content->data()[sent]),content->size()-sent,0);
 				break;
 			}
-			//std::cout<<sent<<std::endl;
+			
 		}
-		while(sent<content->size());
+		std::cout<<"successfully send "<<sent<<"bytes\r\n";
 		return sent;
 	}
 	void send_header(std::string header,int socket_fd){
@@ -277,8 +331,11 @@ public:
 	void recv_request_header(request * HTTP, int socket_fd){
 		char message[1024];
 		memset(message,0,sizeof(message));
-		size_t cap = recv(socket_fd,&message,sizeof(message),0);
-		std::cout<<message<<std::endl;
+		size_t cap = recv(socket_fd,&message,sizeof(message),0);//std::cout<<cap<<" line 336\r\n";
+		if(cap==0){
+			std::cout<<"client close socket\r\n";
+			return ;
+		}
 		std::string temp(message);
 		size_t sign=0;
 		size_t filter=0;
@@ -324,27 +381,42 @@ public:
 				HTTP->get_content()->push_back(message[i]);
 			}
 		}
+		std::cout<<"header size is "<<sign<<" recv size is "<<cap<<" content size is "<<HTTP->get_content()->size()<<std::endl;
 	}
-	void test_recv_message(int socket_fd, std::vector<char> * v){
-		size_t cap=0;	
-		do{
-			char message[1024];
-			memset(message,0,sizeof(message));
-			cap=recv(socket_fd,&message,sizeof(message),0);
-			std::cout<<"content size is "<<cap<<std::endl;
+	int recv_message(int socket_fd, std::vector<char> * v, size_t length){		
+		size_t cap=0;
+		size_t index=v->size();
+		if(length>0){
+			while(v->size()<length){
+				v->resize(index+1024);
+				cap = recv(socket_fd,&(v->data()[index]),1024,0);
+				index+=cap;
+				if(cap<1024 && cap >0){
+					v->resize(index);
+				}
+				if(cap==0){
+					std::cout<<"socket close\r\n";
+					return -1;
+				}
+			}	
 		}
-		while(cap!=0);	
-	}
-	void recv_message(int socket_fd, std::vector<char> * v){		
-		size_t cap=0;	
-		do{
-			char message[1];
-			memset(message,0,sizeof(message));
-			cap=recv(socket_fd,&message,sizeof(message),0);
-			v->push_back(message[0]);
+		else{
+			cap=1;
+			while(cap!=0){
+				v->resize(index+1024);
+				cap = recv(socket_fd,&(v->data()[index]),1024,0);
+				index+=cap;
+				if(cap<1024 && cap >0){
+					v->resize(index);
+				}
+				if(cap==0){
+					std::cout<<"socket close\r\n";
+					return -1;
+				}
+			}	
 		}
-		while(cap!=0);
-		//
+		std::cout<<"successfully recv "<<index<<"bytes\r\n";
+		return 0;	
 	}
 	void bind_addr(){
 		struct hostent * host_info = gethostbyname(hostname.c_str());
@@ -364,6 +436,7 @@ public:
         return accept(host_socket_fd,(struct sockaddr*)&incoming,&len);
 	}
 };
+
 /*  
 
 */

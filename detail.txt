@@ -1,9 +1,136 @@
-CONNECT www.google.com:443 HTTP/1.1
-Host: www.google.com:443
-Proxy-Connection: keep-alive
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.167 Safari/537.36
+GET http://people.duke.edu/~tkb13/courses/ece650/ HTTP/1.1
+Host: people.duke.edu
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+Pragma: no-cache
+Cache-Control: no-cache
 
 
-connect status is 0
+GET method, connect status is 0
 
--------------CONNECT--------------
+-------------GET--------------
+header size is 260 recv size is 1024 content size is 764
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Connection: close
+Content-Length: 19111
+Content-Type: text/html; charset=UTF-8
+Date: Wed, 28 Feb 2018 02:10:22 GMT
+ETag: "1b5013c00-4aa7-566279cf57cfe"
+Last-Modified: Tue, 27 Feb 2018 01:33:26 GMT
+Server: Apache
+
+19111
+GET http://people.duke.edu/~tkb13/courses/ece650/style.css HTTP/1.1
+Host: people.duke.edu
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0
+Accept: text/css,*/*;q=0.1
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://people.duke.edu/~tkb13/courses/ece650/
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+GET method, connect status is 0
+
+-------------GET--------------
+header size is 243 recv size is 1024 content size is 781
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Connection: close
+Content-Length: 5712
+Content-Type: text/css
+Date: Wed, 28 Feb 2018 02:10:22 GMT
+ETag: "1a4d9dfb0-1650-5562da73f16c0"
+Last-Modified: Mon, 07 Aug 2017 18:02:43 GMT
+Server: Apache
+
+5712
+GET http://people.duke.edu/~tkb13/courses/ece650/jquery.min.js HTTP/1.1
+Host: people.duke.edu
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://people.duke.edu/~tkb13/courses/ece650/
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+GET method, connect status is 0
+
+-------------GET--------------
+header size is 252 recv size is 1024 content size is 772
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Connection: close
+Content-Length: 84345
+Content-Type: text/javascript
+Date: Wed, 28 Feb 2018 02:10:23 GMT
+ETag: "1a526bb01-14979-51e013c1eb800"
+Last-Modified: Sun, 23 Aug 2015 21:32:16 GMT
+Server: Apache
+
+84345
+GET http://people.duke.edu/~tkb13/courses/ece650/jquery.countdown.min.js HTTP/1.1
+Host: people.duke.edu
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://people.duke.edu/~tkb13/courses/ece650/
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+GET method, connect status is 0
+
+-------------GET--------------
+header size is 250 recv size is 1024 content size is 774
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Connection: close
+Content-Length: 5057
+Content-Type: text/javascript
+Date: Wed, 28 Feb 2018 02:10:23 GMT
+ETag: "1a55e60b4-13c1-51d45a59c8300"
+Last-Modified: Fri, 14 Aug 2015 13:44:12 GMT
+Server: Apache
+
+5057
+GET http://people.duke.edu/~tkb13/courses/ece650/jquery.tablesorter.min.js HTTP/1.1
+Host: people.duke.edu
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0
+Accept: */*
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Referer: http://people.duke.edu/~tkb13/courses/ece650/
+Connection: keep-alive
+Pragma: no-cache
+Cache-Control: no-cache
+
+
+GET method, connect status is 0
+
+-------------GET--------------
+header size is 251 recv size is 1024 content size is 773
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Connection: close
+Content-Length: 16622
+Content-Type: text/javascript
+Date: Wed, 28 Feb 2018 02:10:23 GMT
+ETag: "1a4fe93d0-40ee-555b401ba15c0"
+Last-Modified: Tue, 01 Aug 2017 16:54:55 GMT
+Server: Apache
+
+16622
+
