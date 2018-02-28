@@ -341,13 +341,13 @@ public:
 		if(socket_fd==0){
 			std::cout<<"socket not established"<<std::endl;
 		}
-		char message[1024];
+		char message[8192];
 		memset(message,0,sizeof(message));
 		memcpy(message,header.c_str(),header.length());
 		send(socket_fd,message,header.length(),0);
 	}
 	void recv_request_header(request * HTTP, int socket_fd){
-		char message[1024];
+		char message[8192];
 		memset(message,0,sizeof(message));
 		size_t cap = recv(socket_fd,&message,sizeof(message),0);//std::cout<<cap<<" line 336\r\n";
 		if(cap==0){
@@ -370,13 +370,13 @@ public:
 		}
 		sign+=2;
 		if(sign<cap){
-			for(size_t i =sign;i<1024;++i){
+			for(size_t i =sign;i<cap;++i){
 				HTTP->get_content()->push_back(message[i]);
 			}
 		}
 	}
 	void recv_response_header(response * HTTP, int socket_fd){
-		char message[1024];
+		char message[8192];
 		memset(message,0,sizeof(message));
 		size_t cap = recv(socket_fd,&message,sizeof(message),0);
 		std::string temp(message);
@@ -394,8 +394,9 @@ public:
 			sign+=2;
 		}
 		sign+=2;
+		std::cout<<"response header size is "<<sign<<" recv size is "<<cap<<"\r\n\r\n";
 		if(sign<cap){
-			for(size_t i =sign;i<1024;++i){
+			for(size_t i =sign;i<cap;++i){
 				HTTP->get_content()->push_back(message[i]);
 			}
 		}
