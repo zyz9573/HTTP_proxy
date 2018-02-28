@@ -14,8 +14,11 @@
 #include <time.h>
 #include <map>
 #include <vector>
-#include <pthread.h>
-int UID=1;
+#include <set>
+#include <thread>
+#include <mutex> 
+int UID=0;
+std::mutex mtx;
 class request{
 private:
 	int uid;
@@ -303,13 +306,13 @@ public:
 		size_t cap;
 		cap = recv(sour_fd,&temp.data()[0],8192,0);
 		temp.resize(cap);
-		std::cout<<"get "<<cap<<" from "<<sour_fd;
+		//std::cout<<"get "<<cap<<" from "<<sour_fd;
 		if(cap==0){
 			std::cout<<"TUNNEL CLOSED\r\n";
 			return -1;
 		}
 		send(dest_fd,&temp.data()[0],cap,0);
-		std::cout<<" send "<<cap<<" to "<<dest_fd<<std::endl;
+		//std::cout<<" send "<<cap<<" to "<<dest_fd<<std::endl;
 		return 0;
 	}
 	size_t send_message(int socket_fd, std::vector<char> * content){
@@ -393,7 +396,7 @@ public:
 				HTTP->get_content()->push_back(message[i]);
 			}
 		}
-		std::cout<<"header size is "<<sign<<" recv size is "<<cap<<" content size is "<<HTTP->get_content()->size()<<std::endl;
+		//std::cout<<"header size is "<<sign<<" recv size is "<<cap<<" content size is "<<HTTP->get_content()->size()<<std::endl;
 	}
 	int recv_message(int socket_fd, std::vector<char> * v, size_t length){		
 		size_t cap=0;

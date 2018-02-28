@@ -1,136 +1,282 @@
-GET http://people.duke.edu/~tkb13/courses/ece650/ HTTP/1.1
-Host: people.duke.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Connection: keep-alive
-Upgrade-Insecure-Requests: 1
-Pragma: no-cache
-Cache-Control: no-cache
-
-
+insert thread ------------------------------------
+client fd is 4
+UID IS 0
+139816726562560
+here is thread 139816726562560 dealing with request 1
 GET method, connect status is 0
 
 -------------GET--------------
-header size is 260 recv size is 1024 content size is 764
-HTTP/1.1 200 OK
-Accept-Ranges: bytes
-Connection: close
-Content-Length: 19111
-Content-Type: text/html; charset=UTF-8
-Date: Wed, 28 Feb 2018 02:10:22 GMT
-ETag: "1b5013c00-4aa7-566279cf57cfe"
-Last-Modified: Tue, 27 Feb 2018 01:33:26 GMT
-Server: Apache
+successfully recv 653bytes
+successfully send 653bytes
+thread 139816726562560 end
+------------------------------------
+insert thread ------------------------------------
+client fd is 139816726562560
+4
+UID IS 1
+here is thread 139816726562560 dealing with request 2
+insert thread 139816713717504
+------------------------------------
+client fd is 6
+UID IS 2
+here is thread 139816713717504 dealing with request 3
+443
+Connect method, connect status is 0
 
-19111
-GET http://people.duke.edu/~tkb13/courses/ece650/style.css HTTP/1.1
-Host: people.duke.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0
-Accept: text/css,*/*;q=0.1
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://people.duke.edu/~tkb13/courses/ece650/
-Connection: keep-alive
-Pragma: no-cache
-Cache-Control: no-cache
+-------------CONNECT--------------
+client fd is 6server fd is 7
+insert thread ------------------------------------
+client fd is 139816705263360
+8
+UID IS 3
+here is thread 139816705263360 dealing with request 4
+insert thread ------------------------------------
+client fd is 1398166968092169
 
+UID IS 4
+443
+here is thread 139816696809216 dealing with request 5
+insert thread 139816486242048
+------------------------------------
+client fd is 12
+UID IS 5
+here is thread 139816486242048 dealing with request 6
+insert thread 139816477787904
+------------------------------------
+client fd is 13
+UID IS 6
+here is thread 139816477787904 dealing with request 7
+443
+Connect method, connect status is 0
 
+-------------CONNECT--------------
+client fd is 8server fd is 10
+Connect method, connect status is 0
+
+-------------CONNECT--------------
+client fd is 9server fd is 14
+thread 139816726562560 end
+------------------------------------
+insert thread 139816726562560
+------------------------------------
+client fd is 4
+UID IS 7
+here is thread 139816726562560 dealing with request 8
+thread 139816726562560 end
+------------------------------------
+insert thread 139816726562560
+------------------------------------
+client fd is 4
+UID IS 8
+here is thread 139816726562560 dealing with request 9
+thread 139816726562560 end
+------------------------------------
+insert thread 139816726562560
+------------------------------------
+client fd is 4
+UID IS 9
+here is thread 139816726562560 dealing with request 10
+thread 139816726562560 end
+------------------------------------
+insert thread 139816726562560
+------------------------------------
+client fd is 4
+UID IS 10
+here is thread 139816726562560 dealing with request 11
+thread 139816726562560 end
+------------------------------------
+443
+443
+Connect method, connect status is 0
+
+-------------CONNECT--------------
+client fd is 12server fd is 4
+Connect method, connect status is 0
+
+-------------CONNECT--------------
+client fd is 13server fd is 11
+insert thread 139816726562560
+------------------------------------
+client fd is 15
+UID IS 11
+here is thread 139816726562560 dealing with request 12
+thread 139816726562560 end
+------------------------------------
+insert thread 139816726562560
+------------------------------------
+client fd is 15
+UID IS 12
+here is thread 139816726562560 dealing with request 13
+thread 139816726562560 end
+------------------------------------
+------------------------------------
+client fd is insert thread 15
+139816726562560
+UID IS 13
+here is thread 139816726562560 dealing with request 14
+443
+Connect method, connect status is 0
+
+-------------CONNECT--------------
+client fd is 15server fd is 16
+insert thread 139816469333760
+------------------------------------
+client fd is 17
+UID IS 14
+here is thread 139816469333760 dealing with request 15
+443
+insert thread 139816460879616
+------------------------------------
+client fd is 19
+UID IS 15
+here is thread 139816460879616 dealing with request 16
+443
+Connect method, connect status is 0
+
+-------------CONNECT--------------
+client fd is 17server fd is 18
+Connect method, connect status is 0
+
+-------------CONNECT--------------
+client fd is 19server fd is 20
+------------------------------------
+client fd is 21
+UID IS 16
+insert thread 139816452425472
+here is thread 139816452425472 dealing with request 17
+443
+insert thread ------------------------------------
+client fd is 13981644397132824
+
+UID IS 17
+here is thread 139816443971328 dealing with request 18
+443
+Connect method, connect status is 0
+
+-------------CONNECT--------------
+client fd is 21server fd is 22
+Connect method, connect status is 0
+
+-------------CONNECT--------------
+client fd is 24server fd is 25
+insert thread 139816435517184
+------------------------------------
+client fd is 23
+UID IS 18
+here is thread 139816435517184 dealing with request 19
+insert thread 139815882262272
+------------------------------------
+client fd is 26
+UID IS 19
+here is thread 139815882262272 dealing with request 20
+Tunnel closed
+thread 139816705263360 end
+------------------------------------
+Tunnel closed
+thread 139816696809216 end
+------------------------------------
 GET method, connect status is 0
 
 -------------GET--------------
-header size is 243 recv size is 1024 content size is 781
-HTTP/1.1 200 OK
-Accept-Ranges: bytes
-Connection: close
-Content-Length: 5712
-Content-Type: text/css
-Date: Wed, 28 Feb 2018 02:10:22 GMT
-ETag: "1a4d9dfb0-1650-5562da73f16c0"
-Last-Modified: Mon, 07 Aug 2017 18:02:43 GMT
-Server: Apache
+successfully recv 653bytes
+successfully send 653bytes
+thread 139815882262272 end
+------------------------------------
+insert thread 139815882262272
+------------------------------------
+client fd is 8
+UID IS 20
+here is thread 139815882262272 dealing with request 21
+443
+Connect method, connect status is 0
 
-5712
-GET http://people.duke.edu/~tkb13/courses/ece650/jquery.min.js HTTP/1.1
-Host: people.duke.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://people.duke.edu/~tkb13/courses/ece650/
-Connection: keep-alive
-Pragma: no-cache
-Cache-Control: no-cache
+-------------CONNECT--------------
+client fd is 8server fd is 9
+Tunnel closed
+thread 139816477787904 end
+------------------------------------
+insert thread ------------------------------------
+client fd is 139816477787904
+10
+UID IS 21
+here is thread 139816477787904 dealing with request 22
+443
+insert thread ------------------------------------
+client fd is 139816696809216
+14
+UID IS 22
+here is thread 139816696809216 dealing with request 23
+443
+Connect method, connect status is 0
 
+-------------CONNECT--------------
+client fd is 10server fd is 11
+Connect method, connect status is 0
 
-GET method, connect status is 0
+-------------CONNECT--------------
+client fd is 14server fd is 26
+insert thread ------------------------------------
+client fd is 139816705263360
+13
+UID IS 23
+here is thread 139816705263360 dealing with request 24
+thread 139816705263360 end
+------------------------------------
+insert thread 139816705263360
+------------------------------------
+client fd is 13
+UID IS 24
+here is thread 139816705263360 dealing with request 25
+thread 139816705263360 end
+------------------------------------
+Tunnel closed
+thread 139816469333760 end
+------------------------------------
+Tunnel closed
+thread 139816452425472 end
+------------------------------------
+Tunnel closed
+thread 139816443971328 end
+------------------------------------
+insert thread ------------------------------------
+client fd is 139816443971328
+13
+UID IS 25
+here is thread 139816443971328 dealing with request 26
+thread 139816443971328 end
+------------------------------------
+Tunnel closed
+thread 139816486242048 end
+------------------------------------
+Tunnel closed
+thread 139816460879616 end
+------------------------------------
+insert thread 139816460879616
+------------------------------------
+client fd is 4
+UID IS 26
+here is thread 139816460879616 dealing with request 27
+thread 139816460879616 end
+------------------------------------
+insert thread ------------------------------------
+client fd is 1398164608796164
 
--------------GET--------------
-header size is 252 recv size is 1024 content size is 772
-HTTP/1.1 200 OK
-Accept-Ranges: bytes
-Connection: close
-Content-Length: 84345
-Content-Type: text/javascript
-Date: Wed, 28 Feb 2018 02:10:23 GMT
-ETag: "1a526bb01-14979-51e013c1eb800"
-Last-Modified: Sun, 23 Aug 2015 21:32:16 GMT
-Server: Apache
+UID IS 27
+here is thread 139816460879616 dealing with request 28
+443
+Connect method, connect status is 0
 
-84345
-GET http://people.duke.edu/~tkb13/courses/ece650/jquery.countdown.min.js HTTP/1.1
-Host: people.duke.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://people.duke.edu/~tkb13/courses/ece650/
-Connection: keep-alive
-Pragma: no-cache
-Cache-Control: no-cache
+-------------CONNECT--------------
+client fd is 4server fd is 12
+insert thread 139816486242048
+------------------------------------
+client fd is 13
+UID IS 28
+here is thread 139816486242048 dealing with request 29
+443
+Connect method, connect status is 0
 
-
-GET method, connect status is 0
-
--------------GET--------------
-header size is 250 recv size is 1024 content size is 774
-HTTP/1.1 200 OK
-Accept-Ranges: bytes
-Connection: close
-Content-Length: 5057
-Content-Type: text/javascript
-Date: Wed, 28 Feb 2018 02:10:23 GMT
-ETag: "1a55e60b4-13c1-51d45a59c8300"
-Last-Modified: Fri, 14 Aug 2015 13:44:12 GMT
-Server: Apache
-
-5057
-GET http://people.duke.edu/~tkb13/courses/ece650/jquery.tablesorter.min.js HTTP/1.1
-Host: people.duke.edu
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0
-Accept: */*
-Accept-Language: en-US,en;q=0.5
-Accept-Encoding: gzip, deflate
-Referer: http://people.duke.edu/~tkb13/courses/ece650/
-Connection: keep-alive
-Pragma: no-cache
-Cache-Control: no-cache
-
-
-GET method, connect status is 0
-
--------------GET--------------
-header size is 251 recv size is 1024 content size is 773
-HTTP/1.1 200 OK
-Accept-Ranges: bytes
-Connection: close
-Content-Length: 16622
-Content-Type: text/javascript
-Date: Wed, 28 Feb 2018 02:10:23 GMT
-ETag: "1a4fe93d0-40ee-555b401ba15c0"
-Last-Modified: Tue, 01 Aug 2017 16:54:55 GMT
-Server: Apache
-
-16622
-
+-------------CONNECT--------------
+client fd is 13server fd is 17
+Tunnel closed
+thread 139815882262272 end

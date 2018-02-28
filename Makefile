@@ -1,2 +1,2 @@
 proxy: proxy.cpp proxy.h
-	g++ -lpthread -o proxy -std=gnu++98 -Wall -Werror -ggdb3 proxy.cpp
+	g++  -o proxy -std=gnu++11 -Wall -Werror -ggdb3 proxy.cpp -lpthread
