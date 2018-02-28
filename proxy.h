@@ -15,6 +15,7 @@
 #include <map>
 #include <vector>
 #include <pthread.h>
+int UID=1;
 class request{
 private:
 	int uid;
@@ -128,6 +129,9 @@ public:
 	std::vector<char> * get_content(){
 		return content;
 	}
+	int get_uid(){
+		return uid;
+	}
 };
 class response{
 private:
@@ -220,6 +224,9 @@ public:
 	std::vector<char> * get_content(){
 		return content;
 	}
+	int get_uid(){
+		return uid;
+	}
 };
 class cache{
 private:
@@ -251,6 +258,11 @@ public:
 		char host[64];
 		gethostname(host,64);
 		hostname = std::string(host);
+	}
+	proxy(const proxy &rhs){
+		host_socket_fd = rhs.host_socket_fd;
+		port = rhs.port;
+		hostname = rhs.hostname;
 	}
 	~proxy(){
 	  close(host_socket_fd);

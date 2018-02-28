@@ -13,17 +13,13 @@ std::string get_UTC_time(int a){
 	std::string res(asctime(timeinfo));
 	return res;
 }
-int main(int argc, char ** argv){
-	//std::string hr("CONNECT www.google.com:443 HTTP/1.1\r\nHost: www.google.com\r\n\r\n");
-	proxy test_server(12345);	
-	test_server.bind_addr();
+void deal_request(proxy test_server){
 	while(1){
 		std::cout<<"begin"<<std::endl;
 		int client_fd = test_server.accept_connection();
 		request Http_request(1);
 		std::cout<<"here"<<std::endl;
 		test_server.recv_request_header(&Http_request,client_fd);
-		
 		if(Http_request.get_method().compare("GET")==0){
 
 			int socket_fd = test_server.create_socket_fd();
@@ -71,8 +67,8 @@ int main(int argc, char ** argv){
 				FD_SET(socket_fd,&set);
 
 				struct timeval timeout;
-				timeout.tv_sec = 5;
-				timeout.tv_usec = 5000;
+				timeout.tv_sec = 1;
+				timeout.tv_usec = 500000;//500ms
 				sign = select(maxfdp(client_fd,socket_fd)+1,&set,NULL,NULL,&timeout);
 				if(sign==0){break;}		
 				if(FD_ISSET(client_fd,&set)){
@@ -85,14 +81,19 @@ int main(int argc, char ** argv){
 			if(sign==0){
 				std::cout<<"Tunnel closed"<<std::endl;
 				close(client_fd);
-				close(socket_fd);	
-				continue ; 	
+				close(socket_fd);
+				continue ;		
 			}		
 		}
-
 		close(client_fd);	
 		std::cout<<"end"<<std::endl;
 	}
+}
+int main(int argc, char ** argv){
+	//std::string hr("CONNECT www.google.com:443 HTTP/1.1\r\nHost: www.google.com\r\n\r\n");
+	proxy test_server(12345);	
+	test_server.bind_addr();
+	deal_request(test_server);
 	
 	return EXIT_SUCCESS;
 }
