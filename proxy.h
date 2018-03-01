@@ -6,12 +6,14 @@
 #include <cstring>
 #include <sys/socket.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <unistd.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <netdb.h>
 #include <time.h>
+#include <fstream>
 #include <map>
 #include <vector>
 #include <set>
@@ -19,6 +21,140 @@
 #include <mutex> 
 int UID=0;
 std::mutex mtx;
+std::string EMPTY = "NULL";
+time_t parse_gmt_time(std::string temp){
+	tm tmobj;
+	std::string a;
+	std::string mon[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+	size_t filter = temp.find(" ");
+	temp=temp.substr(filter+1);
+
+	filter = temp.find(" ");
+	a = temp.substr(0,filter);
+	tmobj.tm_mday = atoi(a.c_str());
+	temp=temp.substr(filter+1);
+
+	filter = temp.find(" ");
+	a = temp.substr(0,filter);
+	for(int i=0;i<12;++i){
+		if(a.compare(mon[i])==0){
+			tmobj.tm_mon = i;
+		}
+	}
+	temp=temp.substr(filter+1);
+
+	filter = temp.find(" ");
+	a = temp.substr(0,filter);
+	tmobj.tm_year = atoi(a.c_str())-1900;
+	temp=temp.substr(filter+1);
+
+	filter = temp.find(":");
+	a = temp.substr(0,filter);
+	tmobj.tm_hour = atoi(a.c_str());
+	temp=temp.substr(filter+1);
+
+	filter = temp.find(":");
+	a = temp.substr(0,filter);
+	tmobj.tm_min = atoi(a.c_str());
+	temp=temp.substr(filter+1);
+
+	filter = temp.find(" ");
+	a = temp.substr(0,filter);
+	tmobj.tm_sec = atoi(a.c_str());
+	temp=temp.substr(filter+1);
+
+	return mktime(&tmobj);
+
+}
+class cache_control{
+private:
+	long age;
+	long maxage;
+	long smaxage;
+	long expires;
+	long date;
+	bool nocache;
+	bool nostore;
+	bool must_reval;
+	std::string etag;
+public:
+	cache_control(){
+		age=0;
+		date=0;
+		maxage = 0;//
+		smaxage = 0;//
+		expires = 0;
+		nocache = false;//
+		nostore = false;//
+		must_reval = false;//
+		etag = EMPTY;
+	}
+	void print_cc(){
+		std::cout<<"age is "<<age<<std::endl;
+		std::cout<<"maxage is "<<maxage<<std::endl;
+		std::cout<<"smaxage is "<<smaxage<<std::endl;
+		std::cout<<"expires is "<<expires<<std::endl;
+		std::cout<<"date is "<<date<<std::endl;
+		std::cout<<"nocache is "<<nocache<<std::endl;
+		std::cout<<"nostore is "<<nostore<<std::endl;
+		std::cout<<"must_reval is "<<must_reval<<std::endl;
+		std::cout<<"etag is "<<etag<<std::endl;
+	}
+	void set_etag(std::string temp){
+		etag = temp;
+	}
+	void set_age(long temp){
+		age = temp;
+	}
+	void set_date(long temp){
+		date = temp;
+	}
+	void set_maxage(long temp){
+		maxage = temp;
+	}
+	void set_smaxage(long temp){
+		smaxage = temp;
+	}
+	void set_expires(long temp){
+		expires = temp;
+	}
+	void set_nocache(bool temp){
+		nocache = temp;
+	}
+	void set_nostore(bool temp){
+		nostore = temp;
+	}
+	void set_mustreval(bool temp){
+		must_reval = temp;
+	}
+	std::string get_etag(){
+		return etag;
+	}
+	long get_age(){
+		return age;
+	}
+	long get_date(){
+		return date;
+	}
+	long get_maxage(){
+		return maxage;
+	}
+	long get_smaxage(){
+		return smaxage;
+	}
+	long get_expires(){
+		return expires;
+	}
+	bool get_nocache(){
+		return nocache;
+	}
+	bool get_nostore(){
+		return nostore;
+	}
+	bool get_mustreval(){
+		return must_reval;
+	}
+};
 class request{
 private:
 	int uid;
@@ -74,7 +210,7 @@ public:
 		}
 
 	}
-	void add_kv(std::string temp){
+	void add_kv(std::string temp){//might be repeat
 		if(temp.length()==0){return ;}
 		size_t colon = temp.find_first_of(":");
 		if(colon == std::string::npos){
@@ -121,6 +257,73 @@ public:
 			return it->second.substr(filter+1);
 		}
 		return "INVALID";
+	}
+	void set_cache_info(cache_control * cc){
+		std::map<std::string,std::string>::iterator it = kv_table.find("Age");
+		std::map<std::string,std::string>::iterator IT = kv_table.find("age");
+		if(it!=kv_table.end() || IT!=kv_table.end()){
+			cc->set_age((long)atoi(it->second.c_str()));
+		}
+		it = kv_table.find("ETag");IT = kv_table.find("etag");
+		if(it!=kv_table.end()|| IT!=kv_table.end()){
+			cc->set_etag(it->second);
+		}
+		it = kv_table.find("Date");IT = kv_table.find("date");
+		if(it!=kv_table.end()|| IT!=kv_table.end()){
+			cc->set_date((long)parse_gmt_time(it->second));
+		}
+		it = kv_table.find("Expires");IT = kv_table.find("expires");
+		if(it!=kv_table.end()|| IT!=kv_table.end()){
+			cc->set_expires((long)parse_gmt_time(it->second));
+		}
+		it = kv_table.find("Cache-Control");IT = kv_table.find("cache-control");
+		if(it!=kv_table.end()|| IT!=kv_table.end()){
+			std::string temp = it->second;
+			size_t filter =0;
+			while((filter = temp.find_first_of(","))!=std::string::npos){
+				std::string a = temp.substr(0,filter);
+				temp=temp.substr(filter+2);
+				if(a.compare("no-cache")==0){
+					cc->set_nocache(true);
+					continue ;
+				}
+				if(a.compare("no-store")==0){
+					cc->set_nostore(true);
+					continue ;
+				}
+				if(a.compare("must-revalidate")==0){
+					cc->set_mustreval(true);
+					continue ;
+				}
+				size_t index=0;
+				if((index = a.find_first_of("="))!=std::string::npos){
+					if(a.substr(0,index).compare("max-age")==0){
+						cc->set_maxage((long)atoi(a.substr(index+1).c_str()));
+					}
+					if(a.substr(0,index).compare("s-maxage")==0){
+						cc->set_smaxage((long)atoi(a.substr(index+1).c_str()));
+					}
+				}
+			}
+			if(temp.compare("no-cache")==0){
+				cc->set_nocache(true);
+			}
+			if(temp.compare("no-store")==0){
+				cc->set_nostore(true);
+			}
+			if(temp.compare("must-revalidate")==0){
+				cc->set_mustreval(true);
+			}
+			size_t index=0;
+			if((index = temp.find_first_of("="))!=std::string::npos){
+				if(temp.substr(0,index).compare("max-age")==0){
+					cc->set_maxage((long)atoi(temp.substr(index+1).c_str()));
+				}
+				if(temp.substr(0,index).compare("s-maxage")==0){
+					cc->set_smaxage((long)atoi(temp.substr(index+1).c_str()));
+				}
+			}
+		}
 	}
 	int get_portnum(){
 		return port_num;
@@ -203,6 +406,75 @@ public:
 			content->push_back(data[i]);
 		}
 	}
+	void set_cache_info(cache_control * cc){
+		std::map<std::string,std::string>::iterator it = kv_table.find("Age");
+		if(it!=kv_table.end()){
+			cc->set_age((long)atoi(it->second.c_str()));
+		}
+		it = kv_table.find("ETag");
+		if(it!=kv_table.end()){
+			cc->set_etag(it->second);
+		}
+		it = kv_table.find("Date");
+		if(it!=kv_table.end()){
+			cc->set_date((long)parse_gmt_time(it->second));
+		}
+		it = kv_table.find("Expires");
+		if(it!=kv_table.end()){
+			cc->set_expires((long)parse_gmt_time(it->second));
+		}
+		it = kv_table.find("Cache-Control");
+		if(it!=kv_table.end()){
+			//std::cout<<it->second<<"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\r\n";
+			std::string temp = it->second;
+			size_t filter =0;
+			while((filter = temp.find_first_of(","))!=std::string::npos){
+				std::string a = temp.substr(0,filter);
+				//std::cout<<a<<"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\r\n";
+				temp=temp.substr(filter+2);
+				if(a.compare("no-cache")==0){
+					cc->set_nocache(true);
+					continue ;
+				}
+				if(a.compare("no-store")==0){
+					cc->set_nostore(true);
+					continue ;
+				}
+				if(a.compare("must-revalidate")==0){
+					cc->set_mustreval(true);
+					continue ;
+				}
+				size_t index=0;
+				if((index = a.find_first_of("="))!=std::string::npos){
+					if(a.substr(0,index).compare("max-age")==0){
+						cc->set_maxage((long)atoi(a.substr(index+1).c_str()));
+					}
+					if(a.substr(0,index).compare("s-maxage")==0){
+						cc->set_smaxage((long)atoi(a.substr(index+1).c_str()));
+					}
+				}
+			}
+			if(temp.compare("no-cache")==0){
+				cc->set_nocache(true);
+			}
+			if(temp.compare("no-store")==0){
+				cc->set_nostore(true);
+			}
+			if(temp.compare("must-revalidate")==0){
+				cc->set_mustreval(true);
+			}
+			size_t index=0;
+			if((index = temp.find_first_of("="))!=std::string::npos){
+				if(temp.substr(0,index).compare("max-age")==0){
+					std::cout<<temp.substr(index+1)<<"MAMAMAMAMAMAMAMAMAMAMAMAMAMAMAMAMAMA\r\n";
+					cc->set_maxage((long)atoi(temp.substr(index+1).c_str()));
+				}
+				if(temp.substr(0,index).compare("s-maxage")==0){
+					cc->set_smaxage((long)atoi(temp.substr(index+1).c_str()));
+				}
+			}
+		}
+	}
 	std::string get_response(){
 		std::string res = status_line;
 		std::map<std::string,std::string>::iterator it = kv_table.begin();
@@ -242,12 +514,17 @@ public:
 		return uid;
 	}
 };
+
 class cache{
 private:
+	size_t capacity;
 	std::map<std::string , response * > database;
 public:
-	void add_to_cache(std::string request_line,response * http_response){
-		database.insert(std::pair<std::string,response*>(request_line,http_response));
+	cache(size_t size){
+		capacity = size;//max store capacity bytes
+	}
+	void add_to_cache(std::string URI,response * http_response){
+		database.insert(std::pair<std::string,response*>(URI,http_response));
 	}
 	void delete_from_cache(std::string request_line){
 		if(database.empty()){
@@ -259,6 +536,7 @@ public:
 			database.erase(request_line);
 		}
 	}
+
 };
 class proxy{
 private:
@@ -453,6 +731,27 @@ public:
 		struct sockaddr_in incoming;
 		socklen_t len = sizeof(incoming);
         return accept(host_socket_fd,(struct sockaddr*)&incoming,&len);
+	}
+};
+class Log{
+private:
+	std::string path;
+public:
+	Log(std::string logpath):path(logpath){
+		const char * cpath = path.c_str();
+		mkdir(cpath, ACCESSPERMS);
+	}
+	void add(std::string str){
+		char buf[512]; //to store the cwd
+		getcwd(buf, 512);
+		const char * cpath = path.c_str();
+		chdir(cpath);
+		std::ofstream logfile("proxy.log", std::ios_base::out | std::ios_base::app );
+		logfile << str <<"\r\n";
+		chdir(buf);
+	}
+	~Log(){
+
 	}
 };
 

@@ -1,6 +1,6 @@
 //created by panjoy 2/20/2018
 #include "proxy.h"
-int maxfdp(int a, int b){
+int max(int a, int b){
 	if(a>b){return a;}
 	return b;
 }
@@ -57,6 +57,14 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			//std::cout<<"^^^^^^^^^^^^^^^^^^^^^^^^\r\n";
 			test_server->recv_message(socket_fd,Http_response.get_content(),Http_response.get_length());
 			
+//test for cache control
+			std::cout<<Http_response.get_response();
+			std::cout<<"-------------test cc--------------"<<"\r\n";
+			cache_control test;
+			Http_response.set_cache_info(&test);
+			//test.print_cc();
+			std::cout<<"-------------end test cc--------------"<<"\r\n";
+//end test
 
 			//doing cahce
 			
@@ -98,7 +106,7 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 				struct timeval timeout;
 				timeout.tv_sec = 1;
 				timeout.tv_usec = 500000;//500ms
-				sign = select(maxfdp(client_fd,socket_fd)+1,&set,NULL,NULL,&timeout);
+				sign = select(max(client_fd,socket_fd)+1,&set,NULL,NULL,&timeout);
 				if(sign==0){break;}		
 				if(FD_ISSET(client_fd,&set)){
 					if(test_server->transfer_TLS(client_fd,socket_fd)==-1){close(client_fd);close(socket_fd);break ; }
@@ -166,8 +174,12 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			std::cout<<"thread missing in set\r\n";
 		}
 }
+
 int main(int argc, char ** argv){
 	//std::string hr("CONNECT www.google.com:443 HTTP/1.1\r\nHost: www.google.com\r\n\r\n");
+	std::string path("/mnt/d/test/HTTP_proxy");
+	Log log(path);
+	log.add("test2");
 	proxy test_server(12345);	
 	test_server.bind_addr();
 	std::set<std::thread::id> threads;
@@ -196,3 +208,14 @@ int main(int argc, char ** argv){
 	
 	return EXIT_SUCCESS;
 }
+/*
+int main(int argc, char ** argv){
+	std::string time("Thu, 01 Mar 2018 00:16:15 GMT");
+	std::cout<<time<<std::endl;
+	time_t temp = parse_gmt_time(time);
+	std::cout<<(long)temp<<std::endl;
+	struct tm * timeinfo = gmtime(&temp);
+	std::cout<<asctime(timeinfo)<<std::endl;
+	return EXIT_SUCCESS;
+}
+*/
