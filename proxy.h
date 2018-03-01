@@ -18,7 +18,12 @@
 #include <vector>
 #include <set>
 #include <thread>
-#include <mutex> 
+#include <mutex>
+
+#define NOCACHE 1
+#define NOSTORE 2
+#define MR 3//must-revalidate 
+
 int UID=0;
 std::mutex mtx;
 std::string EMPTY = "NULL";
@@ -63,7 +68,7 @@ time_t parse_gmt_time(std::string temp){
 	tmobj.tm_sec = atoi(a.c_str());
 	temp=temp.substr(filter+1);
 
-	return mktime(&tmobj);
+	return mktime(&tmobj)-18000;
 
 }
 class cache_control{
@@ -73,9 +78,11 @@ private:
 	long smaxage;
 	long expires;
 	long date;
+	long last_modi;
 	bool nocache;
 	bool nostore;
 	bool must_reval;
+	bool pri;
 	std::string etag;
 public:
 	cache_control(){
@@ -84,9 +91,11 @@ public:
 		maxage = 0;//
 		smaxage = 0;//
 		expires = 0;
+		last_modi=0;
 		nocache = false;//
 		nostore = false;//
 		must_reval = false;//
+		pri = false;//
 		etag = EMPTY;
 	}
 	void print_cc(){
@@ -94,11 +103,18 @@ public:
 		std::cout<<"maxage is "<<maxage<<std::endl;
 		std::cout<<"smaxage is "<<smaxage<<std::endl;
 		std::cout<<"expires is "<<expires<<std::endl;
+		std::cout<<"last_modi is "<<last_modi<<std::endl;
 		std::cout<<"date is "<<date<<std::endl;
 		std::cout<<"nocache is "<<nocache<<std::endl;
 		std::cout<<"nostore is "<<nostore<<std::endl;
 		std::cout<<"must_reval is "<<must_reval<<std::endl;
+		std::cout<<"private is "<<pri<<std::endl;
 		std::cout<<"etag is "<<etag<<std::endl;
+	}
+	int cache_status(){
+		if(get_nocache()){
+			return NOCACHE;
+		}
 	}
 	void set_etag(std::string temp){
 		etag = temp;
@@ -118,12 +134,19 @@ public:
 	void set_expires(long temp){
 		expires = temp;
 	}
+	void set_last_modi(long temp){
+		last_modi = temp;
+	}
 	void set_nocache(bool temp){
 		nocache = temp;
 	}
 	void set_nostore(bool temp){
 		nostore = temp;
 	}
+	void set_private(bool temp){
+		pri = temp;
+	}
+
 	void set_mustreval(bool temp){
 		must_reval = temp;
 	}
@@ -145,6 +168,9 @@ public:
 	long get_expires(){
 		return expires;
 	}
+	long get_last_modi(){
+		return last_modi;
+	}
 	bool get_nocache(){
 		return nocache;
 	}
@@ -153,6 +179,9 @@ public:
 	}
 	bool get_mustreval(){
 		return must_reval;
+	}
+	bool get_private(){
+		return pri;
 	}
 };
 class request{
@@ -260,24 +289,27 @@ public:
 	}
 	void set_cache_info(cache_control * cc){
 		std::map<std::string,std::string>::iterator it = kv_table.find("Age");
-		std::map<std::string,std::string>::iterator IT = kv_table.find("age");
-		if(it!=kv_table.end() || IT!=kv_table.end()){
+		if(it!=kv_table.end() ){
 			cc->set_age((long)atoi(it->second.c_str()));
 		}
-		it = kv_table.find("ETag");IT = kv_table.find("etag");
-		if(it!=kv_table.end()|| IT!=kv_table.end()){
+		it = kv_table.find("ETag");
+		if(it!=kv_table.end()){
 			cc->set_etag(it->second);
 		}
-		it = kv_table.find("Date");IT = kv_table.find("date");
-		if(it!=kv_table.end()|| IT!=kv_table.end()){
+		it = kv_table.find("Date");
+		if(it!=kv_table.end()){
 			cc->set_date((long)parse_gmt_time(it->second));
 		}
-		it = kv_table.find("Expires");IT = kv_table.find("expires");
-		if(it!=kv_table.end()|| IT!=kv_table.end()){
+		it = kv_table.find("Expires");
+		if(it!=kv_table.end()){
 			cc->set_expires((long)parse_gmt_time(it->second));
 		}
-		it = kv_table.find("Cache-Control");IT = kv_table.find("cache-control");
-		if(it!=kv_table.end()|| IT!=kv_table.end()){
+		it = kv_table.find("Last-Modified");
+		if(it!=kv_table.end()){
+			cc->set_last_modi((long)parse_gmt_time(it->second));
+		}
+		it = kv_table.find("Cache-Control");
+		if(it!=kv_table.end()){
 			std::string temp = it->second;
 			size_t filter =0;
 			while((filter = temp.find_first_of(","))!=std::string::npos){
@@ -293,6 +325,10 @@ public:
 				}
 				if(a.compare("must-revalidate")==0){
 					cc->set_mustreval(true);
+					continue ;
+				}
+				if(a.compare("private")==0){
+					cc->set_private(true);
 					continue ;
 				}
 				size_t index=0;
@@ -313,6 +349,9 @@ public:
 			}
 			if(temp.compare("must-revalidate")==0){
 				cc->set_mustreval(true);
+			}
+			if(temp.compare("private")==0){
+				cc->set_private(true);
 			}
 			size_t index=0;
 			if((index = temp.find_first_of("="))!=std::string::npos){
@@ -423,6 +462,10 @@ public:
 		if(it!=kv_table.end()){
 			cc->set_expires((long)parse_gmt_time(it->second));
 		}
+		it = kv_table.find("Last-Modified");
+		if(it!=kv_table.end()){
+			cc->set_last_modi((long)parse_gmt_time(it->second));
+		}
 		it = kv_table.find("Cache-Control");
 		if(it!=kv_table.end()){
 			//std::cout<<it->second<<"CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\r\n";
@@ -444,6 +487,10 @@ public:
 					cc->set_mustreval(true);
 					continue ;
 				}
+				if(a.compare("private")==0){
+					cc->set_private(true);
+					continue ;
+				}
 				size_t index=0;
 				if((index = a.find_first_of("="))!=std::string::npos){
 					if(a.substr(0,index).compare("max-age")==0){
@@ -463,10 +510,13 @@ public:
 			if(temp.compare("must-revalidate")==0){
 				cc->set_mustreval(true);
 			}
+			if(temp.compare("private")==0){
+				cc->set_private(true);
+			}
 			size_t index=0;
 			if((index = temp.find_first_of("="))!=std::string::npos){
 				if(temp.substr(0,index).compare("max-age")==0){
-					std::cout<<temp.substr(index+1)<<"MAMAMAMAMAMAMAMAMAMAMAMAMAMAMAMAMAMA\r\n";
+					//std::cout<<temp.substr(index+1)<<"MAMAMAMAMAMAMAMAMAMAMAMAMAMAMAMAMAMA\r\n";
 					cc->set_maxage((long)atoi(temp.substr(index+1).c_str()));
 				}
 				if(temp.substr(0,index).compare("s-maxage")==0){
@@ -515,28 +565,72 @@ public:
 	}
 };
 
-class cache{
+class Cache{
 private:
 	size_t capacity;
+	size_t used;
 	std::map<std::string , response * > database;
 public:
-	cache(size_t size){
+	Cache(size_t size){
+		used=0;
 		capacity = size;//max store capacity bytes
 	}
-	void add_to_cache(std::string URI,response * http_response){
-		database.insert(std::pair<std::string,response*>(URI,http_response));
+	~Cache(){
+		std::map<std::string , response * >::iterator it = database.begin();
+		while(it!=database.end()){
+			delete it->second;
+			it++;
+		}
 	}
-	void delete_from_cache(std::string request_line){
+	response * find(std::string uri){
+		std::map<std::string , response * >::iterator it = database.find(uri);
+		if(it!=database.end()){
+			return it->second;
+		}
+		return NULL;
+	}
+	void delete_cache(){
+		//delete smallest uid, which means eariliest response
+		try {
+        	std::lock_guard<std::mutex> lck (mtx);
+    	}	
+    	catch (std::logic_error&) {
+       		std::cout << "[exception caught] when delete from cache\n";
+    	}
 		if(database.empty()){
 			std::cout<<"cache is empty, can not delete"<<std::endl;
 			return ;
 		}
-		std::map<std::string , response *>::iterator it = database.find(request_line);
-		if(it != database.end()){
-			database.erase(request_line);
+		std::map<std::string , response *>::iterator it = database.begin();
+		std::map<std::string , response *>::iterator temp = it;
+		int id=(int)capacity;
+		while(it!=database.end()){
+			if(it->second->get_uid()<id){
+				id = it->second->get_uid();
+				temp=it;
+			}
+			it++;
+		}
+		used=used-temp->second->get_content()->size();
+		database.erase(temp);
+		if(used<0){
+			std::cout<<"FATAL ERR, CACHE STORE LESS THAN 0\r\n";
 		}
 	}
-
+	void add_to_cache(std::string URI,response * http_response){
+		try {
+        	std::lock_guard<std::mutex> lck (mtx);
+    	}	
+    	catch (std::logic_error&) {
+       		std::cout << "[exception caught] when add to cache\n";
+    	}
+    	while(used+http_response->get_content()->size() > capacity){
+    		delete_cache();
+    	}
+    	std::cout<<"cache cap is "<<capacity<<" used size is "<<used<<" insert size is "<<http_response->get_content()->size()<<"\r\n";
+    	used=used+http_response->get_content()->size();
+		database.insert(std::pair<std::string,response*>(URI,http_response));
+	}
 };
 class proxy{
 private:

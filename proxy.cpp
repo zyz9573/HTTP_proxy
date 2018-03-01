@@ -1,6 +1,10 @@
 //created by panjoy 2/20/2018
 #include "proxy.h"
-int max(int a, int b){
+int maxfdp(int a, int b){
+	if(a>b){return a;}
+	return b;
+}
+long max(long a, long b){
 	if(a>b){return a;}
 	return b;
 }
@@ -26,7 +30,7 @@ int UIDPLUS(){
 	UID++;
 	return UID;
 }
-void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* threads){
+void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* threads, Cache * cache){
 		std::cout<<"------------------------------------\r\n";
 		std::cout<<"client fd is "<<client_fd<<"\r\n";
 		request Http_request(UIDPLUS());
@@ -49,14 +53,14 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			//std::cout<<"************************\r\n";
 			//std::cout<<Http_request.get_request();
 			//std::cout<<"************************\r\n";
-			response Http_response(Http_request.get_uid());
-			test_server->recv_response_header(&Http_response,socket_fd);
+			response * Http_response = new response(Http_request.get_uid());
+			test_server->recv_response_header(Http_response,socket_fd);
 			//std::cout<<"^^^^^^^^^^^^^^^^^^^^^^^^\r\n";
 			//std::cout<<Http_response.get_response();
 			//std::cout<<Http_response.get_content()->size()<<std::endl;
 			//std::cout<<"^^^^^^^^^^^^^^^^^^^^^^^^\r\n";
-			test_server->recv_message(socket_fd,Http_response.get_content(),Http_response.get_length());
-			
+			test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
+/*			
 //test for cache control
 			std::cout<<Http_response.get_response();
 			std::cout<<"-------------test cc--------------"<<"\r\n";
@@ -65,15 +69,16 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			//test.print_cc();
 			std::cout<<"-------------end test cc--------------"<<"\r\n";
 //end test
-
+*/
 			//doing cahce
 			
 
 
 			//std::cout<<Http_response.get_content()->size()<<std::endl;
-			test_server->send_header(Http_response.get_response(),client_fd);
+			test_server->send_header(Http_response->get_response(),client_fd);
 			//std::cout<<Http_response.get_response();
-			test_server->send_message(client_fd,Http_response.get_content());
+			test_server->send_message(client_fd,Http_response->get_content());
+			delete Http_response;
 			//close(socket_fd);
 		}
 		else if(Http_request.get_method().compare("CONNECT")==0){
@@ -106,7 +111,7 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 				struct timeval timeout;
 				timeout.tv_sec = 1;
 				timeout.tv_usec = 500000;//500ms
-				sign = select(max(client_fd,socket_fd)+1,&set,NULL,NULL,&timeout);
+				sign = select(maxfdp(client_fd,socket_fd)+1,&set,NULL,NULL,&timeout);
 				if(sign==0){break;}		
 				if(FD_ISSET(client_fd,&set)){
 					if(test_server->transfer_TLS(client_fd,socket_fd)==-1){close(client_fd);close(socket_fd);break ; }
@@ -180,6 +185,7 @@ int main(int argc, char ** argv){
 	std::string path("/mnt/d/test/HTTP_proxy");
 	Log log(path);
 	log.add("test2");
+	Cache cache(1000000);//1M cache
 	proxy test_server(12345);	
 	test_server.bind_addr();
 	std::set<std::thread::id> threads;
@@ -193,7 +199,7 @@ int main(int argc, char ** argv){
 		//deal_request(&test_server,client_fd);
 		
 
-		std::thread th(deal_request,&test_server,client_fd,&threads);
+		std::thread th(deal_request,&test_server,client_fd,&threads,&cache);
 		std::set<std::thread::id>::iterator it = threads.find(th.get_id()); 
 		if(it!=threads.end()){
 			std::cout<<"repeat thread id\r\n";
@@ -208,12 +214,13 @@ int main(int argc, char ** argv){
 	
 	return EXIT_SUCCESS;
 }
+
 /*
 int main(int argc, char ** argv){
-	std::string time("Thu, 01 Mar 2018 00:16:15 GMT");
+	std::string time("Thu, 01 Mar 2018 19:13:15 GMT");
 	std::cout<<time<<std::endl;
 	time_t temp = parse_gmt_time(time);
-	std::cout<<(long)temp<<std::endl;
+	std::cout<<temp<<std::endl;
 	struct tm * timeinfo = gmtime(&temp);
 	std::cout<<asctime(timeinfo)<<std::endl;
 	return EXIT_SUCCESS;
