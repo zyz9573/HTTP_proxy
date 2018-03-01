@@ -49,6 +49,14 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 				return ;
 			}	
 			std::cout<<"-------------GET--------------"<<"\r\n";
+
+			cache_control req_cc;
+			Http_request.set_cache_info(&req_cc);
+			
+
+
+
+
 			test_server->send_header(Http_request.get_request(),socket_fd);
 			//std::cout<<"************************\r\n";
 			//std::cout<<Http_request.get_request();
@@ -164,9 +172,6 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			else{
 				test_server->send_header(Http_response.get_response(),client_fd);
 			}
-			//std::cout<<Http_response.get_content()->size()<<std::endl;
-
-
 		}	
 		close(client_fd);
 		std::cout<<"thread "<<std::this_thread::get_id()<<" end"<<std::endl;
