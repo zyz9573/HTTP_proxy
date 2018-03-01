@@ -40,19 +40,21 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			std::cout<<"GET method, connect status is "<<status<<"\r\n"<<std::endl;
 			if(status==-1){
 				std::cout<<"connect fail"<<std::endl;
-				exit(EXIT_FAILURE);
+				close(socket_fd);
+				close(client_fd);
+				return ;
 			}	
 			std::cout<<"-------------GET--------------"<<"\r\n";
 			test_server->send_header(Http_request.get_request(),socket_fd);
-			std::cout<<"************************\r\n";
-			std::cout<<Http_request.get_request();
-			std::cout<<"************************\r\n";
+			//std::cout<<"************************\r\n";
+			//std::cout<<Http_request.get_request();
+			//std::cout<<"************************\r\n";
 			response Http_response(Http_request.get_uid());
 			test_server->recv_response_header(&Http_response,socket_fd);
-			std::cout<<"^^^^^^^^^^^^^^^^^^^^^^^^\r\n";
-			std::cout<<Http_response.get_response();
-			std::cout<<Http_response.get_content()->size()<<std::endl;
-			std::cout<<"^^^^^^^^^^^^^^^^^^^^^^^^\r\n";
+			//std::cout<<"^^^^^^^^^^^^^^^^^^^^^^^^\r\n";
+			//std::cout<<Http_response.get_response();
+			//std::cout<<Http_response.get_content()->size()<<std::endl;
+			//std::cout<<"^^^^^^^^^^^^^^^^^^^^^^^^\r\n";
 			test_server->recv_message(socket_fd,Http_response.get_content(),Http_response.get_length());
 			
 
@@ -121,13 +123,19 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 				exit(EXIT_FAILURE);
 			}
 			std::cout<<"-------------POST--------------\r\n";
-			if((Http_request.get_request().length()+Http_request.get_content()->size())>=8192){
-				test_server->recv_message(client_fd,Http_request.get_content(),Http_request.get_length());
+
+			if(test_server->recv_message(client_fd,Http_request.get_content(),Http_request.get_length())!=0){
+				std::cout<<"POST RECV FROM CLIENT ERR\r\n";
 			}
+			
 			test_server->send_header(Http_request.get_request(),socket_fd);
 			test_server->send_message(socket_fd,Http_request.get_content());
 			std::cout<<"************************\r\n";
 			std::cout<<Http_request.get_request();
+			std::cout<<Http_request.get_content()->size()<<std::endl;
+			for(int i = 0;i<126;++i){
+				std::cout<<Http_request.get_content()->at(i);
+			}
 			std::cout<<"************************\r\n";
 			response Http_response(Http_request.get_uid());
 			test_server->recv_response_header(&Http_response,socket_fd);
@@ -135,11 +143,16 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			std::cout<<Http_response.get_response();
 			std::cout<<Http_response.get_content()->size()<<std::endl;
 			std::cout<<"^^^^^^^^^^^^^^^^^^^^^^^^\r\n";
-			test_server->recv_message(socket_fd,Http_response.get_content(),Http_response.get_length());
+			if(test_server->recv_message(socket_fd,Http_response.get_content(),Http_response.get_length())!=0){
+				test_server->send_header(Http_response.get_response(),client_fd);
+				//std::cout<<Http_response.get_response();
+				test_server->send_message(client_fd,Http_response.get_content());				
+			}
+			else{
+				test_server->send_header(Http_response.get_response(),client_fd);
+			}
 			//std::cout<<Http_response.get_content()->size()<<std::endl;
-			test_server->send_header(Http_response.get_response(),client_fd);
-			//std::cout<<Http_response.get_response();
-			test_server->send_message(client_fd,Http_response.get_content());
+
 
 		}	
 		close(client_fd);
