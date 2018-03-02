@@ -1,122 +1,52 @@
-1: "GET http://man7.org/training/index.html HTTP/1.1" from 213.131.240.174 @ Fri Mar  2 03:05:43 2018
-1: Requesting "GET http://man7.org/training/index.html HTTP/1.1" from man7.org
-1: Received "HTTP/1.1 200 OK" from man7.org
+1: "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:20 2018
+1: Requesting "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from vcm-182.vm.duke.edu
+1: Received "HTTP/1.1 200 OK" from vcm-182.vm.duke.edu
 1: Responding "HTTP/1.1 200 OK"
 1: cached
-2: "GET http://man7.org/training/images/pdf.png HTTP/1.1" from 213.131.240.174 @ Fri Mar  2 03:05:44 2018
-2: Requesting "GET http://man7.org/training/images/pdf.png HTTP/1.1" from man7.org
-2: Received "HTTP/1.1 200 OK" from man7.org
-2: Responding "HTTP/1.1 200 OK"
-2: cached
-3: NOTE recive header failed for client close socket
-
-6: "CONNECT accounts.google.com:443 HTTP/1.1" from 74.125.136.84 @ Fri Mar  2 03:05:52 2018
-6Tunnel closed
-5: NOTE recive header failed for client close socket
-
-4: NOTE recive header failed for client close socket
-
-8: "GET http://blog.man7.org/ HTTP/1.1" from 172.217.0.83 @ Fri Mar  2 03:05:57 2018
-8: Requesting "GET http://blog.man7.org/ HTTP/1.1" from blog.man7.org
-8: Received "HTTP/1.1 200 OK" from blog.man7.org
+2: "CONNECT maxcdn.bootstrapcdn.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:20 2018
+3: "CONNECT code.jquery.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:20 2018
+4: "GET http://vcm-182.vm.duke.edu:8000/users/static/logo.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:21 2018
+4: Requesting "GET http://vcm-182.vm.duke.edu:8000/users/static/logo.png HTTP/1.1" from vcm-182.vm.duke.edu
+4: Received "HTTP/1.1 304 Not Modified" from vcm-182.vm.duke.edu
+4: Responding "HTTP/1.1 304 Not Modified"
+2Tunnel closed
+3Tunnel closed
+5: "GET http://people.duke.edu/~tkb13/courses/ece650/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:25 2018
+5: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/ HTTP/1.1" from people.duke.edu
+5: Received "HTTP/1.1 200 OK" from people.duke.edu
+5: Responding "HTTP/1.1 200 OK"
+5: cached
+6: "GET http://people.duke.edu/~tkb13/courses/ece650/style.css HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:25 2018
+8: "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.tablesorter.min.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:25 2018
+7: "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.min.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:25 2018
+9: "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.countdown.min.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:25 2018
+6: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/style.css HTTP/1.1" from people.duke.edu
+9: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.countdown.min.js HTTP/1.1" from people.duke.edu
+8: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.tablesorter.min.js HTTP/1.1" from people.duke.edu
+7: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.min.js HTTP/1.1" from people.duke.edu
+9: Received "HTTP/1.1 200 OK" from people.duke.edu
+9: Responding "HTTP/1.1 200 OK"
+9: cached
+8: Received "HTTP/1.1 200 OK" from people.duke.edu
 8: Responding "HTTP/1.1 200 OK"
-8: not cacheable because response do not allow
-9: "CONNECT www.blogger.com:443 HTTP/1.1" from 216.58.218.9 @ Fri Mar  2 03:05:57 2018
-10: "CONNECT www.blogger.com:443 HTTP/1.1" from 216.58.218.9 @ Fri Mar  2 03:05:57 2018
-15: "CONNECT www.blogger.com:443 HTTP/1.1" from 216.58.218.9 @ Fri Mar  2 03:05:57 2018
-16: "POST http://ocsp.pki.goog/GTSGIAG3 HTTP/1.1" from 172.217.11.142 @ Fri Mar  2 03:05:57 2018
-17: "POST http://ocsp.pki.goog/GTSGIAG3 HTTP/1.1" from 172.217.11.142 @ Fri Mar  2 03:05:57 2018
-18: "POST http://ocsp.pki.goog/GTSGIAG3 HTTP/1.1" from 172.217.11.142 @ Fri Mar  2 03:05:57 2018
-14: "GET http://lh5.googleusercontent.com/-5D3iGLw_pIQ/AAAAAAAAAAI/AAAAAAAAT1s/hgxXuNIpbS0/s80-c/photo.jpg HTTP/1.1" from 173.194.219.132 @ Fri Mar  2 03:05:58 2018
-13: "CONNECT 3.bp.blogspot.com:443 HTTP/1.1" from 172.217.3.225 @ Fri Mar  2 03:05:58 2018
-7: NOTE recive header failed for client close socket
-
-12: "CONNECT resources.blogblog.com:443 HTTP/1.1" from 173.194.219.191 @ Fri Mar  2 03:05:58 2018
-19: "CONNECT resources.blogblog.com:443 HTTP/1.1" from 173.194.219.191 @ Fri Mar  2 03:05:58 2018
-11: "CONNECT apis.google.com:443 HTTP/1.1" from 172.217.0.78 @ Fri Mar  2 03:05:58 2018
-14: Requesting "GET http://lh5.googleusercontent.com/-5D3iGLw_pIQ/AAAAAAAAAAI/AAAAAAAAT1s/hgxXuNIpbS0/s80-c/photo.jpg HTTP/1.1" from lh5.googleusercontent.com
-20: "GET http://www.google.com/images/icons/ui/gprofile_button-16.png HTTP/1.1" from 172.217.8.4 @ Fri Mar  2 03:05:58 2018
-20: Requesting "GET http://www.google.com/images/icons/ui/gprofile_button-16.png HTTP/1.1" from www.google.com
-22: "POST http://ocsp.pki.goog/GTSGIAG3 HTTP/1.1" from 172.217.11.142 @ Fri Mar  2 03:05:58 2018
-20: Received "HTTP/1.1 200 OK" from www.google.com
-20: Responding "HTTP/1.1 200 OK"
-21: "POST http://clients1.google.com/ocsp HTTP/1.1" from 173.194.219.138 @ Fri Mar  2 03:05:58 2018
-23: "POST http://ocsp.pki.goog/GTSGIAG3 HTTP/1.1" from 172.217.11.142 @ Fri Mar  2 03:05:58 2018
-14: Received "HTTP/1.1 200 OK" from lh5.googleusercontent.com
-14: Responding "HTTP/1.1 200 OK"
-24: "CONNECT www.gstatic.com:443 HTTP/1.1" from 74.125.21.94 @ Fri Mar  2 03:05:58 2018
-25: "CONNECT accounts.google.com:443 HTTP/1.1" from 74.125.136.84 @ Fri Mar  2 03:05:58 2018
-26: "CONNECT fonts.gstatic.com:443 HTTP/1.1" from 74.125.21.94 @ Fri Mar  2 03:05:58 2018
-28: "GET http://blog.man7.org/favicon.ico HTTP/1.1" from 172.217.0.83 @ Fri Mar  2 03:05:58 2018
-28: Requesting "GET http://blog.man7.org/favicon.ico HTTP/1.1" from blog.man7.org
-28: Received "HTTP/1.1 200 OK" from blog.man7.org
-28: Responding "HTTP/1.1 200 OK"
-28: not cacheable because response do not allow
-29: "CONNECT lh5.googleusercontent.com:443 HTTP/1.1" from 173.194.219.132 @ Fri Mar  2 03:05:59 2018
-30: "CONNECT lh4.googleusercontent.com:443 HTTP/1.1" from 74.125.21.132 @ Fri Mar  2 03:05:59 2018
-31: "CONNECT lh6.googleusercontent.com:443 HTTP/1.1" from 173.194.219.132 @ Fri Mar  2 03:05:59 2018
-32: "CONNECT lh3.googleusercontent.com:443 HTTP/1.1" from 74.125.21.132 @ Fri Mar  2 03:05:59 2018
-33: "CONNECT lh5.googleusercontent.com:443 HTTP/1.1" from 172.217.11.129 @ Fri Mar  2 03:05:59 2018
-34: "CONNECT lh4.googleusercontent.com:443 HTTP/1.1" from 172.217.0.65 @ Fri Mar  2 03:05:59 2018
-35: "CONNECT lh3.googleusercontent.com:443 HTTP/1.1" from 216.58.193.129 @ Fri Mar  2 03:05:59 2018
-36: "CONNECT lh5.googleusercontent.com:443 HTTP/1.1" from 74.125.21.132 @ Fri Mar  2 03:05:59 2018
-38: "CONNECT lh4.googleusercontent.com:443 HTTP/1.1" from 172.217.3.225 @ Fri Mar  2 03:05:59 2018
-37: "CONNECT lh5.googleusercontent.com:443 HTTP/1.1" from 172.217.11.129 @ Fri Mar  2 03:05:59 2018
-39: "CONNECT lh3.googleusercontent.com:443 HTTP/1.1" from 173.194.219.132 @ Fri Mar  2 03:05:59 2018
-45: "CONNECT 1.bp.blogspot.com:443 HTTP/1.1" from 216.58.218.1 @ Fri Mar  2 03:05:59 2018
-40: "CONNECT lh6.googleusercontent.com:443 HTTP/1.1" from 74.125.21.132 @ Fri Mar  2 03:05:59 2018
-41: "CONNECT lh3.googleusercontent.com:443 HTTP/1.1" from 216.58.193.129 @ Fri Mar  2 03:05:59 2018
-42: "CONNECT lh3.googleusercontent.com:443 HTTP/1.1" from 74.125.21.132 @ Fri Mar  2 03:05:59 2018
-46: "CONNECT lh6.googleusercontent.com:443 HTTP/1.1" from 74.125.21.132 @ Fri Mar  2 03:05:59 2018
-48: "CONNECT lh3.googleusercontent.com:443 HTTP/1.1" from 172.217.11.129 @ Fri Mar  2 03:06:00 2018
-43: "CONNECT 2.bp.blogspot.com:443 HTTP/1.1" from 216.58.218.1 @ Fri Mar  2 03:06:00 2018
-44: "CONNECT lh4.googleusercontent.com:443 HTTP/1.1" from 216.58.193.129 @ Fri Mar  2 03:06:00 2018
-12Tunnel closed
-49: "CONNECT 2.bp.blogspot.com:443 HTTP/1.1" from 216.58.218.1 @ Fri Mar  2 03:06:00 2018
-47: "POST http://clients1.google.com/ocsp HTTP/1.1" from 173.194.219.138 @ Fri Mar  2 03:06:00 2018
-24Tunnel closed
-50: "POST http://clients1.google.com/ocsp HTTP/1.1" from 173.194.219.101 @ Fri Mar  2 03:06:00 2018
+8: cached
+6: Received "HTTP/1.1 200 OK" from people.duke.edu
+6: Responding "HTTP/1.1 200 OK"
+6: cached
+10: "CONNECT fonts.googleapis.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:26 2018
+7: Received "HTTP/1.1 200 OK" from people.duke.edu
+7: Responding "HTTP/1.1 200 OK"
+7: cached
+11: "GET http://people.duke.edu/~tkb13/courses/ece650/images/flow-bg.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:26 2018
+12: "GET http://people.duke.edu/~tkb13/courses/ece650/flair.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:26 2018
+13: "CONNECT fonts.gstatic.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:26 2018
+11: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/images/flow-bg.png HTTP/1.1" from people.duke.edu
+12: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/flair.jpg HTTP/1.1" from people.duke.edu
+11: Received "HTTP/1.1 200 OK" from people.duke.edu
+11: Responding "HTTP/1.1 200 OK"
+11: cached
+12: Received "HTTP/1.1 200 OK" from people.duke.edu
+12: Responding "HTTP/1.1 200 OK"
+12: cached
+10Tunnel closed
 13Tunnel closed
-26Tunnel closed
-51: "POST http://clients1.google.com/ocsp HTTP/1.1" from 173.194.219.139 @ Fri Mar  2 03:06:00 2018
-25Tunnel closed
-52: "POST http://clients1.google.com/ocsp HTTP/1.1" from 173.194.219.100 @ Fri Mar  2 03:06:00 2018
-53: "POST http://clients1.google.com/ocsp HTTP/1.1" from 173.194.219.102 @ Fri Mar  2 03:06:00 2018
-9Tunnel closed
-54: "POST http://clients1.google.com/ocsp HTTP/1.1" from 173.194.219.100 @ Fri Mar  2 03:06:00 2018
-55: "POST http://clients1.google.com/ocsp HTTP/1.1" from 173.194.219.138 @ Fri Mar  2 03:06:00 2018
-56: "POST http://clients1.google.com/ocsp HTTP/1.1" from 173.194.219.101 @ Fri Mar  2 03:06:00 2018
-57: "POST http://clients1.google.com/ocsp HTTP/1.1" from 173.194.219.113 @ Fri Mar  2 03:06:01 2018
-58: "POST http://clients1.google.com/ocsp HTTP/1.1" from 173.194.219.138 @ Fri Mar  2 03:06:01 2018
-59: "POST http://clients1.google.com/ocsp HTTP/1.1" from 173.194.219.101 @ Fri Mar  2 03:06:01 2018
-60: "POST http://clients1.google.com/ocsp HTTP/1.1" from 173.194.219.100 @ Fri Mar  2 03:06:01 2018
-39Tunnel closed
-31Tunnel closed
-34Tunnel closed
-32Tunnel closed
-29Tunnel closed
-49Tunnel closed
-45Tunnel closed
-11Tunnel closed
-61: "CONNECT www.blogger.com:443 HTTP/1.1" from 216.58.217.233 @ Fri Mar  2 03:06:03 2018
-27: NOTE recive header failed for client close socket
-
-61Tunnel closed
-62: "GET http://blog.man7.org/ HTTP/1.1" from 172.217.0.83 @ Fri Mar  2 03:06:09 2018
-62: Requesting "GET http://blog.man7.org/ HTTP/1.1" from blog.man7.org
-62: Received "HTTP/1.1 304 Not Modified" from blog.man7.org
-62: Responding "HTTP/1.1 304 Not Modified"
-63: "CONNECT www.blogger.com:443 HTTP/1.1" from 216.58.217.233 @ Fri Mar  2 03:06:09 2018
-64: "CONNECT apis.google.com:443 HTTP/1.1" from 172.217.0.78 @ Fri Mar  2 03:06:09 2018
-66: "CONNECT accounts.google.com:443 HTTP/1.1" from 74.125.136.84 @ Fri Mar  2 03:06:10 2018
-69: "CONNECT lh3.googleusercontent.com:443 HTTP/1.1" from 173.194.219.132 @ Fri Mar  2 03:06:10 2018
-66Tunnel closed
-63Tunnel closed
-69Tunnel closed
-64Tunnel closed
-65: NOTE recive header failed for client close socket
-
-67: NOTE recive header failed for client close socket
-
-68: NOTE recive header failed for client close socket
-

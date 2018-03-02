@@ -869,16 +869,16 @@ public:
   		server_in.sin_family = AF_INET;
   		server_in.sin_port = htons(port);
 		memcpy(&server_in.sin_addr, host_info->h_addr_list[0], host_info->h_length);
+		std::cout<<"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"<<host_info->h_length<<std::endl;
 		int bind_status = bind(host_socket_fd,(struct sockaddr *)&server_in,sizeof(server_in));
 		if(bind_status<0){
 			std::cout<<"bind fail"<<std::endl;
 		}
 		listen(host_socket_fd,5);
 	}
-	int accept_connection(){
-		struct sockaddr_in incoming;
-		socklen_t len = sizeof(incoming);
-        return accept(host_socket_fd,(struct sockaddr*)&incoming,&len);
+	int accept_connection(struct sockaddr_in * incoming){
+		socklen_t len = sizeof(*incoming);
+        return accept(host_socket_fd,(struct sockaddr*)incoming,&len);
 	}
 };
 class Log{

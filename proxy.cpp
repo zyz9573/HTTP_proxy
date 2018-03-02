@@ -34,7 +34,7 @@ int UIDPLUS(){
 	UID++;
 	return UID;
 }
-void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* threads, Cache * cache,Log * log){
+void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* threads, Cache * cache,Log * log,struct sockaddr_in * incoming){
 		std::cout<<"------------------------------------\r\n";
 		std::cout<<"client fd is "<<client_fd<<"\r\n";
 		request Http_request(UIDPLUS());
@@ -45,9 +45,8 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			std::string info1(std::to_string(Http_request.get_uid()));
 			info1 = info1 +": \"";
 			info1 = info1+Http_request.get_request_line()+"\" from ";
-			struct hostent * host_info = gethostbyname(Http_request.get_hostname().c_str());
 			struct in_addr ip;
-			memcpy(&ip, host_info->h_addr_list[0], host_info->h_length);
+			memcpy(&ip, &(incoming->sin_addr), 4);
 			info1 = info1 + inet_ntoa(ip) + " @ " + get_UTC_time(0);
 			log->add(info1);		
 		}
@@ -606,7 +605,8 @@ int main(int argc, char ** argv){
 	std::set<std::thread::id> threads;
 	while(1){
 		//std::cout<<"begin"<<std::endl;
-		int client_fd = test_server.accept_connection();
+		struct sockaddr_in incoming;
+		int client_fd = test_server.accept_connection(&incoming);
 		if(client_fd==-1){
 			std::cout<<"accept error\r\n";
 			continue ;
@@ -614,7 +614,7 @@ int main(int argc, char ** argv){
 		//deal_request(&test_server,client_fd,&threads,&cache,&log);
 		
 
-		std::thread th(deal_request,&test_server,client_fd,&threads,&cache,&log);
+		std::thread th(deal_request,&test_server,client_fd,&threads,&cache,&log,&incoming);
 		std::set<std::thread::id>::iterator it = threads.find(th.get_id()); 
 		if(it!=threads.end()){
 			std::cout<<"repeat thread id\r\n";
