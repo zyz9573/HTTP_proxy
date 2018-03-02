@@ -781,10 +781,12 @@ public:
 			return ;
 		}
 		std::string temp(message);
+		std::cout<<"raw header is "<<temp<<"\r\n"<<"size is "<<temp.length()<<"\r\n";
 		size_t sign=0;
 		size_t filter=0;
 		while((filter = temp.find_first_of("\r\n"))!= 0 ){
 			if(HTTP->get_request_line().length()==0){
+				std::cout<<"request line is "<<temp.substr(0,filter)<<"\r\n";
 				HTTP->parse_request_line(temp.substr(0,filter));
 			}
 			else{
@@ -840,6 +842,7 @@ public:
 					v->resize(index);
 				}
 				if(cap==0){
+					v->resize(index);
 					std::cout<<"socket close\r\n";
 					return -1;
 				}
@@ -855,6 +858,7 @@ public:
 					v->resize(index);
 				}
 				if(cap==0){
+					v->resize(index);
 					std::cout<<"socket close\r\n";
 					return -1;
 				}

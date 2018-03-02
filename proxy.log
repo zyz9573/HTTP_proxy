@@ -1,52 +1,1204 @@
-1: "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:20 2018
-1: Requesting "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from vcm-182.vm.duke.edu
+1: "CONNECT googleads.g.doubleclick.net:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 04:45:44 2018
+1Tunnel closed
+2: "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 04:45:48 2018
+2: Requesting "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from vcm-182.vm.duke.edu
+2: Received "HTTP/1.1 200 OK" from vcm-182.vm.duke.edu
+2: Responding "HTTP/1.1 200 OK"
+2: cached
+3: "CONNECT maxcdn.bootstrapcdn.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 04:45:49 2018
+4: "CONNECT code.jquery.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 04:45:49 2018
+5: "GET http://vcm-182.vm.duke.edu:8000/users/static/logo.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 04:45:49 2018
+5: Requesting "GET http://vcm-182.vm.duke.edu:8000/users/static/logo.png HTTP/1.1" from vcm-182.vm.duke.edu
+5: Received "HTTP/1.1 200 OK" from vcm-182.vm.duke.edu
+5: Responding "HTTP/1.1 200 OK"
+5: cached
+6: "GET http://vcm-182.vm.duke.edu:8000/users/login/?next=/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 04:45:50 2018
+6: Requesting "GET http://vcm-182.vm.duke.edu:8000/users/login/?next=/ HTTP/1.1" from vcm-182.vm.duke.edu
+3Tunnel closed
+6: Received "HTTP/1.1 200 OK" from vcm-182.vm.duke.edu
+6: Responding "HTTP/1.1 200 OK"
+6: not cacheable because response do not allow
+4Tunnel closed
+7: "CONNECT unpkg.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 04:45:50 2018
+7Tunnel closed
+8: "POST http://vcm-182.vm.duke.edu:8000/users/login/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 04:45:55 2018
+9: "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 04:45:55 2018
+9: in cache, valid
+9: Responding "HTTP/1.1 200 OK"
+1: "GET http://vcm-182.vm.duke.edu:8000/users/login/?next=/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 04:53:49 2018
+1: Requesting "GET http://vcm-182.vm.duke.edu:8000/users/login/?next=/ HTTP/1.1" from vcm-182.vm.duke.edu
 1: Received "HTTP/1.1 200 OK" from vcm-182.vm.duke.edu
 1: Responding "HTTP/1.1 200 OK"
-1: cached
-2: "CONNECT maxcdn.bootstrapcdn.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:20 2018
-3: "CONNECT code.jquery.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:20 2018
-4: "GET http://vcm-182.vm.duke.edu:8000/users/static/logo.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:21 2018
-4: Requesting "GET http://vcm-182.vm.duke.edu:8000/users/static/logo.png HTTP/1.1" from vcm-182.vm.duke.edu
-4: Received "HTTP/1.1 304 Not Modified" from vcm-182.vm.duke.edu
-4: Responding "HTTP/1.1 304 Not Modified"
+1: not cacheable because response do not allow
+2: "CONNECT unpkg.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 04:53:49 2018
 2Tunnel closed
+3: "POST http://vcm-182.vm.duke.edu:8000/users/login/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 04:53:55 2018
+4: NOTE recive header failed for client close socket
+
+5: "POST http://vcm-182.vm.duke.edu:8000/users/login/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 04:54:34 2018
+6: NOTE recive header failed for client close socket
+
+7: "POST http://vcm-182.vm.duke.edu:8000/users/login/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 04:54:41 2018
+8: "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 04:54:41 2018
+8: Requesting "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from vcm-182.vm.duke.edu
+8: Received "HTTP/1.1 200 OK" from vcm-182.vm.duke.edu
+8: Responding "HTTP/1.1 200 OK"
+8: cached
+10: NOTE recive header failed for client close socket
+
+9: NOTE recive header failed for client close socket
+
+11: "CONNECT getpocket.cdn.mozilla.net:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 04:57:17 2018
+11Tunnel closed
+12: "CONNECT googleads.g.doubleclick.net:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:05:22 2018
+12Tunnel closed
+13: "CONNECT aus5.mozilla.org:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:05:33 2018
+13Tunnel closed
+1: "GET http://vcm-182.vm.duke.edu:8000/users/login/?next=/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:23:35 2018
+1: Requesting "GET http://vcm-182.vm.duke.edu:8000/users/login/?next=/ HTTP/1.1" from vcm-182.vm.duke.edu
+1: Received "HTTP/1.1 200 OK" from vcm-182.vm.duke.edu
+1: Responding "HTTP/1.1 200 OK"
+1: not cacheable because response do not allow
+2: "CONNECT unpkg.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:23:35 2018
+2Tunnel closed
+3: "POST http://vcm-182.vm.duke.edu:8000/users/login/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:23:42 2018
+4: "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:23:42 2018
+4: Requesting "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from vcm-182.vm.duke.edu
+4: Received "HTTP/1.1 200 OK" from vcm-182.vm.duke.edu
+4: Responding "HTTP/1.1 200 OK"
+4: cached
+1: "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:27:14 2018
+1Tunnel closed
+2: "GET http://vcm-182.vm.duke.edu:8000/users/login/?next=/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:27:19 2018
+2: Requesting "GET http://vcm-182.vm.duke.edu:8000/users/login/?next=/ HTTP/1.1" from vcm-182.vm.duke.edu
+2: Received "HTTP/1.1 200 OK" from vcm-182.vm.duke.edu
+2: Responding "HTTP/1.1 200 OK"
+2: not cacheable because response do not allow
+3: "CONNECT unpkg.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:27:19 2018
 3Tunnel closed
-5: "GET http://people.duke.edu/~tkb13/courses/ece650/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:25 2018
-5: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/ HTTP/1.1" from people.duke.edu
+4: "POST http://vcm-182.vm.duke.edu:8000/users/login/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:27:25 2018
+6: "POST http://vcm-182.vm.duke.edu:8000/users/login/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:27:30 2018
+5: NOTE recive header failed for client close socket
+
+7: "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:27:31 2018
+7: Requesting "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from vcm-182.vm.duke.edu
+7: Received "HTTP/1.1 200 OK" from vcm-182.vm.duke.edu
+7: Responding "HTTP/1.1 200 OK"
+7: cached
+1: "GET http://vcm-182.vm.duke.edu:8000/users/login/?next=/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:33:07 2018
+1: Requesting "GET http://vcm-182.vm.duke.edu:8000/users/login/?next=/ HTTP/1.1" from vcm-182.vm.duke.edu
+1: Received "HTTP/1.1 200 OK" from vcm-182.vm.duke.edu
+1: Responding "HTTP/1.1 200 OK"
+1: not cacheable because response do not allow
+2: "CONNECT unpkg.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:33:07 2018
+2Tunnel closed
+3: "POST http://vcm-182.vm.duke.edu:8000/users/login/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:33:12 2018
+4: "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:33:13 2018
+4: Requesting "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from vcm-182.vm.duke.edu
+4: Received "HTTP/1.1 200 OK" from vcm-182.vm.duke.edu
+4: Responding "HTTP/1.1 200 OK"
+4: cached
+1: "GET http://vcm-182.vm.duke.edu:8000/users/login/?next=/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:35:27 2018
+1: Requesting "GET http://vcm-182.vm.duke.edu:8000/users/login/?next=/ HTTP/1.1" from vcm-182.vm.duke.edu
+1: Received "HTTP/1.1 200 OK" from vcm-182.vm.duke.edu
+1: Responding "HTTP/1.1 200 OK"
+1: not cacheable because response do not allow
+2: "CONNECT unpkg.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:35:27 2018
+2Tunnel closed
+1: "POST http://vcm-182.vm.duke.edu:8000/users/login/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:35:40 2018
+2: "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:35:41 2018
+2: Requesting "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from vcm-182.vm.duke.edu
+2: Received "HTTP/1.1 200 OK" from vcm-182.vm.duke.edu
+2: Responding "HTTP/1.1 200 OK"
+2: cached
+1: "GET http://vcm-182.vm.duke.edu:8000/users/login/?next=/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:36:09 2018
+1: Requesting "GET http://vcm-182.vm.duke.edu:8000/users/login/?next=/ HTTP/1.1" from vcm-182.vm.duke.edu
+1: Received "HTTP/1.1 200 OK" from vcm-182.vm.duke.edu
+1: Responding "HTTP/1.1 200 OK"
+1: not cacheable because response do not allow
+1: "POST http://vcm-182.vm.duke.edu:8000/users/login/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:36:18 2018
+2: "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:36:19 2018
+2: Requesting "GET http://vcm-182.vm.duke.edu:8000/ HTTP/1.1" from vcm-182.vm.duke.edu
+2: Received "HTTP/1.1 200 OK" from vcm-182.vm.duke.edu
+2: Responding "HTTP/1.1 200 OK"
+2: cached
+4: NOTE recive header failed for client close socket
+
+3: NOTE recive header failed for client close socket
+
+1: "GET http://people.duke.edu/~tkb13/courses/ece650/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:44 2018
+1: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/ HTTP/1.1" from people.duke.edu
+1: Received "HTTP/1.1 200 OK" from people.duke.edu
+1: Responding "HTTP/1.1 200 OK"
+1: cached
+2: "GET http://people.duke.edu/~tkb13/courses/ece650/style.css HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:44 2018
+3: "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.min.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:44 2018
+4: "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.tablesorter.min.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:44 2018
+5: "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.countdown.min.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:44 2018
+2: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/style.css HTTP/1.1" from people.duke.edu
+3: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.min.js HTTP/1.1" from people.duke.edu
+4: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.tablesorter.min.js HTTP/1.1" from people.duke.edu
+5: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.countdown.min.js HTTP/1.1" from people.duke.edu
+2: Received "HTTP/1.1 200 OK" from people.duke.edu
+2: Responding "HTTP/1.1 200 OK"
+2: cached
+6: "CONNECT fonts.googleapis.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:44 2018
 5: Received "HTTP/1.1 200 OK" from people.duke.edu
 5: Responding "HTTP/1.1 200 OK"
 5: cached
-6: "GET http://people.duke.edu/~tkb13/courses/ece650/style.css HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:25 2018
-8: "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.tablesorter.min.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:25 2018
-7: "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.min.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:25 2018
-9: "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.countdown.min.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:25 2018
-6: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/style.css HTTP/1.1" from people.duke.edu
-9: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.countdown.min.js HTTP/1.1" from people.duke.edu
-8: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.tablesorter.min.js HTTP/1.1" from people.duke.edu
-7: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/jquery.min.js HTTP/1.1" from people.duke.edu
-9: Received "HTTP/1.1 200 OK" from people.duke.edu
-9: Responding "HTTP/1.1 200 OK"
-9: cached
-8: Received "HTTP/1.1 200 OK" from people.duke.edu
-8: Responding "HTTP/1.1 200 OK"
-8: cached
-6: Received "HTTP/1.1 200 OK" from people.duke.edu
-6: Responding "HTTP/1.1 200 OK"
-6: cached
-10: "CONNECT fonts.googleapis.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:26 2018
+4: Received "HTTP/1.1 200 OK" from people.duke.edu
+4: Responding "HTTP/1.1 200 OK"
+4: cached
+3: Received "HTTP/1.1 200 OK" from people.duke.edu
+3: Responding "HTTP/1.1 200 OK"
+3: cached
+7: "GET http://people.duke.edu/~tkb13/courses/ece650/images/flow-bg.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:45 2018
+8: "GET http://people.duke.edu/~tkb13/courses/ece650/flair.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:45 2018
+9: "CONNECT fonts.gstatic.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:45 2018
+8: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/flair.jpg HTTP/1.1" from people.duke.edu
+7: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/images/flow-bg.png HTTP/1.1" from people.duke.edu
 7: Received "HTTP/1.1 200 OK" from people.duke.edu
 7: Responding "HTTP/1.1 200 OK"
 7: cached
-11: "GET http://people.duke.edu/~tkb13/courses/ece650/images/flow-bg.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:26 2018
-12: "GET http://people.duke.edu/~tkb13/courses/ece650/flair.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:26 2018
-13: "CONNECT fonts.gstatic.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 03:48:26 2018
-11: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/images/flow-bg.png HTTP/1.1" from people.duke.edu
-12: Requesting "GET http://people.duke.edu/~tkb13/courses/ece650/flair.jpg HTTP/1.1" from people.duke.edu
-11: Received "HTTP/1.1 200 OK" from people.duke.edu
+8: Received "HTTP/1.1 200 OK" from people.duke.edu
+8: Responding "HTTP/1.1 200 OK"
+8: cached
+6Tunnel closed
+9Tunnel closed
+10: "GET http://www.espn.com/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+10: Requesting "GET http://www.espn.com/ HTTP/1.1" from www.espn.com
+10: Received "HTTP/1.1 200 OK" from www.espn.com
+10: Responding "HTTP/1.1 200 OK"
+10: cached, but requires re-validation
+10: cached
+11: "GET http://cdn.espn.com/core/format/modules/head/i18n?edition-host=espn.com&lang=en&region=us&site=espn&site-type=full&type=ext&build=0.389.10.1&edition-view=espn-en-us&edition=espn-en-us HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+12: "GET http://a.espncdn.com/redesign/fonts/base64-benton-woff.css HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+13: "GET http://a.espncdn.com/redesign/0.389.10/css/shell-desktop.css HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+14: "GET http://a.espncdn.com/redesign/0.389.10/css/page.css HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+15: "GET http://a.espncdn.com/redesign/0.389.10/css/one-feed-v1.css HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+16: "GET http://a.espncdn.com/redesign/0.389.10/js/espn-head.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+17: "GET http://a.espncdn.com/redesign/0.389.10/node_modules/espn-lazysizes/lazysizes.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+11: Requesting "GET http://cdn.espn.com/core/format/modules/head/i18n?edition-host=espn.com&lang=en&region=us&site=espn&site-type=full&type=ext&build=0.389.10.1&edition-view=espn-en-us&edition=espn-en-us HTTP/1.1" from cdn.espn.com
+19: "GET http://a.espncdn.com/redesign/0.389.10/js/espn-critical.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+18: "GET http://cdn.optimizely.com/js/310987714.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+11: Received "HTTP/1.1 200 OK" from cdn.espn.com
 11: Responding "HTTP/1.1 200 OK"
+11: cached, but requires re-validation
+12: Requesting "GET http://a.espncdn.com/redesign/fonts/base64-benton-woff.css HTTP/1.1" from a.espncdn.com
 11: cached
-12: Received "HTTP/1.1 200 OK" from people.duke.edu
+13: Requesting "GET http://a.espncdn.com/redesign/0.389.10/css/shell-desktop.css HTTP/1.1" from a.espncdn.com
+14: Requesting "GET http://a.espncdn.com/redesign/0.389.10/css/page.css HTTP/1.1" from a.espncdn.com
+15: Requesting "GET http://a.espncdn.com/redesign/0.389.10/css/one-feed-v1.css HTTP/1.1" from a.espncdn.com
+13: Received "HTTP/1.1 200 OK" from a.espncdn.com
+13: Responding "HTTP/1.1 200 OK"
+13: cached
+16: Requesting "GET http://a.espncdn.com/redesign/0.389.10/js/espn-head.js HTTP/1.1" from a.espncdn.com
+17: Requesting "GET http://a.espncdn.com/redesign/0.389.10/node_modules/espn-lazysizes/lazysizes.js HTTP/1.1" from a.espncdn.com
+15: Received "HTTP/1.1 200 OK" from a.espncdn.com
+15: Responding "HTTP/1.1 200 OK"
+15: cached
+14: Received "HTTP/1.1 200 OK" from a.espncdn.com
+16: Received "HTTP/1.1 200 OK" from a.espncdn.com
+17: Received "HTTP/1.1 200 OK" from a.espncdn.com
+16: Responding "HTTP/1.1 200 OK"
+16: cached
+19: Requesting "GET http://a.espncdn.com/redesign/0.389.10/js/espn-critical.js HTTP/1.1" from a.espncdn.com
+17: Responding "HTTP/1.1 200 OK"
+17: cached
+12: Received "HTTP/1.1 200 OK" from a.espncdn.com
+14: Responding "HTTP/1.1 200 OK"
+14: cached
 12: Responding "HTTP/1.1 200 OK"
 12: cached
-10Tunnel closed
-13Tunnel closed
+21: "GET http://a1.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Fbracketology.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+20: "GET http://a4.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Fchampweek.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+22: "GET http://a4.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fmisc_logos%2F500%2Fnfl.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+18: Requesting "GET http://cdn.optimizely.com/js/310987714.js HTTP/1.1" from cdn.optimizely.com
+24: "GET http://a4.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fmisc_logos%2F500%2Fnba.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+25: "GET http://a4.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fmisc_logos%2F500%2Fmlb.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+23: "GET http://a3.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Fflb.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+27: "GET http://a1.espncdn.com/combiner/i?img=%2Fredesign%2Fassets%2Fimg%2Ficons%2FESPN%2Dicon%2Dbasketball.png&w=80&h=80&scale=crop&cquality=40&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+26: "GET http://a3.espncdn.com/combiner/i?img=%2Fredesign%2Fassets%2Fimg%2Ficons%2FESPN%2Dicon%2Dfootball%2Dcollege.png&w=80&h=80&scale=crop&cquality=40&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+28: "GET http://a2.espncdn.com/combiner/i?img=%2Fi%2Fteamlogos%2Fleagues%2F500%2Fnhl.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+29: "GET http://a4.espncdn.com/combiner/i?img=%2Fredesign%2Fassets%2Fimg%2Flogos%2Flogo%2D538%2D24x31.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+31: "GET http://a3.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fnetworks_shows%2F500%2Fdoubletruck.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+30: "GET http://a.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fnetworks_shows%2F500%2Fundefeated.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+32: "GET http://a2.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fnetworks_shows%2F500%2Fespnw.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+33: "GET http://a4.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fnetworks_shows%2F500%2Fespnfc_circle_500.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+21: Requesting "GET http://a1.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Fbracketology.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a1.espncdn.com
+34: "GET http://a.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fnetworks_shows%2F500%2Fxgames.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:57 2018
+36: "GET http://a3.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fnetworks_shows%2F500%2Fsec_network.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+35: "GET http://a.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fnetworks_shows%2F500%2Fsn.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+19: Received "HTTP/1.1 200 OK" from a.espncdn.com
+20: Requesting "GET http://a4.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Fchampweek.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a4.espncdn.com
+37: "GET http://a.espncdn.com/combiner/i?img=%2Fi%2Fmobile%2Fwebsite%2Fimg%2Fespn_app_72@2x.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+21: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+39: "GET http://a.espncdn.com/combiner/i?img=%2Fi%2Fmobile%2Fwebsite%2Fimg%2Fflm%2Dapp%2Dtile.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+21: Responding "HTTP/1.1 200 OK"
+18: Received "HTTP/1.1 200 OK" from cdn.optimizely.com
+19: Responding "HTTP/1.1 200 OK"
+20: Received "HTTP/1.1 200 OK" from a4.espncdn.com
+22: Requesting "GET http://a4.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fmisc_logos%2F500%2Fnfl.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a4.espncdn.com
+20: Responding "HTTP/1.1 200 OK"
+19: cached
+41: "GET http://a2.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Ftwitter.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+40: "GET http://a1.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Ffacebook.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+43: "GET http://a.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Fsnapchat.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+18: Responding "HTTP/1.1 200 OK"
+44: "GET http://a2.espncdn.com/combiner/i?img=%2Fredesign%2Fassets%2Fimg%2Flogos%2FespnDailyLogo%2D45x45.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+35: Requesting "GET http://a.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fnetworks_shows%2F500%2Fsn.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a.espncdn.com
+18: cached
+42: "GET http://a1.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Finstagram.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+46: "GET http://a3.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Fyoutube.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+22: Received "HTTP/1.1 200 OK" from a4.espncdn.com
+47: "GET http://a1.espncdn.com/combiner/i?img=%2Fmedia%2Fmotion%2F2018%2F0302%2Fevc_NCB_20180301_uva__lou_2e0031ef_92d8_4a74_9ad6_228%2Fevc_NCB_20180301_uva__lou_2e0031ef_92d8_4a74_9ad6_228.jpg&w=660&h=264&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+22: Responding "HTTP/1.1 200 OK"
+48: "GET http://a.espncdn.com/test/fancyLogo2.svg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+45: "GET http://a.espncdn.com/combiner/i?img=%2Fi%2Fcolumnists%2Ffull%2Fbiancardi_paul.png&w=80&h=80&scale=crop HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+25: Requesting "GET http://a4.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fmisc_logos%2F500%2Fmlb.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a4.espncdn.com
+35: Received "HTTP/1.1 200 OK" from a.espncdn.com
+49: "GET http://a2.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Fdailycal_square.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+35: Responding "HTTP/1.1 200 OK"
+51: "CONNECT sds.livesegmentservice.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+52: "GET http://a.espncdn.com/redesign/assets/img/logos/logo-espn-82x20.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+50: "GET http://a.espncdn.com/combiner/i?img=/i/espn/networks_shows/500/undefeated_bk.png&h=32&w=32 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+53: "GET http://a.espncdn.com/redesign/assets/img/icons/icon-search.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+25: Received "HTTP/1.1 200 OK" from a4.espncdn.com
+54: "GET http://a.espncdn.com/combiner/i?img=/redesign/assets/img/logos/logo-538-24x31.png&h=32&w=32 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+38: "GET http://a1.espncdn.com/fonts/1.0.46/ESPNIcons/ESPNIcons.woff2 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+40: Requesting "GET http://a1.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Ffacebook.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a1.espncdn.com
+25: Responding "HTTP/1.1 200 OK"
+27: Requesting "GET http://a1.espncdn.com/combiner/i?img=%2Fredesign%2Fassets%2Fimg%2Ficons%2FESPN%2Dicon%2Dbasketball.png&w=80&h=80&scale=crop&cquality=40&location=origin HTTP/1.1" from a1.espncdn.com
+40: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+40: Responding "HTTP/1.1 200 OK"
+55: "GET http://a.espncdn.com/redesign/assets/img/logos/flb-homepage-signup-module-header-light.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+57: "GET http://a.espncdn.com/redesign/0.389.10/js/espn-defer.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+56: "GET http://a.espncdn.com/combiner/i?img=/i/teamlogos/leagues/500/nfl.png&w=100&h=100&transparent=true HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+27: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+58: "GET http://a.espncdn.com/redesign/0.389.10/js/espn-defer-low.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+26: Requesting "GET http://a3.espncdn.com/combiner/i?img=%2Fredesign%2Fassets%2Fimg%2Ficons%2FESPN%2Dicon%2Dfootball%2Dcollege.png&w=80&h=80&scale=crop&cquality=40&location=origin HTTP/1.1" from a3.espncdn.com
+59: "GET http://a1.espncdn.com/combiner/i?img=%2Fphoto%2F2018%2F0301%2Fr155084_2_1296x864_3%2D2.jpg&w=360&h=240&scale=crop&cquality=40&location=center HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+27: Responding "HTTP/1.1 200 OK"
+26: Received "HTTP/1.1 200 OK" from a3.espncdn.com
+60: "CONNECT 310987714.log.optimizely.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+26: Responding "HTTP/1.1 200 OK"
+61: "CONNECT 310987714.log.optimizely.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+62: "CONNECT safebrowsing.googleapis.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+28: Requesting "GET http://a2.espncdn.com/combiner/i?img=%2Fi%2Fteamlogos%2Fleagues%2F500%2Fnhl.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a2.espncdn.com
+63: "CONNECT logx.optimizely.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+29: Requesting "GET http://a4.espncdn.com/combiner/i?img=%2Fredesign%2Fassets%2Fimg%2Flogos%2Flogo%2D538%2D24x31.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a4.espncdn.com
+28: Received "HTTP/1.1 200 OK" from a2.espncdn.com
+28: Responding "HTTP/1.1 200 OK"
+64: "GET http://a.espncdn.com/redesign/0.389.10/js/espn-analytics.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+65: "GET http://tredir.espn.com/capmon/GetDE?set=j&param=country&param=countryisocode&param=state&param=metro&param=metrocode&param=postcode&param=offset&param=dst&param=countrycode&param=connection HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+29: Received "HTTP/1.1 200 OK" from a4.espncdn.com
+29: Responding "HTTP/1.1 200 OK"
+66: "GET http://a.espncdn.com/combiner/i?img=/i/teamlogos/leagues/500/nba.png&w=100&h=100&transparent=true HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+67: "GET http://a4.espncdn.com/combiner/i?img=%2Fphoto%2F2017%2F1229%2FQB_draft_3x2.jpg&w=360&h=240&scale=crop&cquality=40&location=center HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+31: Requesting "GET http://a3.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fnetworks_shows%2F500%2Fdoubletruck.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a3.espncdn.com
+30: Requesting "GET http://a.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fnetworks_shows%2F500%2Fundefeated.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a.espncdn.com
+31: Received "HTTP/1.1 200 OK" from a3.espncdn.com
+31: Responding "HTTP/1.1 200 OK"
+68: "GET http://a3.espncdn.com/combiner/i?img=%2Fmedia%2Fmotion%2F2018%2F0301%2Fdm_180301_NBA_One%2DPlay_LeBron_drive_and_layup%2Fdm_180301_NBA_One%2DPlay_LeBron_drive_and_layup.jpg&w=768&h=432&scale=crop&cquality=80&location=origin HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:58 2018
+30: Received "HTTP/1.1 200 OK" from a.espncdn.com
+30: Responding "HTTP/1.1 200 OK"
+32: Requesting "GET http://a2.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fnetworks_shows%2F500%2Fespnw.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a2.espncdn.com
+32: Received "HTTP/1.1 200 OK" from a2.espncdn.com
+32: Responding "HTTP/1.1 200 OK"
+33: Requesting "GET http://a4.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fnetworks_shows%2F500%2Fespnfc_circle_500.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a4.espncdn.com
+33: Received "HTTP/1.1 200 OK" from a4.espncdn.com
+33: Responding "HTTP/1.1 200 OK"
+34: Requesting "GET http://a.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fnetworks_shows%2F500%2Fxgames.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a.espncdn.com
+36: Requesting "GET http://a3.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fnetworks_shows%2F500%2Fsec_network.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a3.espncdn.com
+34: Received "HTTP/1.1 200 OK" from a.espncdn.com
+34: Responding "HTTP/1.1 200 OK"
+36: Received "HTTP/1.1 200 OK" from a3.espncdn.com
+36: Responding "HTTP/1.1 200 OK"
+24: Requesting "GET http://a4.espncdn.com/combiner/i?img=%2Fi%2Fespn%2Fmisc_logos%2F500%2Fnba.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a4.espncdn.com
+24: Received "HTTP/1.1 200 OK" from a4.espncdn.com
+24: Responding "HTTP/1.1 200 OK"
+37: Requesting "GET http://a.espncdn.com/combiner/i?img=%2Fi%2Fmobile%2Fwebsite%2Fimg%2Fespn_app_72@2x.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a.espncdn.com
+39: Requesting "GET http://a.espncdn.com/combiner/i?img=%2Fi%2Fmobile%2Fwebsite%2Fimg%2Fflm%2Dapp%2Dtile.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a.espncdn.com
+37: Received "HTTP/1.1 200 OK" from a.espncdn.com
+37: Responding "HTTP/1.1 200 OK"
+41: Requesting "GET http://a2.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Ftwitter.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a2.espncdn.com
+39: Received "HTTP/1.1 200 OK" from a.espncdn.com
+39: Responding "HTTP/1.1 200 OK"
+41: Received "HTTP/1.1 200 OK" from a2.espncdn.com
+41: Responding "HTTP/1.1 200 OK"
+43: Requesting "GET http://a.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Fsnapchat.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a.espncdn.com
+43: Received "HTTP/1.1 200 OK" from a.espncdn.com
+43: Responding "HTTP/1.1 200 OK"
+23: Requesting "GET http://a3.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Fflb.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a3.espncdn.com
+23: Received "HTTP/1.1 200 OK" from a3.espncdn.com
+23: Responding "HTTP/1.1 200 OK"
+44: Requesting "GET http://a2.espncdn.com/combiner/i?img=%2Fredesign%2Fassets%2Fimg%2Flogos%2FespnDailyLogo%2D45x45.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a2.espncdn.com
+44: Received "HTTP/1.1 200 OK" from a2.espncdn.com
+44: Responding "HTTP/1.1 200 OK"
+42: Requesting "GET http://a1.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Finstagram.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a1.espncdn.com
+47: Requesting "GET http://a1.espncdn.com/combiner/i?img=%2Fmedia%2Fmotion%2F2018%2F0302%2Fevc_NCB_20180301_uva__lou_2e0031ef_92d8_4a74_9ad6_228%2Fevc_NCB_20180301_uva__lou_2e0031ef_92d8_4a74_9ad6_228.jpg&w=660&h=264&scale=crop&cquality=80&location=origin HTTP/1.1" from a1.espncdn.com
+42: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+42: Responding "HTTP/1.1 200 OK"
+47: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+47: Responding "HTTP/1.1 200 OK"
+46: Requesting "GET http://a3.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Fyoutube.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a3.espncdn.com
+46: Received "HTTP/1.1 200 OK" from a3.espncdn.com
+46: Responding "HTTP/1.1 200 OK"
+48: Requesting "GET http://a.espncdn.com/test/fancyLogo2.svg HTTP/1.1" from a.espncdn.com
+45: Requesting "GET http://a.espncdn.com/combiner/i?img=%2Fi%2Fcolumnists%2Ffull%2Fbiancardi_paul.png&w=80&h=80&scale=crop HTTP/1.1" from a.espncdn.com
+48: Received "HTTP/1.1 200 OK" from a.espncdn.com
+48: Responding "HTTP/1.1 200 OK"
+48: cached
+45: Received "HTTP/1.1 200 OK" from a.espncdn.com
+45: Responding "HTTP/1.1 200 OK"
+49: Requesting "GET http://a2.espncdn.com/combiner/i?img=%2Fi%2Ffantasy%2Fdailycal_square.png&w=60&h=60&scale=crop&cquality=80&location=origin HTTP/1.1" from a2.espncdn.com
+49: Received "HTTP/1.1 200 OK" from a2.espncdn.com
+49: Responding "HTTP/1.1 200 OK"
+52: Requesting "GET http://a.espncdn.com/redesign/assets/img/logos/logo-espn-82x20.png HTTP/1.1" from a.espncdn.com
+50: Requesting "GET http://a.espncdn.com/combiner/i?img=/i/espn/networks_shows/500/undefeated_bk.png&h=32&w=32 HTTP/1.1" from a.espncdn.com
+54: Requesting "GET http://a.espncdn.com/combiner/i?img=/redesign/assets/img/logos/logo-538-24x31.png&h=32&w=32 HTTP/1.1" from a.espncdn.com
+52: Received "HTTP/1.1 200 OK" from a.espncdn.com
+50: Received "HTTP/1.1 200 OK" from a.espncdn.com
+52: Responding "HTTP/1.1 200 OK"
+54: Received "HTTP/1.1 200 OK" from a.espncdn.com
+52: cached
+54: Responding "HTTP/1.1 200 OK"
+50: Responding "HTTP/1.1 200 OK"
+38: Requesting "GET http://a1.espncdn.com/fonts/1.0.46/ESPNIcons/ESPNIcons.woff2 HTTP/1.1" from a1.espncdn.com
+53: Requesting "GET http://a.espncdn.com/redesign/assets/img/icons/icon-search.png HTTP/1.1" from a.espncdn.com
+38: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+38: Responding "HTTP/1.1 200 OK"
+55: Requesting "GET http://a.espncdn.com/redesign/assets/img/logos/flb-homepage-signup-module-header-light.png HTTP/1.1" from a.espncdn.com
+38: cached
+53: Received "HTTP/1.1 200 OK" from a.espncdn.com
+53: Responding "HTTP/1.1 200 OK"
+57: Requesting "GET http://a.espncdn.com/redesign/0.389.10/js/espn-defer.js HTTP/1.1" from a.espncdn.com
+53: cached
+56: Requesting "GET http://a.espncdn.com/combiner/i?img=/i/teamlogos/leagues/500/nfl.png&w=100&h=100&transparent=true HTTP/1.1" from a.espncdn.com
+55: Received "HTTP/1.1 200 OK" from a.espncdn.com
+58: Requesting "GET http://a.espncdn.com/redesign/0.389.10/js/espn-defer-low.js HTTP/1.1" from a.espncdn.com
+55: Responding "HTTP/1.1 200 OK"
+55: cached
+56: Received "HTTP/1.1 200 OK" from a.espncdn.com
+56: Responding "HTTP/1.1 200 OK"
+58: Received "HTTP/1.1 200 OK" from a.espncdn.com
+59: Requesting "GET http://a1.espncdn.com/combiner/i?img=%2Fphoto%2F2018%2F0301%2Fr155084_2_1296x864_3%2D2.jpg&w=360&h=240&scale=crop&cquality=40&location=center HTTP/1.1" from a1.espncdn.com
+58: Responding "HTTP/1.1 200 OK"
+58: cached
+59: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+59: Responding "HTTP/1.1 200 OK"
+57: Received "HTTP/1.1 200 OK" from a.espncdn.com
+57: Responding "HTTP/1.1 200 OK"
+57: cached
+69: "CONNECT cdn.registerdisney.go.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:59 2018
+64: Requesting "GET http://a.espncdn.com/redesign/0.389.10/js/espn-analytics.js HTTP/1.1" from a.espncdn.com
+70: "GET http://cdn.espn.com/core/api/v0/nav/index?&device=desktop&country=us&lang=en&region=us&site=espn&edition-host=espn.com&one-site=true&site-type=full HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:59 2018
+65: Requesting "GET http://tredir.espn.com/capmon/GetDE?set=j&param=country&param=countryisocode&param=state&param=metro&param=metrocode&param=postcode&param=offset&param=dst&param=countrycode&param=connection HTTP/1.1" from tredir.espn.com
+64: Received "HTTP/1.1 200 OK" from a.espncdn.com
+66: Requesting "GET http://a.espncdn.com/combiner/i?img=/i/teamlogos/leagues/500/nba.png&w=100&h=100&transparent=true HTTP/1.1" from a.espncdn.com
+64: Responding "HTTP/1.1 200 OK"
+64: cached
+65: Received "HTTP/1.1 200 OK" from tredir.espn.com
+65: Responding "HTTP/1.1 200 OK"
+66: Received "HTTP/1.1 200 OK" from a.espncdn.com
+65: cached
+66: Responding "HTTP/1.1 200 OK"
+67: Requesting "GET http://a4.espncdn.com/combiner/i?img=%2Fphoto%2F2017%2F1229%2FQB_draft_3x2.jpg&w=360&h=240&scale=crop&cquality=40&location=center HTTP/1.1" from a4.espncdn.com
+72: "GET http://fan.api.espn.com/apis/v2/recommendations/postalCode/27502?source=ESPN.com+-+FAM&displayEvents=true&displayNow=true&limit=5 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:59 2018
+71: "GET http://fan.api.espn.com/apis/v2/recommendations/postalCode/27502?source=ESPN.com+-+FAM&displayEvents=true&displayNow=true&limit=5 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:59 2018
+67: Received "HTTP/1.1 200 OK" from a4.espncdn.com
+68: Requesting "GET http://a3.espncdn.com/combiner/i?img=%2Fmedia%2Fmotion%2F2018%2F0301%2Fdm_180301_NBA_One%2DPlay_LeBron_drive_and_layup%2Fdm_180301_NBA_One%2DPlay_LeBron_drive_and_layup.jpg&w=768&h=432&scale=crop&cquality=80&location=origin HTTP/1.1" from a3.espncdn.com
+67: Responding "HTTP/1.1 200 OK"
+70: Requesting "GET http://cdn.espn.com/core/api/v0/nav/index?&device=desktop&country=us&lang=en&region=us&site=espn&edition-host=espn.com&one-site=true&site-type=full HTTP/1.1" from cdn.espn.com
+68: Received "HTTP/1.1 200 OK" from a3.espncdn.com
+68: Responding "HTTP/1.1 200 OK"
+70: Received "HTTP/1.1 200 OK" from cdn.espn.com
+70: Responding "HTTP/1.1 200 OK"
+70: cached
+73: "GET http://a.espncdn.com/combiner/i?img=/i/teamlogos/leagues/500/nfl.png?w=110&h=110&transparent=true&h=80&w=80 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:59 2018
+74: "GET http://a.espncdn.com/combiner/i?img=/i/teamlogos/leagues/500/nba.png?w=110&h=110&transparent=true&h=80&w=80 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:59 2018
+78: "GET http://a.espncdn.com/combiner/i?img=/i/mobile/website/img/espn_app_72@2x.png&w=80&h=80&transparent=true HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:59 2018
+76: "GET http://a.espncdn.com/combiner/i?img=/redesign/assets/img/icons/ESPN-icon-soccer.png&h=80&w=80&scale=crop&cquality=40 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:59 2018
+77: "GET http://a.espncdn.com/combiner/i?img=/i/teamlogos/leagues/500/mlb.png?w=110&h=110&transparent=true&h=80&w=80 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:59 2018
+75: "GET http://a.espncdn.com/combiner/i?img=/redesign/assets/img/icons/ESPN-icon-basketball.png&h=80&w=80&scale=crop&cquality=40 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:59 2018
+72: Requesting "GET http://fan.api.espn.com/apis/v2/recommendations/postalCode/27502?source=ESPN.com+-+FAM&displayEvents=true&displayNow=true&limit=5 HTTP/1.1" from fan.api.espn.com
+80: "GET http://a.espncdn.com/combiner/i?img=/i/teamlogos/leagues/500/nhl.png?w=110&h=110&transparent=true&h=80&w=80 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:59 2018
+79: "GET http://a.espncdn.com/combiner/i?img=/i/mobile/website/img/flm-onehouse-apptile-180.png&w=80&h=80&transparent=true HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:59 2018
+71: Requesting "GET http://fan.api.espn.com/apis/v2/recommendations/postalCode/27502?source=ESPN.com+-+FAM&displayEvents=true&displayNow=true&limit=5 HTTP/1.1" from fan.api.espn.com
+81: "CONNECT www.espn.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:39:59 2018
+73: Requesting "GET http://a.espncdn.com/combiner/i?img=/i/teamlogos/leagues/500/nfl.png?w=110&h=110&transparent=true&h=80&w=80 HTTP/1.1" from a.espncdn.com
+74: Requesting "GET http://a.espncdn.com/combiner/i?img=/i/teamlogos/leagues/500/nba.png?w=110&h=110&transparent=true&h=80&w=80 HTTP/1.1" from a.espncdn.com
+78: Requesting "GET http://a.espncdn.com/combiner/i?img=/i/mobile/website/img/espn_app_72@2x.png&w=80&h=80&transparent=true HTTP/1.1" from a.espncdn.com
+73: Received "HTTP/1.1 200 OK" from a.espncdn.com
+73: Responding "HTTP/1.1 200 OK"
+76: Requesting "GET http://a.espncdn.com/combiner/i?img=/redesign/assets/img/icons/ESPN-icon-soccer.png&h=80&w=80&scale=crop&cquality=40 HTTP/1.1" from a.espncdn.com
+74: Received "HTTP/1.1 200 OK" from a.espncdn.com
+78: Received "HTTP/1.1 200 OK" from a.espncdn.com
+74: Responding "HTTP/1.1 200 OK"
+78: Responding "HTTP/1.1 200 OK"
+77: Requesting "GET http://a.espncdn.com/combiner/i?img=/i/teamlogos/leagues/500/mlb.png?w=110&h=110&transparent=true&h=80&w=80 HTTP/1.1" from a.espncdn.com
+76: Received "HTTP/1.1 200 OK" from a.espncdn.com
+76: Responding "HTTP/1.1 200 OK"
+75: Requesting "GET http://a.espncdn.com/combiner/i?img=/redesign/assets/img/icons/ESPN-icon-basketball.png&h=80&w=80&scale=crop&cquality=40 HTTP/1.1" from a.espncdn.com
+72: Received "HTTP/1.1 200 OK" from fan.api.espn.com
+77: Received "HTTP/1.1 200 OK" from a.espncdn.com
+77: Responding "HTTP/1.1 200 OK"
+72: Responding "HTTP/1.1 200 OK"
+72: cached
+71: Received "HTTP/1.1 200 OK" from fan.api.espn.com
+80: Requesting "GET http://a.espncdn.com/combiner/i?img=/i/teamlogos/leagues/500/nhl.png?w=110&h=110&transparent=true&h=80&w=80 HTTP/1.1" from a.espncdn.com
+71: Responding "HTTP/1.1 200 OK"
+71: cached
+75: Received "HTTP/1.1 200 OK" from a.espncdn.com
+79: Requesting "GET http://a.espncdn.com/combiner/i?img=/i/mobile/website/img/flm-onehouse-apptile-180.png&w=80&h=80&transparent=true HTTP/1.1" from a.espncdn.com
+75: Responding "HTTP/1.1 200 OK"
+80: Received "HTTP/1.1 200 OK" from a.espncdn.com
+80: Responding "HTTP/1.1 200 OK"
+79: Received "HTTP/1.1 200 OK" from a.espncdn.com
+79: Responding "HTTP/1.1 200 OK"
+82: "GET http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard/conferences?groups=50&lang=en&region=us&contentorigin=espn&tz=America%2FNew_York HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+83: "GET http://site.api.espn.com/apis/site/v2/sports/basketball/womens-college-basketball/scoreboard/conferences?groups=50&lang=en&region=us&contentorigin=espn&tz=America%2FNew_York HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+82: Requesting "GET http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard/conferences?groups=50&lang=en&region=us&contentorigin=espn&tz=America%2FNew_York HTTP/1.1" from site.api.espn.com
+83: Requesting "GET http://site.api.espn.com/apis/site/v2/sports/basketball/womens-college-basketball/scoreboard/conferences?groups=50&lang=en&region=us&contentorigin=espn&tz=America%2FNew_York HTTP/1.1" from site.api.espn.com
+82: Received "HTTP/1.1 200 OK" from site.api.espn.com
+82: Responding "HTTP/1.1 200 OK"
+82: cached
+83: Received "HTTP/1.1 200 OK" from site.api.espn.com
+83: Responding "HTTP/1.1 200 OK"
+83: cached
+84: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/countries/500/rsa.png&h=20&w=20 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+85: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/258.png&h=104&w=104 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+87: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/359.png&h=104&w=104 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+88: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/382.png&h=104&w=104 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+86: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/97.png&h=104&w=104 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+89: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/2765.png&h=104&w=104 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+90: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/2756.png&h=104&w=104 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+84: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/countries/500/rsa.png&h=20&w=20 HTTP/1.1" from a1.espncdn.com
+85: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/258.png&h=104&w=104 HTTP/1.1" from a1.espncdn.com
+87: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/359.png&h=104&w=104 HTTP/1.1" from a1.espncdn.com
+84: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+84: Responding "HTTP/1.1 200 OK"
+85: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+86: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/97.png&h=104&w=104 HTTP/1.1" from a1.espncdn.com
+85: Responding "HTTP/1.1 200 OK"
+88: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/382.png&h=104&w=104 HTTP/1.1" from a1.espncdn.com
+93: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/scoreboard/mia.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+92: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/scoreboard/lal.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+87: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+95: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/scoreboard/phi.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+90: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/2756.png&h=104&w=104 HTTP/1.1" from a1.espncdn.com
+94: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/scoreboard/min.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+91: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/scoreboard/por.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+86: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+90: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+89: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/soccer/500/2765.png&h=104&w=104 HTTP/1.1" from a1.espncdn.com
+88: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+86: Responding "HTTP/1.1 200 OK"
+90: Responding "HTTP/1.1 200 OK"
+96: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/scoreboard/bkn.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+87: Responding "HTTP/1.1 200 OK"
+98: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/scoreboard/cle.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+88: Responding "HTTP/1.1 200 OK"
+93: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/scoreboard/mia.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+89: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+95: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/scoreboard/phi.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+89: Responding "HTTP/1.1 200 OK"
+97: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/275.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+100: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/120.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+99: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/scoreboard/sac.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+94: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/scoreboard/min.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+102: "CONNECT cdn.registerdisney.go.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+91: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/scoreboard/por.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+93: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+92: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/scoreboard/lal.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+103: "GET http://cdn.unid.go.com/js/unid.min.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+93: Responding "HTTP/1.1 200 OK"
+101: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/130.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+95: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+96: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/scoreboard/bkn.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+104: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2294.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+94: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+95: Responding "HTTP/1.1 200 OK"
+91: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+92: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+98: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/scoreboard/cle.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+94: Responding "HTTP/1.1 200 OK"
+92: Responding "HTTP/1.1 200 OK"
+91: Responding "HTTP/1.1 200 OK"
+105: "GET http://aglobal.go.com/stat/cto-espn.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+96: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+96: Responding "HTTP/1.1 200 OK"
+97: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/275.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+98: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+98: Responding "HTTP/1.1 200 OK"
+100: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/120.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+99: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/nba/500/scoreboard/sac.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+97: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+97: Responding "HTTP/1.1 200 OK"
+100: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+100: Responding "HTTP/1.1 200 OK"
+99: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+99: Responding "HTTP/1.1 200 OK"
+103: Requesting "GET http://cdn.unid.go.com/js/unid.min.js HTTP/1.1" from cdn.unid.go.com
+101: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/130.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+104: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2294.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+103: Received "HTTP/1.1 200 OK" from cdn.unid.go.com
+103: Responding "HTTP/1.1 200 OK"
+103: cached, but requires re-validation
+61Tunnel closed
+103: cached
+104: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+101: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+104: Responding "HTTP/1.1 200 OK"
+106: "GET http://cdn.unid.go.com/inner/?v=4.0.25 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+101: Responding "HTTP/1.1 200 OK"
+105: Requesting "GET http://aglobal.go.com/stat/cto-espn.js HTTP/1.1" from aglobal.go.com
+62Tunnel closed
+107: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2116.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+63Tunnel closed
+109: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/258.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+111: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/97.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+110: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2132.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+112: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2655.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+108: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2724.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:00 2018
+105: Received "HTTP/1.1 200 OK" from aglobal.go.com
+105: Responding "HTTP/1.1 200 OK"
+106: Requesting "GET http://cdn.unid.go.com/inner/?v=4.0.25 HTTP/1.1" from cdn.unid.go.com
+109: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/258.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+107: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2116.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+106: Received "HTTP/1.1 200 OK" from cdn.unid.go.com
+106: Responding "HTTP/1.1 200 OK"
+112: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2655.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+109: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+106: cached, but requires re-validation
+106: cached
+109: Responding "HTTP/1.1 200 OK"
+107: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+111: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/97.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+107: Responding "HTTP/1.1 200 OK"
+112: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+114: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+112: Responding "HTTP/1.1 200 OK"
+110: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2132.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+111: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+108: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2724.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+111: Responding "HTTP/1.1 200 OK"
+115: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+110: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+110: Responding "HTTP/1.1 200 OK"
+116: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+108: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+108: Responding "HTTP/1.1 200 OK"
+117: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+113: "GET http://a.espncdn.com/js/omniture/tracking.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+118: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+119: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+120: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+121: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/24.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+122: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/153.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+123: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+124: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/12.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+125: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/152.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+126: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+113: Requesting "GET http://a.espncdn.com/js/omniture/tracking.js HTTP/1.1" from a.espncdn.com
+127: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+121: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/24.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+113: Received "HTTP/1.1 200 OK" from a.espncdn.com
+113: Responding "HTTP/1.1 200 OK"
+113: cached
+122: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/153.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+124: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/12.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+128: "GET http://www.espn.com/core/l?a=true&t=false HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+121: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+125: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/152.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+121: Responding "HTTP/1.1 200 OK"
+122: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+122: Responding "HTTP/1.1 200 OK"
+124: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+124: Responding "HTTP/1.1 200 OK"
+125: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+125: Responding "HTTP/1.1 200 OK"
+128: Requesting "GET http://www.espn.com/core/l?a=true&t=false HTTP/1.1" from www.espn.com
+128: Received "HTTP/1.1 200 OK" from www.espn.com
+128: Responding "HTTP/1.1 200 OK"
+128: cached, but requires re-validation
+128: cached
+129: "GET http://a.espncdn.com/favicon.ico HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+81Tunnel closed
+129: Requesting "GET http://a.espncdn.com/favicon.ico HTTP/1.1" from a.espncdn.com
+129: Received "HTTP/1.1 200 OK" from a.espncdn.com
+129: Responding "HTTP/1.1 200 OK"
+129: cached
+130: "CONNECT tags.tiqcdn.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+132: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2382.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+131: "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2717.png&h=30&w=30 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:01 2018
+131: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2717.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+132: Requesting "GET http://a1.espncdn.com/combiner/i?img=/i/teamlogos/ncaa/500/2382.png&h=30&w=30 HTTP/1.1" from a1.espncdn.com
+131: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+131: Responding "HTTP/1.1 200 OK"
+132: Received "HTTP/1.1 200 OK" from a1.espncdn.com
+132: Responding "HTTP/1.1 200 OK"
+69Tunnel closed
+60Tunnel closed
+102Tunnel closed
+130Tunnel closed
+133: "GET http://fastcast.espn.com/public/rotationip HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:14 2018
+133: Requesting "GET http://fastcast.espn.com/public/rotationip HTTP/1.1" from fastcast.espn.com
+133: Received "HTTP/1.1 200 OK" from fastcast.espn.com
+133: Responding "HTTP/1.1 200 OK"
+133: cached
+134: "CONNECT 54.174.108.168:9571 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:14 2018
+135: "GET http://fcast.us-east-1.espncdn.com/FastcastService/pubsub/profiles/12000/topic/event-topevents/message/5333352/checkpoint HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:14 2018
+135: Requesting "GET http://fcast.us-east-1.espncdn.com/FastcastService/pubsub/profiles/12000/topic/event-topevents/message/5333352/checkpoint HTTP/1.1" from fcast.us-east-1.espncdn.com
+135: Received "HTTP/1.1 200 OK" from fcast.us-east-1.espncdn.com
+135: Responding "HTTP/1.1 200 OK"
+136: "CONNECT www.google.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:15 2018
+138: "CONNECT adservice.google.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:16 2018
+138Tunnel closed
+136Tunnel closed
+141: "GET http://www.espn.com/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:20 2018
+141: Requesting "GET http://www.espn.com/ HTTP/1.1" from www.espn.com
+141: Received "HTTP/1.1 304 Not Modified" from www.espn.com
+141: Responding "HTTP/1.1 304 Not Modified"
+143: "CONNECT sds.livesegmentservice.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:21 2018
+144: "CONNECT 310987714.log.optimizely.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:21 2018
+145: "CONNECT 310987714.log.optimizely.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:21 2018
+146: "CONNECT logx.optimizely.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:21 2018
+140: NOTE recive header failed for client close socket
+
+137: NOTE recive header failed for client close socket
+
+139: NOTE recive header failed for client close socket
+
+149: "CONNECT www.espn.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:22 2018
+148: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:22 2018
+150: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:22 2018
+151: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:22 2018
+152: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:22 2018
+153: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:22 2018
+154: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:22 2018
+155: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:22 2018
+156: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:22 2018
+157: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:22 2018
+158: "OPTIONS http://unid.go.com/v3/hit HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:22 2018
+143Tunnel closed
+145Tunnel closed
+146Tunnel closed
+149Tunnel closed
+144Tunnel closed
+142: NOTE recive header failed for client close socket
+
+147: NOTE recive header failed for client close socket
+
+159: "GET http://www.qq.com/ HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:34 2018
+159: Requesting "GET http://www.qq.com/ HTTP/1.1" from www.qq.com
+159: Received "HTTP/1.1 200 OK" from www.qq.com
+159: Responding "HTTP/1.1 200 OK"
+160: "GET http://pingjs.qq.com/ping.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:34 2018
+161: "GET http://imgcache.qq.com/qzone/biz/comm/js/qbs.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:34 2018
+162: "GET http://mat1.gtimg.com/www/qq_index/css/qq_363ea330.css HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:34 2018
+163: "GET http://mat1.gtimg.com/www/css/qq2012/hot_word_sogou.css HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:34 2018
+164: "GET http://ra.gtimg.com/web/crystal/v4.4Beta04Build040/crystal-min.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:34 2018
+165: "GET http://imgcache.qq.com/ptlogin/ac/v9/js/ptlogin_v1.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:34 2018
+167: "GET http://js.aq.qq.com/js/aq_common.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:34 2018
+168: "GET http://mat1.gtimg.com/www/asset/lib/jquery/jquery/jquery-1.11.1.min.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:34 2018
+166: "GET http://mat1.gtimg.com/www/asset/seajs/sea.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:34 2018
+169: "GET http://mat1.gtimg.com/www/qq_index/js/qq_363ea330.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:34 2018
+160: Requesting "GET http://pingjs.qq.com/ping.js HTTP/1.1" from pingjs.qq.com
+161: Requesting "GET http://imgcache.qq.com/qzone/biz/comm/js/qbs.js HTTP/1.1" from imgcache.qq.com
+160: Received "HTTP/1.1 200 OK" from pingjs.qq.com
+160: Responding "HTTP/1.1 200 OK"
+161: Received "HTTP/1.1 200 OK" from imgcache.qq.com
+161: Responding "HTTP/1.1 200 OK"
+163: Requesting "GET http://mat1.gtimg.com/www/css/qq2012/hot_word_sogou.css HTTP/1.1" from mat1.gtimg.com
+162: Requesting "GET http://mat1.gtimg.com/www/qq_index/css/qq_363ea330.css HTTP/1.1" from mat1.gtimg.com
+163: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+163: Responding "HTTP/1.1 200 OK"
+162: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+162: Responding "HTTP/1.1 200 OK"
+170: "GET http://mat1.gtimg.com/www/qq2018/imgs/skin/lianghui_logo2.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+173: "GET http://img1.gtimg.com/21/2106/210688/21068871_small.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+171: "GET http://mat1.gtimg.com/www/images/qq2012/sogouSearchLogo20140629.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+174: "GET http://img1.gtimg.com/ninja/2/2018/03/ninja151993799564136.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+175: "GET http://img1.gtimg.com/24hours/pics/hv1/123/26/2265/147288378.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+172: "GET http://mat1.gtimg.com/www/images/qq2012/guanjia2.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+178: "GET http://img1.gtimg.com/v/pics/hv1/20/163/2263/147193160.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+176: "GET http://img1.gtimg.com/ninja/2/2018/03/ninja151992131630651.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+179: "GET http://img1.gtimg.com/v/pics/hv1/37/110/2264/147244687.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+180: "GET http://mat1.gtimg.com/www/qq2018/imgs/skin/2018lianghui_bg.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+177: "GET http://img1.gtimg.com/v/pics/hv1/21/174/2264/147260991.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+184: "GET http://qzonestyle.gtimg.cn/qzone/biz/ac/comm/ver.20170622.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+183: "GET http://img1.gtimg.com/ninja/2/2018/02/ninja151940007081440.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+181: "GET http://jsqmt.qq.com/cdn_djl.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+182: "GET http://qzonestyle.gtimg.cn/qzone/biz/ac/comm/qbscomm.20150907.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+187: "GET http://mat1.gtimg.com/www/images/qq2012/navMoreActived.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+188: "GET http://qzonestyle.gtimg.cn/qzone/biz/ac/comm/gdtlib.20171009.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+185: "GET http://img1.gtimg.com/ninja/2/2018/03/ninja151994884945992.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+189: "GET http://imgnode.gtimg.cn/hq_img?type=minute&size=13&proj=qqhome&code=sh000001 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+186: "GET http://img1.gtimg.com/ent/pics/hv1/139/47/2265/147293749.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+190: "GET http://img1.gtimg.com/ninja/2/2018/03/ninja151994812880599.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+191: "GET http://inews.gtimg.com/newsapp_ls/0/2955000512_196130/0 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+192: "GET http://img1.gtimg.com/ninja/2/2018/03/ninja151994946858645.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+193: "GET http://img1.gtimg.com/sports/pics/hv1/234/68/2265/147299199.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+194: "GET http://img1.gtimg.com/rcdimg/20180302/11/5003541766_227x148.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+195: "GET http://img1.gtimg.com/sports/pics/hv1/106/69/2265/147299326.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:36 2018
+165: Requesting "GET http://imgcache.qq.com/ptlogin/ac/v9/js/ptlogin_v1.js HTTP/1.1" from imgcache.qq.com
+164: Requesting "GET http://ra.gtimg.com/web/crystal/v4.4Beta04Build040/crystal-min.js HTTP/1.1" from ra.gtimg.com
+165: Received "HTTP/1.1 200 OK" from imgcache.qq.com
+165: Responding "HTTP/1.1 200 OK"
+196: "GET http://inews.gtimg.com/newsapp_ls/0/2957078814_196130/0 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:37 2018
+164: Received "HTTP/1.1 200 OK" from ra.gtimg.com
+164: Responding "HTTP/1.1 200 OK"
+197: "GET http://img1.gtimg.com/ninja/2/2018/02/ninja151971507453347.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:37 2018
+167: Requesting "GET http://js.aq.qq.com/js/aq_common.js HTTP/1.1" from js.aq.qq.com
+167: Received "HTTP/1.1 200 OK" from js.aq.qq.com
+167: Responding "HTTP/1.1 200 OK"
+198: "GET http://l.qq.com/lview?c=www&loc=QQCOM_N_Extend_Video&callback=crystal.callbackarea&rot=1&ri=l.&chl=www&page_type=1&k=&t=%E8%85%BE%E8%AE%AF%E9%A6%96%E9%A1%B5&r=&s= HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:37 2018
+168: Requesting "GET http://mat1.gtimg.com/www/asset/lib/jquery/jquery/jquery-1.11.1.min.js HTTP/1.1" from mat1.gtimg.com
+166: Requesting "GET http://mat1.gtimg.com/www/asset/seajs/sea.js HTTP/1.1" from mat1.gtimg.com
+169: Requesting "GET http://mat1.gtimg.com/www/qq_index/js/qq_363ea330.js HTTP/1.1" from mat1.gtimg.com
+170: Requesting "GET http://mat1.gtimg.com/www/qq2018/imgs/skin/lianghui_logo2.png HTTP/1.1" from mat1.gtimg.com
+173: Requesting "GET http://img1.gtimg.com/21/2106/210688/21068871_small.jpg HTTP/1.1" from img1.gtimg.com
+171: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/sogouSearchLogo20140629.png HTTP/1.1" from mat1.gtimg.com
+174: Requesting "GET http://img1.gtimg.com/ninja/2/2018/03/ninja151993799564136.jpg HTTP/1.1" from img1.gtimg.com
+175: Requesting "GET http://img1.gtimg.com/24hours/pics/hv1/123/26/2265/147288378.jpg HTTP/1.1" from img1.gtimg.com
+172: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/guanjia2.png HTTP/1.1" from mat1.gtimg.com
+176: Requesting "GET http://img1.gtimg.com/ninja/2/2018/03/ninja151992131630651.jpg HTTP/1.1" from img1.gtimg.com
+179: Requesting "GET http://img1.gtimg.com/v/pics/hv1/37/110/2264/147244687.jpg HTTP/1.1" from img1.gtimg.com
+180: Requesting "GET http://mat1.gtimg.com/www/qq2018/imgs/skin/2018lianghui_bg.jpg HTTP/1.1" from mat1.gtimg.com
+178: Requesting "GET http://img1.gtimg.com/v/pics/hv1/20/163/2263/147193160.jpg HTTP/1.1" from img1.gtimg.com
+177: Requesting "GET http://img1.gtimg.com/v/pics/hv1/21/174/2264/147260991.jpg HTTP/1.1" from img1.gtimg.com
+184: Requesting "GET http://qzonestyle.gtimg.cn/qzone/biz/ac/comm/ver.20170622.js HTTP/1.1" from qzonestyle.gtimg.cn
+183: Requesting "GET http://img1.gtimg.com/ninja/2/2018/02/ninja151940007081440.jpg HTTP/1.1" from img1.gtimg.com
+181: Requesting "GET http://jsqmt.qq.com/cdn_djl.js HTTP/1.1" from jsqmt.qq.com
+166: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+166: Responding "HTTP/1.1 200 OK"
+188: Requesting "GET http://qzonestyle.gtimg.cn/qzone/biz/ac/comm/gdtlib.20171009.js HTTP/1.1" from qzonestyle.gtimg.cn
+182: Requesting "GET http://qzonestyle.gtimg.cn/qzone/biz/ac/comm/qbscomm.20150907.js HTTP/1.1" from qzonestyle.gtimg.cn
+168: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+170: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+169: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+168: Responding "HTTP/1.1 200 OK"
+185: Requesting "GET http://img1.gtimg.com/ninja/2/2018/03/ninja151994884945992.jpg HTTP/1.1" from img1.gtimg.com
+170: Responding "HTTP/1.1 200 OK"
+199: "GET http://img1.gtimg.com/ninja/2/2018/02/ninja151971509280256.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+187: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/navMoreActived.png HTTP/1.1" from mat1.gtimg.com
+169: Responding "HTTP/1.1 200 OK"
+200: "GET http://img1.gtimg.com/ninja/2/2018/02/ninja151971510617877.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+171: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+171: Responding "HTTP/1.1 200 OK"
+173: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+174: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+203: "CONNECT mini2015.qq.com:443 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+173: Responding "HTTP/1.1 200 OK"
+201: "GET http://img1.gtimg.com/rcdimg/20180302/11/7780668909_227x148.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+204: "GET http://img1.gtimg.com/21/2106/210667/21066746_small.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+174: Responding "HTTP/1.1 200 OK"
+176: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+179: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+180: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+202: "GET http://img1.gtimg.com/rcdimg/20180302/11/2215664408_227x148.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+205: "GET http://app.data.qq.com/?umod=astro&act=astro&t=18&jsonp=1&func=qqastro HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+172: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+175: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+175: Responding "HTTP/1.1 200 OK"
+178: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+177: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+172: Responding "HTTP/1.1 200 OK"
+177: Responding "HTTP/1.1 200 OK"
+176: Responding "HTTP/1.1 200 OK"
+179: Responding "HTTP/1.1 200 OK"
+184: Received "HTTP/1.1 200 OK" from qzonestyle.gtimg.cn
+180: Responding "HTTP/1.1 200 OK"
+178: Responding "HTTP/1.1 200 OK"
+184: Responding "HTTP/1.1 200 OK"
+207: "GET http://vm.gtimg.cn/tencentvideo/txmp/js/txminiplayer.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+206: "GET http://mat1.gtimg.com/www/js/qq2012/suggestion_1.1.7_sogou.min.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+208: "GET http://fw.qq.com/ipwhere?callback=ipCallback HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+181: Received "HTTP/1.1 200 OK" from jsqmt.qq.com
+211: "GET http://js.data.auto.qq.com/car_public/template/serial_py.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+183: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+209: "GET http://i.match.qq.com/interface/getsub?callback=customOrder&para=%7B%22busi_id%22:%22tubd_sub_23%22,%22busi_subid%22:%22%22%7D&random=0.6821603896255503 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+210: "GET http://mat1.gtimg.com/www/js/qq2012/smartboxRewrite1.7.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+181: Responding "HTTP/1.1 200 OK"
+185: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+212: "GET http://mat1.gtimg.com/apps/nbatoday/nba_today_matchlist.json?callback=responseData&columnId=100000&from=qshou_nba&_t=1519969238443&_=1519969238394 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+188: Received "HTTP/1.1 200 OK" from qzonestyle.gtimg.cn
+213: "GET http://mat1.gtimg.com/finance/js/st/p/qq/504f363d93d6211c.js?ran=0.7739491019436215 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+183: Responding "HTTP/1.1 200 OK"
+182: Received "HTTP/1.1 200 OK" from qzonestyle.gtimg.cn
+188: Responding "HTTP/1.1 200 OK"
+185: Responding "HTTP/1.1 200 OK"
+187: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+187: Responding "HTTP/1.1 200 OK"
+215: "GET http://l.qq.com/lview?c=www&loc=QQ_takeover,QQCOM_N_Rectangle1,QQCOM_N_Width2,QQCOM_N_KJ_button1,QQCOM_Width3,QQCOM_N_Width4,QQCOM_N_button2,QQCOM_N_Rectangle3,QQ_HP_Upright4,QQ_HP_bottom_Width,WWW_RM_RightMove1,QQ_BackPopWin,QQ_Couplet&callback=crystal.callbackarea&ri=l.&chl=www&page_type=1&k=&t=%E8%85%BE%E8%AE%AF%E9%A6%96%E9%A1%B5&r=&s= HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+182: Responding "HTTP/1.1 200 OK"
+218: "GET http://img1.gtimg.com/ninja/2/2018/03/ninja151996279043384.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+216: "GET http://img1.gtimg.com/rcdimg/20180302/11/5636932922_227x148.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+219: "GET http://img1.gtimg.com/edu/pics/hv1/130/46/2265/147293485.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+214: "GET http://pingjs.qq.com/h5/stats.js?v2.0.2 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+217: "GET http://img1.gtimg.com/ninja/2/2018/03/ninja151989294833541.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+220: "GET http://img1.gtimg.com/kid/pics/hv1/38/17/2265/147285998.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:38 2018
+191: Requesting "GET http://inews.gtimg.com/newsapp_ls/0/2955000512_196130/0 HTTP/1.1" from inews.gtimg.com
+196: Requesting "GET http://inews.gtimg.com/newsapp_ls/0/2957078814_196130/0 HTTP/1.1" from inews.gtimg.com
+191: Received "HTTP/1.1 200 OK" from inews.gtimg.com
+191: Responding "HTTP/1.1 200 OK"
+221: "GET http://img1.gtimg.com/kid/pics/hv1/109/54/2265/147295504.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:39 2018
+196: Received "HTTP/1.1 200 OK" from inews.gtimg.com
+196: Responding "HTTP/1.1 200 OK"
+222: "GET http://img1.gtimg.com/kid/pics/hv1/30/23/2258/146832345.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:39 2018
+189: Requesting "GET http://imgnode.gtimg.cn/hq_img?type=minute&size=13&proj=qqhome&code=sh000001 HTTP/1.1" from imgnode.gtimg.cn
+186: Requesting "GET http://img1.gtimg.com/ent/pics/hv1/139/47/2265/147293749.jpg HTTP/1.1" from img1.gtimg.com
+190: Requesting "GET http://img1.gtimg.com/ninja/2/2018/03/ninja151994812880599.jpg HTTP/1.1" from img1.gtimg.com
+193: Requesting "GET http://img1.gtimg.com/sports/pics/hv1/234/68/2265/147299199.jpg HTTP/1.1" from img1.gtimg.com
+194: Requesting "GET http://img1.gtimg.com/rcdimg/20180302/11/5003541766_227x148.jpg HTTP/1.1" from img1.gtimg.com
+192: Requesting "GET http://img1.gtimg.com/ninja/2/2018/03/ninja151994946858645.jpg HTTP/1.1" from img1.gtimg.com
+197: Requesting "GET http://img1.gtimg.com/ninja/2/2018/02/ninja151971507453347.jpg HTTP/1.1" from img1.gtimg.com
+195: Requesting "GET http://img1.gtimg.com/sports/pics/hv1/106/69/2265/147299326.jpg HTTP/1.1" from img1.gtimg.com
+199: Requesting "GET http://img1.gtimg.com/ninja/2/2018/02/ninja151971509280256.jpg HTTP/1.1" from img1.gtimg.com
+201: Requesting "GET http://img1.gtimg.com/rcdimg/20180302/11/7780668909_227x148.jpg HTTP/1.1" from img1.gtimg.com
+200: Requesting "GET http://img1.gtimg.com/ninja/2/2018/02/ninja151971510617877.jpg HTTP/1.1" from img1.gtimg.com
+204: Requesting "GET http://img1.gtimg.com/21/2106/210667/21066746_small.jpg HTTP/1.1" from img1.gtimg.com
+189: Received "HTTP/1.1 200 OK" from imgnode.gtimg.cn
+189: Responding "HTTP/1.1 200 OK"
+189: cached
+186: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+223: "GET http://img1.gtimg.com/kid/pics/hv1/190/22/2258/146832250.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:39 2018
+186: Responding "HTTP/1.1 200 OK"
+224: "GET http://inews.gtimg.com/newsapp_ls/0/2956871518_150120/0 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:39 2018
+194: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+193: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+194: Responding "HTTP/1.1 200 OK"
+197: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+225: "GET http://img1.gtimg.com/21/2106/210674/21067438_small.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:39 2018
+193: Responding "HTTP/1.1 200 OK"
+197: Responding "HTTP/1.1 200 OK"
+192: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+226: "GET http://inews.gtimg.com/newsapp_ls/0/2956945188/0 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:39 2018
+192: Responding "HTTP/1.1 200 OK"
+228: "GET http://img1.gtimg.com/rushidao/pics/hv1/113/68/2265/147299078.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:39 2018
+227: "GET http://inews.gtimg.com/newsapp_ls/0/2956831235_150120/0 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:39 2018
+199: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+195: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+195: Responding "HTTP/1.1 200 OK"
+199: Responding "HTTP/1.1 200 OK"
+201: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+201: Responding "HTTP/1.1 200 OK"
+200: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+200: Responding "HTTP/1.1 200 OK"
+229: "GET http://img1.gtimg.com/ninja/2/2017/09/ninja150581019564795.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:39 2018
+202: Requesting "GET http://img1.gtimg.com/rcdimg/20180302/11/2215664408_227x148.jpg HTTP/1.1" from img1.gtimg.com
+231: "GET http://img1.gtimg.com/ly/pics/hv1/215/21/2265/147287195.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:39 2018
+230: "GET http://img1.gtimg.com/news/pics/hv1/16/54/2265/147295411.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:39 2018
+232: "GET http://img1.gtimg.com/news/pics/hv1/18/54/2265/147295413.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:39 2018
+204: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+204: Responding "HTTP/1.1 200 OK"
+233: "GET http://img1.gtimg.com/news/pics/hv1/15/54/2265/147295410.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:39 2018
+207: Requesting "GET http://vm.gtimg.cn/tencentvideo/txmp/js/txminiplayer.js HTTP/1.1" from vm.gtimg.cn
+207: Received "HTTP/1.1 200 OK" from vm.gtimg.cn
+207: Responding "HTTP/1.1 200 OK"
+234: "GET http://img1.gtimg.com/news/pics/hv1/14/54/2265/147295409.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:39 2018
+202: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+202: Responding "HTTP/1.1 200 OK"
+235: "GET http://h5like.qq.com/fcgi-bin/svideo_timeline?callback=txminiplayerJsonpCallBack_moreMiniVid_142272&otype=json&callback_func=txminiplayerJsonpCallBack_moreMiniVid_142272&vid=z05628qx76z&_=1519969238395 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:39 2018
+205: Requesting "GET http://app.data.qq.com/?umod=astro&act=astro&t=18&jsonp=1&func=qqastro HTTP/1.1" from app.data.qq.com
+206: Requesting "GET http://mat1.gtimg.com/www/js/qq2012/suggestion_1.1.7_sogou.min.js HTTP/1.1" from mat1.gtimg.com
+190: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+190: Responding "HTTP/1.1 200 OK"
+236: "GET http://mat1.gtimg.com/fashion/lc/020801.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:40 2018
+206: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+206: Responding "HTTP/1.1 200 OK"
+237: "GET http://img1.gtimg.com/astro/pics/hv1/118/54/2265/147295513.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:40 2018
+205: Received "HTTP/1.1 200 OK" from app.data.qq.com
+205: Responding "HTTP/1.1 200 OK"
+238: "GET http://img1.gtimg.com/edu/pics/hv1/129/46/2265/147293484.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:40 2018
+208: Requesting "GET http://fw.qq.com/ipwhere?callback=ipCallback HTTP/1.1" from fw.qq.com
+224: Requesting "GET http://inews.gtimg.com/newsapp_ls/0/2956871518_150120/0 HTTP/1.1" from inews.gtimg.com
+226: Requesting "GET http://inews.gtimg.com/newsapp_ls/0/2956945188/0 HTTP/1.1" from inews.gtimg.com
+227: Requesting "GET http://inews.gtimg.com/newsapp_ls/0/2956831235_150120/0 HTTP/1.1" from inews.gtimg.com
+208: Received "HTTP/1.1 200 OK" from fw.qq.com
+208: Responding "HTTP/1.1 200 OK"
+208: cached
+224: Received "HTTP/1.1 200 OK" from inews.gtimg.com
+239: "GET http://img1.gtimg.com/finance/pics/hv1/41/66/2265/147298496.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:40 2018
+224: Responding "HTTP/1.1 200 OK"
+211: Requesting "GET http://js.data.auto.qq.com/car_public/template/serial_py.js HTTP/1.1" from js.data.auto.qq.com
+240: "GET http://wis.qq.com/weather/common?callback=jQuery111109214450441869257_1519969238396&weather_type=observe%7Cforecast_24h%7Cair&source=pc&province=&city=&county=&_=1519969238397 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:40 2018
+226: Received "HTTP/1.1 200 OK" from inews.gtimg.com
+227: Received "HTTP/1.1 200 OK" from inews.gtimg.com
+226: Responding "HTTP/1.1 200 OK"
+227: Responding "HTTP/1.1 200 OK"
+213: Requesting "GET http://mat1.gtimg.com/finance/js/st/p/qq/504f363d93d6211c.js?ran=0.7739491019436215 HTTP/1.1" from mat1.gtimg.com
+209: Requesting "GET http://i.match.qq.com/interface/getsub?callback=customOrder&para=%7B%22busi_id%22:%22tubd_sub_23%22,%22busi_subid%22:%22%22%7D&random=0.6821603896255503 HTTP/1.1" from i.match.qq.com
+210: Requesting "GET http://mat1.gtimg.com/www/js/qq2012/smartboxRewrite1.7.js HTTP/1.1" from mat1.gtimg.com
+212: Requesting "GET http://mat1.gtimg.com/apps/nbatoday/nba_today_matchlist.json?callback=responseData&columnId=100000&from=qshou_nba&_t=1519969238443&_=1519969238394 HTTP/1.1" from mat1.gtimg.com
+241: "GET http://www.qq.com/ninja/houseQuanguoContent_public.htm?random=0.3868014096587278 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:40 2018
+242: "GET http://www.qq.com/c/lowprice.js?callback=autoLowPriceDefault&random=0.25402763522240734 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:40 2018
+218: Requesting "GET http://img1.gtimg.com/ninja/2/2018/03/ninja151996279043384.jpg HTTP/1.1" from img1.gtimg.com
+219: Requesting "GET http://img1.gtimg.com/edu/pics/hv1/130/46/2265/147293485.jpg HTTP/1.1" from img1.gtimg.com
+216: Requesting "GET http://img1.gtimg.com/rcdimg/20180302/11/5636932922_227x148.jpg HTTP/1.1" from img1.gtimg.com
+214: Requesting "GET http://pingjs.qq.com/h5/stats.js?v2.0.2 HTTP/1.1" from pingjs.qq.com
+217: Requesting "GET http://img1.gtimg.com/ninja/2/2018/03/ninja151989294833541.jpg HTTP/1.1" from img1.gtimg.com
+220: Requesting "GET http://img1.gtimg.com/kid/pics/hv1/38/17/2265/147285998.jpg HTTP/1.1" from img1.gtimg.com
+221: Requesting "GET http://img1.gtimg.com/kid/pics/hv1/109/54/2265/147295504.png HTTP/1.1" from img1.gtimg.com
+223: Requesting "GET http://img1.gtimg.com/kid/pics/hv1/190/22/2258/146832250.jpg HTTP/1.1" from img1.gtimg.com
+225: Requesting "GET http://img1.gtimg.com/21/2106/210674/21067438_small.jpg HTTP/1.1" from img1.gtimg.com
+222: Requesting "GET http://img1.gtimg.com/kid/pics/hv1/30/23/2258/146832345.jpg HTTP/1.1" from img1.gtimg.com
+228: Requesting "GET http://img1.gtimg.com/rushidao/pics/hv1/113/68/2265/147299078.jpg HTTP/1.1" from img1.gtimg.com
+231: Requesting "GET http://img1.gtimg.com/ly/pics/hv1/215/21/2265/147287195.jpg HTTP/1.1" from img1.gtimg.com
+229: Requesting "GET http://img1.gtimg.com/ninja/2/2017/09/ninja150581019564795.jpg HTTP/1.1" from img1.gtimg.com
+230: Requesting "GET http://img1.gtimg.com/news/pics/hv1/16/54/2265/147295411.jpg HTTP/1.1" from img1.gtimg.com
+232: Requesting "GET http://img1.gtimg.com/news/pics/hv1/18/54/2265/147295413.jpg HTTP/1.1" from img1.gtimg.com
+233: Requesting "GET http://img1.gtimg.com/news/pics/hv1/15/54/2265/147295410.jpg HTTP/1.1" from img1.gtimg.com
+234: Requesting "GET http://img1.gtimg.com/news/pics/hv1/14/54/2265/147295409.jpg HTTP/1.1" from img1.gtimg.com
+213: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+213: Responding "HTTP/1.1 200 OK"
+243: "GET http://www.qq.com/ninja/serviceContent_public.htm?random=0.4651869781247202 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:40 2018
+212: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+212: Responding "HTTP/1.1 200 OK"
+210: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+210: Responding "HTTP/1.1 200 OK"
+209: Received "HTTP/1.1 200 OK" from i.match.qq.com
+209: Responding "HTTP/1.1 200 OK"
+244: "GET http://qt.gtimg.cn/q=s_sh000001 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:40 2018
+214: Received "HTTP/1.1 200 OK" from pingjs.qq.com
+245: "GET http://img1.gtimg.com/cul/pics/hv1/111/48/2265/147293976.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:40 2018
+214: Responding "HTTP/1.1 200 OK"
+209: cached
+220: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+246: "GET http://img1.gtimg.com/tech/pics/hv1/181/56/2265/147296086.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+219: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+217: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+218: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+220: Responding "HTTP/1.1 200 OK"
+217: Responding "HTTP/1.1 200 OK"
+216: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+219: Responding "HTTP/1.1 200 OK"
+218: Responding "HTTP/1.1 200 OK"
+223: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+250: "GET http://mat1.gtimg.com/fashion/lc/020802.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+222: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+221: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+223: Responding "HTTP/1.1 200 OK"
+247: "GET http://i.match.qq.com/qhome/uinterest?num=4&callback=contentInit&random=0.9547400245478004 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+216: Responding "HTTP/1.1 200 OK"
+221: Responding "HTTP/1.1 200 OK"
+225: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+222: Responding "HTTP/1.1 200 OK"
+229: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+248: "GET http://img1.gtimg.com/auto/pics/hv1/15/50/2265/147294390.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+249: "GET http://img1.gtimg.com/housenews/pics/hv1/195/49/2265/147294315.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+228: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+229: Responding "HTTP/1.1 200 OK"
+225: Responding "HTTP/1.1 200 OK"
+228: Responding "HTTP/1.1 200 OK"
+232: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+230: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+251: "GET http://img1.gtimg.com/ent/pics/hv1/188/50/2265/147294563.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+230: Responding "HTTP/1.1 200 OK"
+232: Responding "HTTP/1.1 200 OK"
+234: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+255: "GET http://mat1.gtimg.com/www/images/qq2012/icon_yuewangga1.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+254: "GET http://img1.gtimg.com/sports/pics/hv1/133/27/2265/147288643.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+252: "GET http://img1.gtimg.com/digi/pics/hv1/52/6/2265/147283207.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+257: "GET http://mat1.gtimg.com/www/images/qq2012/buliang.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+253: "GET http://img1.gtimg.com/21/2106/210672/21067281_small4.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+233: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+258: "GET http://mat1.qq.com/www/images/allskin/wmlogo.gif HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+234: Responding "HTTP/1.1 200 OK"
+235: Requesting "GET http://h5like.qq.com/fcgi-bin/svideo_timeline?callback=txminiplayerJsonpCallBack_moreMiniVid_142272&otype=json&callback_func=txminiplayerJsonpCallBack_moreMiniVid_142272&vid=z05628qx76z&_=1519969238395 HTTP/1.1" from h5like.qq.com
+259: "GET http://img1.gtimg.com/rcdimg/20180302/12/2058844197_340x155.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+261: "GET http://img1.gtimg.com/rcdimg/20180302/11/6050382585_227x148.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+233: Responding "HTTP/1.1 200 OK"
+260: "GET http://inews.gtimg.com/newsapp_ls/0/2956557873/0 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+262: "GET http://img1.gtimg.com/astro/pics/hv1/92/51/2265/147294722.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+256: "GET http://mat1.qq.com/www/images/ind36.gif HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+236: Requesting "GET http://mat1.gtimg.com/fashion/lc/020801.jpg HTTP/1.1" from mat1.gtimg.com
+237: Requesting "GET http://img1.gtimg.com/astro/pics/hv1/118/54/2265/147295513.jpg HTTP/1.1" from img1.gtimg.com
+238: Requesting "GET http://img1.gtimg.com/edu/pics/hv1/129/46/2265/147293484.jpg HTTP/1.1" from img1.gtimg.com
+239: Requesting "GET http://img1.gtimg.com/finance/pics/hv1/41/66/2265/147298496.jpg HTTP/1.1" from img1.gtimg.com
+235: Received "HTTP/1.1 200 OK" from h5like.qq.com
+241: Requesting "GET http://www.qq.com/ninja/houseQuanguoContent_public.htm?random=0.3868014096587278 HTTP/1.1" from www.qq.com
+243: Requesting "GET http://www.qq.com/ninja/serviceContent_public.htm?random=0.4651869781247202 HTTP/1.1" from www.qq.com
+235: Responding "HTTP/1.1 200 OK"
+242: Requesting "GET http://www.qq.com/c/lowprice.js?callback=autoLowPriceDefault&random=0.25402763522240734 HTTP/1.1" from www.qq.com
+235: cached
+263: "GET http://img1.gtimg.com/ninja/2/2017/11/ninja151064773783115.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+231: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+231: Responding "HTTP/1.1 200 OK"
+264: "GET http://vv.video.qq.com/getinfo?callback=txminiplayerJsonpCallBack_getinfo_392023&isHLS=false&charge=false&vid=z05628qx76z&defn=auto&defnpayver=0&otype=json&guid=c5970b261efa3d11a5d54b88fdc57b75&platform=2350201&sdtfrom=v1095&host=www.qq.com&ehost=http%3A%2F%2Fwww.qq.com%2F&sphttps=0&_qv_rmt=Pas8s1%2FaA1199420T%3D&_qv_rmt2=qQPAofSc159621UFw%3D&_=1519969238398 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+236: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+236: Responding "HTTP/1.1 200 OK"
+265: "GET http://img1.gtimg.com/kid/pics/hv1/156/9/2262/147089001.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+237: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+237: Responding "HTTP/1.1 200 OK"
+266: "GET http://inews.gtimg.com/newsapp_ls/0/2821301727_294195/0 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+238: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+238: Responding "HTTP/1.1 200 OK"
+239: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+239: Responding "HTTP/1.1 200 OK"
+267: "GET http://img1.gtimg.com/ninja/2/2018/03/ninja151995539692335.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+268: "GET http://mat1.gtimg.com/www/images/qq2012/cxrz5.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+240: Requesting "GET http://wis.qq.com/weather/common?callback=jQuery111109214450441869257_1519969238396&weather_type=observe%7Cforecast_24h%7Cair&source=pc&province=&city=&county=&_=1519969238397 HTTP/1.1" from wis.qq.com
+244: Requesting "GET http://qt.gtimg.cn/q=s_sh000001 HTTP/1.1" from qt.gtimg.cn
+246: Requesting "GET http://img1.gtimg.com/tech/pics/hv1/181/56/2265/147296086.jpg HTTP/1.1" from img1.gtimg.com
+250: Requesting "GET http://mat1.gtimg.com/fashion/lc/020802.jpg HTTP/1.1" from mat1.gtimg.com
+245: Requesting "GET http://img1.gtimg.com/cul/pics/hv1/111/48/2265/147293976.jpg HTTP/1.1" from img1.gtimg.com
+247: Requesting "GET http://i.match.qq.com/qhome/uinterest?num=4&callback=contentInit&random=0.9547400245478004 HTTP/1.1" from i.match.qq.com
+249: Requesting "GET http://img1.gtimg.com/housenews/pics/hv1/195/49/2265/147294315.jpg HTTP/1.1" from img1.gtimg.com
+248: Requesting "GET http://img1.gtimg.com/auto/pics/hv1/15/50/2265/147294390.jpg HTTP/1.1" from img1.gtimg.com
+241: Received "HTTP/1.1 200 OK" from www.qq.com
+241: Responding "HTTP/1.1 200 OK"
+251: Requesting "GET http://img1.gtimg.com/ent/pics/hv1/188/50/2265/147294563.jpg HTTP/1.1" from img1.gtimg.com
+242: Received "HTTP/1.1 200 OK" from www.qq.com
+242: Responding "HTTP/1.1 200 OK"
+255: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/icon_yuewangga1.png HTTP/1.1" from mat1.gtimg.com
+211: Received "HTTP/1.1 200 OK" from js.data.auto.qq.com
+269: "GET http://mat1.gtimg.com/www/images/qq2012/gswj2015.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+270: "GET http://mat1.gtimg.com/www/images/qq2012/festival/lianghui2016/close.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+252: Requesting "GET http://img1.gtimg.com/digi/pics/hv1/52/6/2265/147283207.jpg HTTP/1.1" from img1.gtimg.com
+211: Responding "HTTP/1.1 200 OK"
+254: Requesting "GET http://img1.gtimg.com/sports/pics/hv1/133/27/2265/147288643.jpg HTTP/1.1" from img1.gtimg.com
+211: cached
+271: "GET http://trace.qq.com/collect?pj=1990&dm=www.qq.com&url=/&arg=&rdm=&rurl=&rarg=&icache=&uv=&nu=&ol=&loc=http%3A//www.qq.com/&column=&subject=&nrnd=F3882798580&rnd=67305 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+257: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/buliang.png HTTP/1.1" from mat1.gtimg.com
+253: Requesting "GET http://img1.gtimg.com/21/2106/210672/21067281_small4.png HTTP/1.1" from img1.gtimg.com
+240: Received "HTTP/1.1 200 OK" from wis.qq.com
+240: Responding "HTTP/1.1 200 OK"
+240: cached
+272: "GET http://pingfore.qq.com/pingd?dm=www.qq.com&url=/&rdm=&rurl=&rarg=&pvid=3882798580&scr=1920x1080&scl=24-bit&lang=en-us&java=0&pf=Win64&tz=5&flash=-&ct=-&column=&subject=&vs=tcss.3.1.5&ext=tm%3D5&hurlcn=&rand=52004&reserved1=-1&tt= HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:41 2018
+246: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+244: Received "HTTP/1.1 200 OK" from qt.gtimg.cn
+246: Responding "HTTP/1.1 200 OK"
+250: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+250: Responding "HTTP/1.1 200 OK"
+244: Responding "HTTP/1.1 200 OK"
+244: cached, but requires re-validation
+245: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+273: "GET http://mat1.gtimg.com/www/qq_index/imgs/logo/qqlogo_white_shadow.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:42 2018
+245: Responding "HTTP/1.1 200 OK"
+274: "GET http://mat1.gtimg.com/www/images/qq2012/sogouSearchBtn.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:42 2018
+249: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+247: Received "HTTP/1.1 200 OK" from i.match.qq.com
+275: "GET http://mat1.gtimg.com/www/images/qq2012/loginGrayIcon.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:42 2018
+249: Responding "HTTP/1.1 200 OK"
+276: "GET http://mat1.gtimg.com/www/images/qq2012/festival/icon2017nation.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:42 2018
+247: Responding "HTTP/1.1 200 OK"
+243: Received "HTTP/1.1 200 OK" from www.qq.com
+247: cached
+277: "GET http://mat1.gtimg.com/www/images/qq2012/chanelNavBeta2_141013.jpg HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:42 2018
+248: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+251: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+279: "GET http://mat1.gtimg.com/www/images/qq2012/adScrollBtn02.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:42 2018
+243: Responding "HTTP/1.1 200 OK"
+278: "GET http://mat1.gtimg.com/www/images/qq2012/adScrollBtn01.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:42 2018
+255: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+251: Responding "HTTP/1.1 200 OK"
+248: Responding "HTTP/1.1 200 OK"
+257: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+280: "GET http://mat1.gtimg.com/www/images/qq2012/bkysp20140623.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:42 2018
+252: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+255: Responding "HTTP/1.1 200 OK"
+257: Responding "HTTP/1.1 200 OK"
+254: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+282: "GET http://mat1.gtimg.com/www/qq_index/imgs/timeqq.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:42 2018
+252: Responding "HTTP/1.1 200 OK"
+253: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+281: "GET http://mat1.gtimg.com/www/images/qq2012/temp/iconNew.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:42 2018
+253: Responding "HTTP/1.1 200 OK"
+254: Responding "HTTP/1.1 200 OK"
+285: "GET http://mat1.gtimg.com/www/images/qq2012/productNavBg1.5.516.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:42 2018
+283: "GET http://mat1.gtimg.com/www/images/qq2012/tabBg01_0702.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:42 2018
+286: "GET http://mat1.gtimg.com/www/images/qq2012/productNavBg1.4.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:42 2018
+284: "GET http://mat1.gtimg.com/www/images/qq2012/tabBg02_0702.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:42 2018
+260: Requesting "GET http://inews.gtimg.com/newsapp_ls/0/2956557873/0 HTTP/1.1" from inews.gtimg.com
+260: Received "HTTP/1.1 200 OK" from inews.gtimg.com
+260: Responding "HTTP/1.1 200 OK"
+287: "GET http://mat1.gtimg.com/www/images/qq2012/temp/astroIcon.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:42 2018
+258: Requesting "GET http://mat1.qq.com/www/images/allskin/wmlogo.gif HTTP/1.1" from mat1.qq.com
+259: Requesting "GET http://img1.gtimg.com/rcdimg/20180302/12/2058844197_340x155.jpg HTTP/1.1" from img1.gtimg.com
+261: Requesting "GET http://img1.gtimg.com/rcdimg/20180302/11/6050382585_227x148.jpg HTTP/1.1" from img1.gtimg.com
+262: Requesting "GET http://img1.gtimg.com/astro/pics/hv1/92/51/2265/147294722.jpg HTTP/1.1" from img1.gtimg.com
+259: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+259: Responding "HTTP/1.1 200 OK"
+258: Received "HTTP/1.1 302 Found" from mat1.qq.com
+258: Responding "HTTP/1.1 302 Found"
+288: "GET http://mat1.gtimg.com/www/images/qq2012/temp/yunshi.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:43 2018
+261: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+289: "GET http://mat1.gtimg.com/www/images/qq2012/temp/iconNBA.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:43 2018
+261: Responding "HTTP/1.1 200 OK"
+262: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+290: "GET http://mat1.gtimg.com/www/images/allskin/wmlogo.gif HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:43 2018
+262: Responding "HTTP/1.1 200 OK"
+291: "GET http://mat1.gtimg.com/www/images/qq2012/temp/picFocusCurrent.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:43 2018
+203Tunnel closed
+215: Requesting "GET http://l.qq.com/lview?c=www&loc=QQ_takeover,QQCOM_N_Rectangle1,QQCOM_N_Width2,QQCOM_N_KJ_button1,QQCOM_Width3,QQCOM_N_Width4,QQCOM_N_button2,QQCOM_N_Rectangle3,QQ_HP_Upright4,QQ_HP_bottom_Width,WWW_RM_RightMove1,QQ_BackPopWin,QQ_Couplet&callback=crystal.callbackarea&ri=l.&chl=www&page_type=1&k=&t=%E8%85%BE%E8%AE%AF%E9%A6%96%E9%A1%B5&r=&s= HTTP/1.1" from l.qq.com
+266: Requesting "GET http://inews.gtimg.com/newsapp_ls/0/2821301727_294195/0 HTTP/1.1" from inews.gtimg.com
+266: Received "HTTP/1.1 200 OK" from inews.gtimg.com
+266: Responding "HTTP/1.1 200 OK"
+292: "GET http://mat1.gtimg.com/www/images/qq2012/temp/picFocusDefault.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:44 2018
+256: Requesting "GET http://mat1.qq.com/www/images/ind36.gif HTTP/1.1" from mat1.qq.com
+263: Requesting "GET http://img1.gtimg.com/ninja/2/2017/11/ninja151064773783115.jpg HTTP/1.1" from img1.gtimg.com
+264: Requesting "GET http://vv.video.qq.com/getinfo?callback=txminiplayerJsonpCallBack_getinfo_392023&isHLS=false&charge=false&vid=z05628qx76z&defn=auto&defnpayver=0&otype=json&guid=c5970b261efa3d11a5d54b88fdc57b75&platform=2350201&sdtfrom=v1095&host=www.qq.com&ehost=http%3A%2F%2Fwww.qq.com%2F&sphttps=0&_qv_rmt=Pas8s1%2FaA1199420T%3D&_qv_rmt2=qQPAofSc159621UFw%3D&_=1519969238398 HTTP/1.1" from vv.video.qq.com
+265: Requesting "GET http://img1.gtimg.com/kid/pics/hv1/156/9/2262/147089001.jpg HTTP/1.1" from img1.gtimg.com
+267: Requesting "GET http://img1.gtimg.com/ninja/2/2018/03/ninja151995539692335.jpg HTTP/1.1" from img1.gtimg.com
+256: Received "HTTP/1.1 302 Found" from mat1.qq.com
+256: Responding "HTTP/1.1 302 Found"
+215: Received "HTTP/1.1 200 OK" from l.qq.com
+215: Responding "HTTP/1.1 200 OK"
+293: "GET http://mat1.gtimg.com/www/images/qq2012/focusBtnLeftDefault.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:44 2018
+215: not cacheable because response do not allow
+263: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+294: "GET http://mat1.gtimg.com/www/images/ind36.gif HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:44 2018
+263: Responding "HTTP/1.1 200 OK"
+295: "GET http://wa.gtimg.com/website/201612/snyscg_QW_20161230162910.html?tclick=http%3A%2F%2Fc.l.qq.com%2Flclick%3Foid%3D3790631%26cid%3D1821573%26loc%3DQQCOM_Width3%26soid%3Djli2SwAAWpjj2gPeFwWKlO81AR7e%26click_data%3DdXNlcl9pbmZvPW9BRGptanM5RnhBPSZheHBoZWFkZXI9MSZwYWdlX3R5cGU9MSZzc3A9MSZ1cF92ZXJzaW9uPVM4MHxMNTcxJnNpPTE3OTI3NjAzOA%3D%3D%26index%3D1%26chl%3D478 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:44 2018
+267: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+267: Responding "HTTP/1.1 200 OK"
+265: Received "HTTP/1.1 200 OK" from img1.gtimg.com
+296: "GET http://ra.gtimg.com/icast/3946970/index.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:44 2018
+265: Responding "HTTP/1.1 200 OK"
+268: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/cxrz5.png HTTP/1.1" from mat1.gtimg.com
+270: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/festival/lianghui2016/close.png HTTP/1.1" from mat1.gtimg.com
+297: "GET http://ra.gtimg.com/web/crystal/v4.4Beta04Build040/crystal_ext-min.js HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:44 2018
+264: Received "HTTP/1.1 200 OK" from vv.video.qq.com
+269: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/gswj2015.jpg HTTP/1.1" from mat1.gtimg.com
+264: Responding "HTTP/1.1 200 OK"
+264: cached
+298: "GET http://wa.gtimg.com/website/201709/bjjdsj_QNR_20170901175534.html?tclick=http%3A%2F%2Fc.l.qq.com%2Flclick%3Foid%3D3964686%26cid%3D2239313%26loc%3DQQCOM_N_Rectangle3%26soid%3Djli2SwAAWpjj2gPeFwgkvUo%2BAR7e%26click_data%3DdXNlcl9pbmZvPW9BRGptanM5RnhBPSZheHBoZWFkZXI9MSZwYWdlX3R5cGU9MSZzc3A9MSZ1cF92ZXJzaW9uPVM4MHxMNTcxJnNpPTE3OTI3NjAzOA%3D%3D%26index%3D1%26chl%3D478 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:44 2018
+268: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+268: Responding "HTTP/1.1 200 OK"
+299: "GET http://203.205.158.77/om.tc.qq.com/AP0od-b_tfJUGiHKEOaEylPdB_-eP0ky87138emoKDiM/z05628qx76z.mp4?vkey=CD69339AE4D58EA6F9DB861EB9A29889B81ACEA6DAA020A0B8F6142CBB401E77E5BE934223826E71001DC1B365EE7DD8C40DEEA96E32B8D11939F883493182CA6B7FD3FA815F0B411E83AB17AC5022D562F672FD8C64F22F&sdtfrom=v1095&guid=c5970b261efa3d11a5d54b88fdc57b75 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:44 2018
+270: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+270: Responding "HTTP/1.1 200 OK"
+269: Received "HTTP/1.1 200 OK" from mat1.gtimg.com
+269: Responding "HTTP/1.1 200 OK"
+271: Requesting "GET http://trace.qq.com/collect?pj=1990&dm=www.qq.com&url=/&arg=&rdm=&rurl=&rarg=&icache=&uv=&nu=&ol=&loc=http%3A//www.qq.com/&column=&subject=&nrnd=F3882798580&rnd=67305 HTTP/1.1" from trace.qq.com
+301: "GET http://mat1.gtimg.com/www/images/qq2012/guide_k_01.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:44 2018
+300: "GET http://mat1.gtimg.com/www/images/qq2012/focusBtnRightDefault.png HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:44 2018
+272: Requesting "GET http://pingfore.qq.com/pingd?dm=www.qq.com&url=/&rdm=&rurl=&rarg=&pvid=3882798580&scr=1920x1080&scl=24-bit&lang=en-us&java=0&pf=Win64&tz=5&flash=-&ct=-&column=&subject=&vs=tcss.3.1.5&ext=tm%3D5&hurlcn=&rand=52004&reserved1=-1&tt= HTTP/1.1" from pingfore.qq.com
+275: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/loginGrayIcon.png HTTP/1.1" from mat1.gtimg.com
+273: Requesting "GET http://mat1.gtimg.com/www/qq_index/imgs/logo/qqlogo_white_shadow.png HTTP/1.1" from mat1.gtimg.com
+274: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/sogouSearchBtn.png HTTP/1.1" from mat1.gtimg.com
+276: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/festival/icon2017nation.png HTTP/1.1" from mat1.gtimg.com
+279: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/adScrollBtn02.png HTTP/1.1" from mat1.gtimg.com
+277: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/chanelNavBeta2_141013.jpg HTTP/1.1" from mat1.gtimg.com
+278: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/adScrollBtn01.png HTTP/1.1" from mat1.gtimg.com
+280: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/bkysp20140623.png HTTP/1.1" from mat1.gtimg.com
+282: Requesting "GET http://mat1.gtimg.com/www/qq_index/imgs/timeqq.png HTTP/1.1" from mat1.gtimg.com
+281: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/temp/iconNew.png HTTP/1.1" from mat1.gtimg.com
+285: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/productNavBg1.5.516.png HTTP/1.1" from mat1.gtimg.com
+283: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/tabBg01_0702.png HTTP/1.1" from mat1.gtimg.com
+287: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/temp/astroIcon.png HTTP/1.1" from mat1.gtimg.com
+286: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/productNavBg1.4.png HTTP/1.1" from mat1.gtimg.com
+288: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/temp/yunshi.png HTTP/1.1" from mat1.gtimg.com
+284: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/tabBg02_0702.png HTTP/1.1" from mat1.gtimg.com
+289: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/temp/iconNBA.png HTTP/1.1" from mat1.gtimg.com
+290: Requesting "GET http://mat1.gtimg.com/www/images/allskin/wmlogo.gif HTTP/1.1" from mat1.gtimg.com
+291: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/temp/picFocusCurrent.png HTTP/1.1" from mat1.gtimg.com
+292: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/temp/picFocusDefault.png HTTP/1.1" from mat1.gtimg.com
+271: Received "HTTP/1.1 200 OK" from trace.qq.com
+271: Responding "HTTP/1.1 200 OK"
+271: cached
+302: "GET http://btrace.qq.com/collect?sIp=&iQQ=&sBiz=new.qq.com&sOp=checkup&iSta=&iTy=2128&iFlow=&district=&ran=0.3444245387191629 HTTP/1.1" from 127.0.0.1 @ Fri Mar  2 05:40:44 2018
+294: Requesting "GET http://mat1.gtimg.com/www/images/ind36.gif HTTP/1.1" from mat1.gtimg.com
+293: Requesting "GET http://mat1.gtimg.com/www/images/qq2012/focusBtnLeftDefault.png HTTP/1.1" from mat1.gtimg.com

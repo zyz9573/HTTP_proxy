@@ -514,8 +514,6 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 
 			std::string message("200 OK\r\n\r\n");
 			send(client_fd,message.c_str(),message.length(),0);		
-
-
 			size_t sign = 0;
 			std::cout<<"client fd is "<<client_fd<<"server fd is "<<socket_fd<<"\r\n";
 			while(1){
@@ -539,7 +537,7 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			if(sign==0){
 				std::cout<<"Tunnel closed"<<std::endl;
 				std::string temp(std::to_string(Http_request.get_uid()));
-				temp+="Tunnel closed";
+				temp+=": Tunnel closed";
 				log->add(temp);
 				close(socket_fd);	
 			}		
@@ -556,7 +554,9 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			}
 			std::cout<<"-------------POST--------------\r\n";
 
-			if(test_server->recv_message(client_fd,Http_request.get_content(),Http_request.get_length())!=0){
+			int zyz = test_server->recv_message(client_fd,Http_request.get_content(),Http_request.get_length());
+			std::cout<<"zyz size is "<<Http_request.get_content()->size()<<"\r\n";
+			if(zyz!=0){
 				std::cout<<"POST RECV FROM CLIENT ERR\r\n";
 			}
 			
@@ -572,13 +572,19 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			std::cout<<Http_response.get_response();
 			std::cout<<Http_response.get_content()->size()<<std::endl;
 			std::cout<<"^^^^^^^^^^^^^^^^^^^^^^^^\r\n";
-			if(test_server->recv_message(socket_fd,Http_response.get_content(),Http_response.get_length())!=0){
+			int yzc = test_server->recv_message(socket_fd,Http_response.get_content(),Http_response.get_length());
+			std::cout<<"yzc size is "<<Http_response.get_content()->size()<<"\r\n";
+			for(size_t i=0;i<Http_response.get_content()->size();++i){
+				std::cout<<Http_response.get_content()->at(i);
+			}
+			if(yzc!=0){
 				test_server->send_header(Http_response.get_response(),client_fd);
 				//std::cout<<Http_response.get_response();
 				test_server->send_message(client_fd,Http_response.get_content());				
 			}
 			else{
 				test_server->send_header(Http_response.get_response(),client_fd);
+				test_server->send_message(client_fd,Http_response.get_content());
 			}
 		}	
 		close(client_fd);
