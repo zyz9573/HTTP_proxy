@@ -1,4 +1,4 @@
-GET http://people.duke.edu/~tkb13/courses/resources/awesome.txt HTTP/1.0
-Host: people.duke.edu
+GET /127.0.1.1:8000 HTTP/1.1
+Host: 127.0.1.1
 
 

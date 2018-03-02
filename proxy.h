@@ -23,7 +23,8 @@
 #define NOCACHE 1
 #define NOSTORE 2
 #define MR 3//must-revalidate 
-
+std::string bad_request = "HTTP/1.1 400 Bad Request";
+std::string bad_gateway = "HTTP/1.1 502 Bad Gateway";
 int UID=0;
 std::mutex mtx;
 time_t get_current_time(){
@@ -241,51 +242,67 @@ public:
 	~request(){
 		delete content;
 	}
-	void parse_request_line(std::string http_request){
-		request_line = http_request;
-		std::size_t filter = http_request.find_first_of(" ");
-		method = std::string(http_request.substr(0,filter));
-		if(method.compare("GET")==0 || method.compare("POST")==0){
-			std::size_t filter3 = http_request.find_first_of(":");
-			agreement = http_request.substr(filter+1,filter3-filter-1);
-			std:: size_t filter2 = http_request.find_first_of("/");
-			http_request = http_request.substr(filter2+2);
-			filter2 = http_request.find_first_of("/");
-			hostname = std::string(http_request.substr(0,filter2));
-			filter = http_request.find_first_of(" ");
-			uri = std::string(http_request.substr(filter2,filter-filter2));
-			if((filter = hostname.find_first_of(":"))!=std::string::npos){
-				port_num = atoi(hostname.substr(filter+1).c_str());
-				hostname = hostname.substr(0,filter);
+	int parse_request_line(std::string http_request){
+		try{
+			request_line = http_request;
+			size_t filter = http_request.find_first_of(" ");
+			//if(filter==std::string::npos){return -1;}
+			method = std::string(http_request.substr(0,filter));
+			if(method.compare("GET")==0 || method.compare("POST")==0){
+				size_t filter3 = http_request.find_first_of(":");
+				agreement = http_request.substr(filter+1,filter3-filter-1);
+				size_t filter2 = http_request.find_first_of("/");
+				http_request = http_request.substr(filter2+2);
+				filter2 = http_request.find_first_of("/");
+				hostname = std::string(http_request.substr(0,filter2));
+				filter = http_request.find_first_of(" ");
+				uri = std::string(http_request.substr(filter2,filter-filter2));
+				if((filter = hostname.find_first_of(":"))!=std::string::npos){
+					port_num = atoi(hostname.substr(filter+1).c_str());
+					hostname = hostname.substr(0,filter);
+				}
+				else{
+					if(agreement.compare("http")==0){
+						port_num = 80;
+  					}
+  					else if(agreement.compare("https")==0){
+  						port_num = 443;
+  					}
+				}
+			}
+			else if(method.compare("CONNECT")==0){
+				http_request = http_request.substr(filter+1);
+				filter = http_request.find_first_of(":");
+				hostname = std::string(http_request.substr(0,filter));
+				http_request = http_request.substr(filter+1);
+				filter = http_request.find_first_of(" ");
+				port_num = atoi(http_request.substr(0,filter).c_str());
 			}
 			else{
-				if(agreement.compare("http")==0){
-					port_num = 80;
-  				}
-  				else if(agreement.compare("https")==0){
-  					port_num = 443;
-  				}
+				return -1;
 			}
+			return 0;
 		}
-		else if(method.compare("CONNECT")==0){
-			http_request = http_request.substr(filter+1);
-			filter = http_request.find_first_of(":");
-			hostname = std::string(http_request.substr(0,filter));
-			http_request = http_request.substr(filter+1);
-			filter = http_request.find_first_of(" ");
-			port_num = atoi(http_request.substr(0,filter).c_str());
+		catch(...){
+			return -1;
 		}
-
+		
 	}
-	void add_kv(std::string temp){//might be repeat
-		if(temp.length()==0){return ;}
-		size_t colon = temp.find_first_of(":");
-		if(colon == std::string::npos){
-			std::cout<<temp<<std::endl;
-			std::cout<<"invalid KV"<<std::endl;
-			return ;
+	int add_kv(std::string temp){//might be repeat
+		try{
+			if(temp.length()==0){return -1;}
+			size_t colon = temp.find_first_of(":");
+			if(colon == std::string::npos){
+				std::cout<<temp<<std::endl;
+				std::cout<<"invalid KV"<<std::endl;
+				return -1;
+			}
+			kv_table.insert(std::pair<std::string,std::string>(temp.substr(0,colon),temp.substr(colon+2)));
 		}
-		kv_table.insert(std::pair<std::string,std::string>(temp.substr(0,colon),temp.substr(colon+2)));
+		catch(...){
+			return -1;
+		}
+		return 0;
 	}
 	void update_content(char data[], size_t size){
 		for(size_t i=0;i<size;++i){
@@ -293,8 +310,29 @@ public:
 		}
 	}
 	std::string get_request(){
+		std::string err("construct request failed");
 		std::string res = request_line;
 		std::map<std::string,std::string>::iterator it = kv_table.begin();
+		while(it!=kv_table.end()){
+			if(it->first.compare("Host")==0){
+				size_t cut = request_line.find(it->second);
+				//std::cout<<cut<<"\r\n"<<it->second<<request_line;
+				if(cut!=std::string::npos && cut>7){
+					res = request_line.substr(0,cut-7);
+					if(cut+it->second.length()>request_line.length()){
+						throw err;
+					}
+					res = res + request_line.substr(cut+it->second.length());
+				}
+				else{
+					throw err;
+				}
+				break;
+			}
+			++it;
+		}
+		
+		it = kv_table.begin();
 		while(it!=kv_table.end()){
 			res+="\r\n";
 			res+=it->first;
@@ -457,26 +495,38 @@ public:
 	~response(){
 		delete content;
 	}
-	void parse_status_line(std::string http_response){
-		status_line = http_response;
-		size_t filter = http_response.find_first_of(" ");
-		agreement = http_response.substr(0,filter);
-		http_response = http_response.substr(filter+1);
-		filter = http_response.find_first_of(" ");
-		std::string temp = http_response.substr(0,filter);
-		status = (size_t)atoi(temp.c_str());
-		http_response = http_response.substr(filter+1);
-		filter = http_response.find_first_of(" ");
-		detail = http_response.substr(0,filter);
-	}
-	void add_kv(std::string temp){
-		if(temp.length()==0){return ;}
-		size_t colon = temp.find_first_of(":");
-		if(colon == std::string::npos){
-			std::cout<<"invalid KV"<<std::endl;
-			return ;
+	int parse_status_line(std::string http_response){
+		try{
+			status_line = http_response;
+			size_t filter = http_response.find_first_of(" ");
+			agreement = http_response.substr(0,filter);
+			http_response = http_response.substr(filter+1);
+			filter = http_response.find_first_of(" ");
+			std::string temp = http_response.substr(0,filter);
+			status = (size_t)atoi(temp.c_str());
+			http_response = http_response.substr(filter+1);
+			filter = http_response.find_first_of(" ");
+			detail = http_response.substr(0,filter);
 		}
-		kv_table.insert(std::pair<std::string,std::string>(temp.substr(0,colon),temp.substr(colon+2)));
+		catch(...){
+			return -1;
+		}
+		return 0;
+	}
+	int add_kv(std::string temp){
+		try{
+			if(temp.length()==0){return -1;}
+			size_t colon = temp.find_first_of(":");
+			if(colon == std::string::npos){
+				std::cout<<"invalid KV"<<std::endl;
+				return -1;
+			}
+			kv_table.insert(std::pair<std::string,std::string>(temp.substr(0,colon),temp.substr(colon+2)));
+		}
+		catch(...){
+			return -1;
+		}
+		return 0;
 	}
 	void update_content(char data[], size_t size){
 		for(size_t i=0;i<size;++i){
@@ -721,7 +771,7 @@ public:
   		struct hostent * host_info = gethostbyname(hostname.c_str());
   		if ( host_info == NULL ) {
   			std::cout<<hostname<<" host info is null"<<std::endl;
-    		exit(EXIT_FAILURE);
+    		return -1;
   		}
 		memcpy(&server_in.sin_addr, host_info->h_addr_list[0], host_info->h_length);
 		int connect_status = connect(socket_fd,(struct sockaddr *)&server_in,sizeof(server_in));
@@ -770,7 +820,7 @@ public:
 		memcpy(message,header.c_str(),header.length());
 		send(socket_fd,message,header.length(),0);
 	}
-	void recv_request_header(request * HTTP, int socket_fd){
+	int recv_request_header(request * HTTP, int socket_fd){
 		char message[8192];
 		memset(message,0,sizeof(message));
 		size_t cap = recv(socket_fd,&message,sizeof(message),0);//std::cout<<cap<<" line 336\r\n";
@@ -778,7 +828,7 @@ public:
 			std::cout<<"client close socket\r\n";
 			std::string temp("recive header failed for client close socket\r\n");
 			throw temp;
-			return ;
+			return -1;
 		}
 		std::string temp(message);
 		std::cout<<"raw header is "<<temp<<"\r\n"<<"size is "<<temp.length()<<"\r\n";
@@ -787,10 +837,16 @@ public:
 		while((filter = temp.find_first_of("\r\n"))!= 0 ){
 			if(HTTP->get_request_line().length()==0){
 				std::cout<<"request line is "<<temp.substr(0,filter)<<"\r\n";
-				HTTP->parse_request_line(temp.substr(0,filter));
+				int flag = HTTP->parse_request_line(temp.substr(0,filter));
+				if(flag<0){
+					throw bad_request;
+				}
 			}
 			else{
-				HTTP->add_kv(temp.substr(0,filter));
+				int flag = HTTP->add_kv(temp.substr(0,filter));
+				if(flag<0){
+					throw bad_request;
+				}
 			}
 			temp = temp.substr(filter+2);
 			sign+=filter;
@@ -802,6 +858,7 @@ public:
 				HTTP->get_content()->push_back(message[i]);
 			}
 		}
+		return 0;
 	}
 	void recv_response_header(response * HTTP, int socket_fd){
 		char message[8192];
@@ -812,10 +869,12 @@ public:
 		size_t filter=0;
 		while((filter = temp.find_first_of("\r\n"))!= 0 ){
 			if(HTTP->get_status_line().length()==0){
-				HTTP->parse_status_line(temp.substr(0,filter));
+				int flag = HTTP->parse_status_line(temp.substr(0,filter));
+				if(flag<0){throw bad_gateway;}
 			}
 			else{
-				HTTP->add_kv(temp.substr(0,filter));
+				int flag = HTTP->add_kv(temp.substr(0,filter));
+				if(flag<0){throw bad_gateway;}
 			}
 			temp = temp.substr(filter+2);
 			sign+=filter;

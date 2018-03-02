@@ -35,6 +35,7 @@ int UIDPLUS(){
 	return UID;
 }
 void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* threads, Cache * cache,Log * log,struct sockaddr_in * incoming){
+	
 		std::cout<<"------------------------------------\r\n";
 		std::cout<<"client fd is "<<client_fd<<"\r\n";
 		request Http_request(UIDPLUS());
@@ -51,15 +52,19 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			log->add(info1);		
 		}
 		catch(std::string err){
+			if(err.compare(bad_request)==0){
+				test_server->send_header(bad_request,client_fd);
+			}
 			err= std::to_string(Http_request.get_uid()) +": NOTE " +err;
 			log->add(err);
+			close(client_fd);
 			return ;
 		}
 		/*
 
 		*/
 	
-
+	try{
 		if(Http_request.get_method().compare("GET")==0){
 
 			int socket_fd = test_server->create_socket_fd();
@@ -72,8 +77,17 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 				return ;
 			}	
 			std::cout<<"-------------GET--------------"<<"\r\n";
-
-			std::cout<<Http_request.get_request();
+			try{
+				std::cout<<Http_request.get_request();
+			}
+			catch(std::string err){
+				test_server->send_header(bad_request,client_fd);
+				err= std::to_string(Http_request.get_uid()) +": NOTE " +err;
+				log->add(err);
+				close(client_fd);
+				return ;				
+			}
+			
 
 			cache_control req_cc;
 			Http_request.set_cache_info(&req_cc);
@@ -86,7 +100,17 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 				log->add(info2);
 
 				response * Http_response = new response(Http_request.get_uid());
-				test_server->recv_response_header(Http_response,socket_fd);
+				try{
+					test_server->recv_response_header(Http_response,socket_fd);
+				}
+				catch(std::string err){
+					test_server->send_header(bad_gateway,client_fd);
+					err= std::to_string(Http_request.get_uid()) +": NOTE " +err;
+					log->add(err);
+					delete Http_response;
+					close(client_fd);
+					return ;
+				}
 				test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
 
 				std::string info3(std::to_string(Http_response->get_uid()));
@@ -126,7 +150,17 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 					log->add(info2);
 
 					response * Http_response = new response(Http_request.get_uid());
-					test_server->recv_response_header(Http_response,socket_fd);
+					try{
+						test_server->recv_response_header(Http_response,socket_fd);
+					}
+					catch(std::string err){
+						test_server->send_header(bad_gateway,client_fd);
+						err= std::to_string(Http_request.get_uid()) +": NOTE " +err;
+						log->add(err);
+						delete Http_response;
+						close(client_fd);
+						return ;
+					}
 					test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
 
 					std::string info3(std::to_string(Http_response->get_uid()));
@@ -171,7 +205,17 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 						log->add(info2);
 
 						response * Http_response = new response(Http_request.get_uid());
-						test_server->recv_response_header(Http_response,socket_fd);
+						try{
+							test_server->recv_response_header(Http_response,socket_fd);
+						}
+						catch(std::string err){
+							test_server->send_header(bad_gateway,client_fd);
+							err= std::to_string(Http_request.get_uid()) +": NOTE " +err;
+							log->add(err);
+							delete Http_response;
+							close(client_fd);
+							return ;
+						}
 						test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
 
 						std::string info3(std::to_string(Http_response->get_uid()));
@@ -241,7 +285,17 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 							log->add(info2);
 
 							response * Http_response = new response(Http_request.get_uid());
-							test_server->recv_response_header(Http_response,socket_fd);
+							try{
+								test_server->recv_response_header(Http_response,socket_fd);
+							}
+							catch(std::string err){
+								test_server->send_header(bad_gateway,client_fd);
+								err= std::to_string(Http_request.get_uid()) +": NOTE " +err;
+								log->add(err);
+								delete Http_response;
+								close(client_fd);
+								return ;
+							}
 							test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
 
 							std::string info3(std::to_string(Http_response->get_uid()));
@@ -275,7 +329,17 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 				log->add(info2);
 
 				response * Http_response = new response(Http_request.get_uid());
-				test_server->recv_response_header(Http_response,socket_fd);
+				try{
+					test_server->recv_response_header(Http_response,socket_fd);
+				}
+				catch(std::string err){
+					test_server->send_header(bad_gateway,client_fd);
+					err= std::to_string(Http_request.get_uid()) +": NOTE " +err;
+					log->add(err);
+					delete Http_response;
+					close(client_fd);
+					return ;
+				}
 				test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
 
 				std::string info3(std::to_string(Http_response->get_uid()));
@@ -333,7 +397,17 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 					log->add(info2);					
 
 					response * Http_response = new response(Http_request.get_uid());
-					test_server->recv_response_header(Http_response,socket_fd);
+					try{
+						test_server->recv_response_header(Http_response,socket_fd);
+					}
+					catch(std::string err){
+						test_server->send_header(bad_gateway,client_fd);
+						err= std::to_string(Http_request.get_uid()) +": NOTE " +err;
+						log->add(err);
+						delete Http_response;
+						close(client_fd);
+						return ;
+					}
 					test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
 
 					std::string info3(std::to_string(Http_response->get_uid()));
@@ -402,7 +476,17 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 						log->add(info2);
 
 						response * Http_response = new response(Http_request.get_uid());
-						test_server->recv_response_header(Http_response,socket_fd);
+						try{
+							test_server->recv_response_header(Http_response,socket_fd);
+						}
+						catch(std::string err){
+							test_server->send_header(bad_gateway,client_fd);
+							err= std::to_string(Http_request.get_uid()) +": NOTE " +err;
+							log->add(err);
+							delete Http_response;
+							close(client_fd);
+							return ;
+						}
 						test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
 
 						std::string info3(std::to_string(Http_response->get_uid()));
@@ -472,7 +556,17 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 							log->add(info2);
 
 							response * Http_response = new response(Http_request.get_uid());
-							test_server->recv_response_header(Http_response,socket_fd);
+							try{
+								test_server->recv_response_header(Http_response,socket_fd);
+							}
+							catch(std::string err){
+								test_server->send_header(bad_gateway,client_fd);
+								err= std::to_string(Http_request.get_uid()) +": NOTE " +err;
+								log->add(err);
+								delete Http_response;
+								close(client_fd);
+								return ;
+							}
 							test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
 
 							std::string info3(std::to_string(Http_response->get_uid()));
@@ -508,7 +602,7 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			//std::cout<<Http_request.get_length()<<std::endl;
 			if(status==-1){
 				std::cout<<"connect fail"<<std::endl;
-				exit(EXIT_FAILURE);
+				return ; 
 			}
 			std::cout<<"-------------CONNECT--------------\r\n";
 
@@ -550,7 +644,7 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			//std::cout<<Http_request.get_length()<<std::endl;
 			if(status==-1){
 				std::cout<<"connect fail"<<std::endl;
-				exit(EXIT_FAILURE);
+				return ;
 			}
 			std::cout<<"-------------POST--------------\r\n";
 
@@ -566,28 +660,44 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			std::cout<<Http_request.get_request();
 			std::cout<<Http_request.get_content()->size()<<std::endl;
 			std::cout<<"************************\r\n";
-			response Http_response(Http_request.get_uid());
-			test_server->recv_response_header(&Http_response,socket_fd);
+			response  * Http_response = new response(Http_request.get_uid());
+			try{
+				test_server->recv_response_header(Http_response,socket_fd);
+			}
+			catch(std::string err){
+				test_server->send_header(bad_gateway,client_fd);			
+				err= std::to_string(Http_request.get_uid()) +": NOTE " +err;
+				log->add(err);
+				delete Http_response;
+				close(client_fd);
+				return ;
+			}
 			std::cout<<"^^^^^^^^^^^^^^^^^^^^^^^^\r\n";
-			std::cout<<Http_response.get_response();
-			std::cout<<Http_response.get_content()->size()<<std::endl;
+			std::cout<<Http_response->get_response();
+			std::cout<<Http_response->get_content()->size()<<std::endl;
 			std::cout<<"^^^^^^^^^^^^^^^^^^^^^^^^\r\n";
-			int yzc = test_server->recv_message(socket_fd,Http_response.get_content(),Http_response.get_length());
-			std::cout<<"yzc size is "<<Http_response.get_content()->size()<<"\r\n";
-			for(size_t i=0;i<Http_response.get_content()->size();++i){
-				std::cout<<Http_response.get_content()->at(i);
+			int yzc = test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
+			std::cout<<"yzc size is "<<Http_response->get_content()->size()<<"\r\n";
+			for(size_t i=0;i<Http_response->get_content()->size();++i){
+				std::cout<<Http_response->get_content()->at(i);
 			}
 			if(yzc!=0){
-				test_server->send_header(Http_response.get_response(),client_fd);
+				test_server->send_header(Http_response->get_response(),client_fd);
 				//std::cout<<Http_response.get_response();
-				test_server->send_message(client_fd,Http_response.get_content());				
+				test_server->send_message(client_fd,Http_response->get_content());				
 			}
 			else{
-				test_server->send_header(Http_response.get_response(),client_fd);
-				test_server->send_message(client_fd,Http_response.get_content());
+				test_server->send_header(Http_response->get_response(),client_fd);
+				test_server->send_message(client_fd,Http_response->get_content());
 			}
+			delete Http_response;
 		}	
 		close(client_fd);
+	}
+	catch(...){
+		close(client_fd);
+		return ;
+	}
 /*		
 		std::cout<<"thread "<<std::this_thread::get_id()<<" end"<<std::endl;
 		std::cout<<"------------------------------------\r\n";
