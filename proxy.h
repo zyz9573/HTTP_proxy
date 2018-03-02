@@ -26,20 +26,40 @@
 
 int UID=0;
 std::mutex mtx;
-std::string EMPTY = "NULL";
+time_t get_current_time(){
+	//UTC standard
+	time_t now;
+	struct tm * timeinfo;
+	time(&now);	
+	timeinfo = gmtime(&now);
+	return mktime(timeinfo);
+}
 time_t parse_gmt_time(std::string temp){
+	
 	tm tmobj;
 	std::string a;
 	std::string mon[12]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
 	size_t filter = temp.find(" ");
+	size_t len = temp.length();
+	if(filter==std::string::npos && (filter+1)>len){
+		return 0;
+	}
 	temp=temp.substr(filter+1);
 
 	filter = temp.find(" ");
+	len = temp.length();
+	if(filter==std::string::npos && (filter+1)>len){
+		return 0;
+	}
 	a = temp.substr(0,filter);
 	tmobj.tm_mday = atoi(a.c_str());
 	temp=temp.substr(filter+1);
 
 	filter = temp.find(" ");
+	len = temp.length();
+	if(filter==std::string::npos && (filter+1)>len){
+		return 0;
+	}
 	a = temp.substr(0,filter);
 	for(int i=0;i<12;++i){
 		if(a.compare(mon[i])==0){
@@ -49,26 +69,45 @@ time_t parse_gmt_time(std::string temp){
 	temp=temp.substr(filter+1);
 
 	filter = temp.find(" ");
+	len = temp.length();
+	if(filter==std::string::npos && (filter+1)>len){
+		return 0;
+	}
 	a = temp.substr(0,filter);
 	tmobj.tm_year = atoi(a.c_str())-1900;
 	temp=temp.substr(filter+1);
 
 	filter = temp.find(":");
+	len = temp.length();
+	if(filter==std::string::npos && (filter+1)>len){
+		return 0;
+	}
 	a = temp.substr(0,filter);
 	tmobj.tm_hour = atoi(a.c_str());
 	temp=temp.substr(filter+1);
 
 	filter = temp.find(":");
+	len = temp.length();
+	if(filter==std::string::npos && (filter+1)>len){
+		return 0;
+	}
 	a = temp.substr(0,filter);
 	tmobj.tm_min = atoi(a.c_str());
 	temp=temp.substr(filter+1);
 
 	filter = temp.find(" ");
+	len = temp.length();
+	if(filter==std::string::npos && (filter+1)>len){
+		return 0;
+	}
 	a = temp.substr(0,filter);
 	tmobj.tm_sec = atoi(a.c_str());
 	temp=temp.substr(filter+1);
 
-	return mktime(&tmobj)-18000;
+	if(temp.compare("GMT")!=0){
+		return 0;
+	}
+	return mktime(&tmobj);
 
 }
 class cache_control{
@@ -96,7 +135,6 @@ public:
 		nostore = false;//
 		must_reval = false;//
 		pri = false;//
-		etag = EMPTY;
 	}
 	void print_cc(){
 		std::cout<<"age is "<<age<<std::endl;
@@ -538,6 +576,9 @@ public:
 		res+="\r\n\r\n";
 		return res;
 	}
+	void update_uid(int id){
+		uid=id;
+	}
 	size_t get_length(){
 		std::map<std::string,std::string>::iterator it = kv_table.find("Content-Length");
 		if(it!=kv_table.end()){
@@ -612,6 +653,7 @@ public:
 			it++;
 		}
 		used=used-temp->second->get_content()->size();
+		delete temp->second;
 		database.erase(temp);
 		if(used<0){
 			std::cout<<"FATAL ERR, CACHE STORE LESS THAN 0\r\n";
@@ -625,7 +667,17 @@ public:
        		std::cout << "[exception caught] when add to cache\n";
     	}
     	while(used+http_response->get_content()->size() > capacity){
+    		if(http_response->get_content()->size()>capacity){
+    			std::cout<<"oversize single file, we can not store it in this cache\r\n";
+    			return ;
+    		}
     		delete_cache();
+    	}
+    	std::map<std::string, response *>::iterator it = database.find(URI);
+    	if(it!=database.end()){
+    		used = used - it->second->get_content()->size();
+    		delete it->second;
+    		database.erase(it);
     	}
     	std::cout<<"cache cap is "<<capacity<<" used size is "<<used<<" insert size is "<<http_response->get_content()->size()<<"\r\n";
     	used=used+http_response->get_content()->size();
@@ -724,6 +776,8 @@ public:
 		size_t cap = recv(socket_fd,&message,sizeof(message),0);//std::cout<<cap<<" line 336\r\n";
 		if(cap==0){
 			std::cout<<"client close socket\r\n";
+			std::string temp("recive header failed for client close socket\r\n");
+			throw temp;
 			return ;
 		}
 		std::string temp(message);

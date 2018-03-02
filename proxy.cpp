@@ -1,5 +1,8 @@
 //created by panjoy 2/20/2018
 #include "proxy.h"
+void test(std::string temp){
+	std::cout<<temp<<"\r\n";
+}
 int maxfdp(int a, int b){
 	if(a>b){return a;}
 	return b;
@@ -8,14 +11,15 @@ long max(long a, long b){
 	if(a>b){return a;}
 	return b;
 }
-std::string get_UTC_time(int a){
+std::string get_UTC_time(long a){
 	time_t now;
 	struct tm * timeinfo;
-	time(&now);	
+	time(&now);
+	std::cout<<now<<std::endl;	
 	now+=a;
 	timeinfo = gmtime(&now);
-	std::string res(asctime(timeinfo));
-	return res;
+	std::string res(asctime(timeinfo));//with \r\n
+	return res.substr(0,res.length()-1);
 }
 int UIDPLUS(){
 	try {
@@ -30,13 +34,33 @@ int UIDPLUS(){
 	UID++;
 	return UID;
 }
-void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* threads, Cache * cache){
+void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* threads, Cache * cache,Log * log){
 		std::cout<<"------------------------------------\r\n";
 		std::cout<<"client fd is "<<client_fd<<"\r\n";
 		request Http_request(UIDPLUS());
 
 		std::cout<<"here is thread "<<std::this_thread::get_id()<<" dealing with request "<<Http_request.get_uid()<<"\r\n";
-		test_server->recv_request_header(&Http_request,client_fd);
+		try{
+			test_server->recv_request_header(&Http_request,client_fd);
+			std::string info1(std::to_string(Http_request.get_uid()));
+			info1 = info1 +": \"";
+			info1 = info1+Http_request.get_request_line()+"\" from ";
+			struct hostent * host_info = gethostbyname(Http_request.get_hostname().c_str());
+			struct in_addr ip;
+			memcpy(&ip, host_info->h_addr_list[0], host_info->h_length);
+			info1 = info1 + inet_ntoa(ip) + " @ " + get_UTC_time(0);
+			log->add(info1);		
+		}
+		catch(std::string err){
+			err= std::to_string(Http_request.get_uid()) +": NOTE " +err;
+			log->add(err);
+			return ;
+		}
+		/*
+
+		*/
+	
+
 		if(Http_request.get_method().compare("GET")==0){
 
 			int socket_fd = test_server->create_socket_fd();
@@ -50,44 +74,429 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			}	
 			std::cout<<"-------------GET--------------"<<"\r\n";
 
+			std::cout<<Http_request.get_request();
+
 			cache_control req_cc;
 			Http_request.set_cache_info(&req_cc);
-			
+			if(req_cc.get_nocache() && req_cc.get_nostore()){
+				//nothing with cache
+				test_server->send_header(Http_request.get_request(),socket_fd);
+
+				std::string info2(std::to_string(Http_request.get_uid()));
+				info2= info2+": Requesting \""+Http_request.get_request_line()+"\" from " + Http_request.get_hostname();
+				log->add(info2);
+
+				response * Http_response = new response(Http_request.get_uid());
+				test_server->recv_response_header(Http_response,socket_fd);
+				test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
+
+				std::string info3(std::to_string(Http_response->get_uid()));
+				info3= info3+": Received \""+Http_response->get_status_line()+"\" from " + Http_request.get_hostname();
+				log->add(info3);
+				if(Http_response->get_status()==200){
+					std::string info4(std::to_string(Http_response->get_uid()));
+					info4 = info4 + ": not cacheable because request say no cache and no store";
+					log->add(info4);
+				}
+
+				test_server->send_header(Http_response->get_response(),client_fd);
+				test_server->send_message(client_fd,Http_response->get_content());
+
+				std::string info6(std::to_string(Http_response->get_uid()));
+				info6 = info6+": Responding \""+Http_response->get_status_line()+"\"";
+				std::cout<<info6<<std::endl;
+				log->add(info6);
+				
+
+				delete Http_response;
+			}
+			else if(req_cc.get_nostore()){
+				//can use cache but you can not store response
+				response * exist_response = cache->find(Http_request.get_URI());
+				if(exist_response ==NULL){
+					//no useful cache
+					
+					std::string info5(std::to_string(Http_request.get_uid()));
+					info5 = info5 +": not in cache";
+					log->add(info5);
+
+					test_server->send_header(Http_request.get_request(),socket_fd);
+
+					std::string info2(std::to_string(Http_request.get_uid()));
+					info2= info2+": Requesting \""+Http_request.get_request_line()+"\" from " + Http_request.get_hostname();
+					log->add(info2);
+
+					response * Http_response = new response(Http_request.get_uid());
+					test_server->recv_response_header(Http_response,socket_fd);
+					test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
+
+					std::string info3(std::to_string(Http_response->get_uid()));
+					info3= info3+": Received \""+Http_response->get_status_line()+"\" from " + Http_request.get_hostname();
+					log->add(info3);
+					if(Http_response->get_status()==200){
+						std::string info4(std::to_string(Http_response->get_uid()));
+						info4 = info4 + ": not cacheable because request say no store";
+						log->add(info4);
+					}
+					test_server->send_header(Http_response->get_response(),client_fd);
+					test_server->send_message(client_fd,Http_response->get_content());
+
+					std::string info6(std::to_string(Http_response->get_uid()));
+					info6 = info6+": Responding \""+Http_response->get_status_line()+"\"";
+					log->add(info6);
+				
+
+					delete Http_response;					
+				}
+				else{
+					//have this response, parse it to see whether it is fresh
+					std::string info5(std::to_string(Http_request.get_uid()));
+					info5 = info5 +": in cache";
+					cache_control eres;//exist response
+					exist_response->set_cache_info(&eres);
+					if(req_cc.get_mustreval() || eres.get_mustreval()){
+						//request say must revalidate
+						
+						info5+=", requires validation";
+						log->add(info5);
+
+						if(eres.get_etag().length()>0){
+							//has etag
+							std::string temp = "If-None-Match: "+eres.get_etag();
+							Http_request.add_kv(temp);
+						}
+						test_server->send_header(Http_request.get_request(),socket_fd);
+
+						std::string info2(std::to_string(Http_request.get_uid()));
+						info2= info2+": Requesting \""+Http_request.get_request_line()+"\" from " + Http_request.get_hostname();
+						log->add(info2);
+
+						response * Http_response = new response(Http_request.get_uid());
+						test_server->recv_response_header(Http_response,socket_fd);
+						test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
+
+						std::string info3(std::to_string(Http_response->get_uid()));
+						info3= info3+": Received \""+Http_response->get_status_line()+"\" from " + Http_request.get_hostname();
+						log->add(info3);
+						if(Http_response->get_status()==200){
+							std::string info4(std::to_string(Http_response->get_uid()));
+							info4 = info4 + ": not cacheable because request say no store";
+							log->add(info4);
+						}
+						if(Http_response->get_status()==304){
+							test("304304304304304304304304304304304304304304304304304304304304304304304304304304304304\r\n");
+							test_server->send_header(exist_response->get_response(),client_fd);
+							test_server->send_message(client_fd,exist_response->get_content());
+							std::string info6(std::to_string(Http_request.get_uid()));
+							info6 = info6+": Responding \""+exist_response->get_status_line()+"\"";
+							log->add(info6);
+						}
+						else{
+							test_server->send_header(Http_response->get_response(),client_fd);
+							test_server->send_message(client_fd,Http_response->get_content());
+
+							std::string info6(std::to_string(Http_response->get_uid()));
+							info6 = info6+": Responding \""+Http_response->get_status_line()+"\"";
+							log->add(info6);
+						}
+						delete Http_response;
+					}
+					else{
+						//can directly send back if fresh
+						long now = (long)get_current_time();
+						if(eres.get_maxage()>0 && eres.get_date()>0 && (eres.get_maxage()+eres.get_date())<now){	
+							//fresh
+							info5+=", valid";
+							log->add(info5);
+							test_server->send_header(exist_response->get_response(),client_fd);
+							test_server->send_message(client_fd,exist_response->get_content());
+							std::string info6(std::to_string(Http_request.get_uid()));
+							info6 = info6+": Responding \""+exist_response->get_status_line()+"\"";
+							log->add(info6);								
+						}	
+						else if(eres.get_maxage()==0 && eres.get_expires()>now){
+							//fresh
+							info5+=", valid";
+							log->add(info5);
+							test_server->send_header(exist_response->get_response(),client_fd);
+							test_server->send_message(client_fd,exist_response->get_content());	
+							std::string info6(std::to_string(Http_request.get_uid()));
+							info6 = info6+": Responding \""+exist_response->get_status_line()+"\"";
+							log->add(info6);								
+						}
+						else if(eres.get_maxage()==0 && eres.get_expires()==0){
+							//fresh
+							info5+=", valid";
+							log->add(info5);
+							test_server->send_header(exist_response->get_response(),client_fd);
+							test_server->send_message(client_fd,exist_response->get_content());	
+							std::string info6(std::to_string(Http_request.get_uid()));
+							info6 = info6+": Responding \""+exist_response->get_status_line()+"\"";
+							log->add(info6);
+						}
+						else{
+							//not fresh
+							test_server->send_header(Http_request.get_request(),socket_fd);
+							std::string info2(std::to_string(Http_request.get_uid()));
+							info2= info2+": Requesting \""+Http_request.get_request_line()+"\" from " + Http_request.get_hostname();
+							log->add(info2);
+
+							response * Http_response = new response(Http_request.get_uid());
+							test_server->recv_response_header(Http_response,socket_fd);
+							test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
+
+							std::string info3(std::to_string(Http_response->get_uid()));
+							info3= info3+": Received \""+Http_response->get_status_line()+"\" from " + Http_request.get_hostname();
+							log->add(info3);
+							if(Http_response->get_status()==200){
+								std::string info4(std::to_string(Http_response->get_uid()));
+								info4 = info4 + ": not cacheable because request say no store";
+								log->add(info4);
+							}
+
+							test_server->send_header(Http_response->get_response(),client_fd);
+							test_server->send_message(client_fd,Http_response->get_content());
+
+							std::string info6(std::to_string(Http_response->get_uid()));
+							info6 = info6+": Responding \""+Http_response->get_status_line()+"\"";
+							log->add(info6);
+
+							delete Http_response;
+						}				
+					}
+	
+				}
+			}
+			else if(req_cc.get_nocache()){
+				//do not use cache but you can store
+				test_server->send_header(Http_request.get_request(),socket_fd);
+
+				std::string info2(std::to_string(Http_request.get_uid()));
+				info2= info2+": Requesting \""+Http_request.get_request_line()+"\" from " + Http_request.get_hostname();
+				log->add(info2);
+
+				response * Http_response = new response(Http_request.get_uid());
+				test_server->recv_response_header(Http_response,socket_fd);
+				test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
+
+				std::string info3(std::to_string(Http_response->get_uid()));
+				info3= info3+": Received \""+Http_response->get_status_line()+"\" from " + Http_request.get_hostname();
+				log->add(info3);
+
+				test_server->send_header(Http_response->get_response(),client_fd);
+				test_server->send_message(client_fd,Http_response->get_content());
+
+				std::string info6(std::to_string(Http_response->get_uid()));
+				info6 = info6+": Responding \""+Http_response->get_status_line()+"\"";
+				log->add(info6);
+
+				//analysis this response
+				cache_control res_cc;
+				Http_response->set_cache_info(&res_cc);
+
+				if(Http_response->get_status()==200){
+					std::string info4(std::to_string(Http_response->get_uid()));
+					if(res_cc.get_nocache() || res_cc.get_nostore() || res_cc.get_private()){
+						//you can not store this response
+						info4 = info4 + ": not cacheable because response do not allow";
+						log->add(info4);
+						delete Http_response;
+					}
+					else{
+						cache->add_to_cache(Http_request.get_URI(),Http_response);
+						if(res_cc.get_mustreval()){
+							info4 = info4 +": cached, but requires re-validation";
+							log->add(info4);
+						}
+						if(res_cc.get_expires()>0){
+							info4 = std::to_string(Http_response->get_uid());
+							time_t now;time(&now);
+							info4 = info4 + ": cached, expires at "+ get_UTC_time(res_cc.get_expires()-(long)now);
+						}
+						else{
+							info4 = std::to_string(Http_response->get_uid());
+							info4 = info4 +": cached";
+							log->add(info4);						
+						}
+					}						
+				}
+				//store end	
+			}
+			else{
+				//request don't have limit on nocache and nostore
+				response * exist_response = cache->find(Http_request.get_URI());
+				if(exist_response==NULL){
+					//not in cache
+					test_server->send_header(Http_request.get_request(),socket_fd);
+
+					std::string info2(std::to_string(Http_request.get_uid()));
+					info2= info2+": Requesting \""+Http_request.get_request_line()+"\" from " + Http_request.get_hostname();
+					log->add(info2);					
+
+					response * Http_response = new response(Http_request.get_uid());
+					test_server->recv_response_header(Http_response,socket_fd);
+					test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
+
+					std::string info3(std::to_string(Http_response->get_uid()));
+					info3= info3+": Received \""+Http_response->get_status_line()+"\" from " + Http_request.get_hostname();
+					log->add(info3);
+
+					test_server->send_header(Http_response->get_response(),client_fd);
+					test_server->send_message(client_fd,Http_response->get_content());
+
+					std::string info6(std::to_string(Http_response->get_uid()));
+					info6 = info6+": Responding \""+Http_response->get_status_line()+"\"";
+					log->add(info6);
 
 
+					cache_control res_cc;
+					Http_response->set_cache_info(&res_cc);
 
+					if(Http_response->get_status()==200){
+						std::string info4(std::to_string(Http_response->get_uid()));
+						if(res_cc.get_nocache() || res_cc.get_nostore() || res_cc.get_private()){
+							//you can not store this response
+							info4 = info4 + ": not cacheable because response do not allow";
+							log->add(info4);
+							delete Http_response;
+						}
+						else{
+							cache->add_to_cache(Http_request.get_URI(),Http_response);
+							if(res_cc.get_mustreval()){
+								info4 = info4 +": cached, but requires re-validation";
+								log->add(info4);
+							}
+							if(res_cc.get_expires()>0){
+								info4 = std::to_string(Http_response->get_uid());
+								time_t now;time(&now);
+								info4 = info4 + ": cached, expires at "+ get_UTC_time(res_cc.get_expires()-(long)now);
+							}
+							else{
+								info4 = std::to_string(Http_response->get_uid());
+								info4 = info4 +": cached";
+								log->add(info4);						
+							}
+						}						
+					}
+				}
+				else{
+					//in cache
+					std::string info5(std::to_string(Http_request.get_uid()));
+					info5 = info5 +": in cache";
+					cache_control eres;//exist response
+					exist_response->set_cache_info(&eres);
+					if(req_cc.get_mustreval() || eres.get_mustreval()){
+						//request say must revalidate
+						
+						info5+=", requires validation";
+						log->add(info5);
 
-			test_server->send_header(Http_request.get_request(),socket_fd);
-			//std::cout<<"************************\r\n";
-			//std::cout<<Http_request.get_request();
-			//std::cout<<"************************\r\n";
-			response * Http_response = new response(Http_request.get_uid());
-			test_server->recv_response_header(Http_response,socket_fd);
-			//std::cout<<"^^^^^^^^^^^^^^^^^^^^^^^^\r\n";
-			//std::cout<<Http_response.get_response();
-			//std::cout<<Http_response.get_content()->size()<<std::endl;
-			//std::cout<<"^^^^^^^^^^^^^^^^^^^^^^^^\r\n";
-			test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
-/*			
-//test for cache control
-			std::cout<<Http_response.get_response();
-			std::cout<<"-------------test cc--------------"<<"\r\n";
-			cache_control test;
-			Http_response.set_cache_info(&test);
-			//test.print_cc();
-			std::cout<<"-------------end test cc--------------"<<"\r\n";
-//end test
-*/
-			//doing cahce
-			
+						if(eres.get_etag().length()>0){
+							//has etag
+							std::string temp = "If-None-Match: "+eres.get_etag();
+							Http_request.add_kv(temp);
+						}
+						test_server->send_header(Http_request.get_request(),socket_fd);
 
+						std::string info2(std::to_string(Http_request.get_uid()));
+						info2= info2+": Requesting \""+Http_request.get_request_line()+"\" from " + Http_request.get_hostname();
+						log->add(info2);
 
-			//std::cout<<Http_response.get_content()->size()<<std::endl;
-			test_server->send_header(Http_response->get_response(),client_fd);
-			//std::cout<<Http_response.get_response();
-			test_server->send_message(client_fd,Http_response->get_content());
-			delete Http_response;
-			//close(socket_fd);
+						response * Http_response = new response(Http_request.get_uid());
+						test_server->recv_response_header(Http_response,socket_fd);
+						test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
+
+						std::string info3(std::to_string(Http_response->get_uid()));
+						info3= info3+": Received \""+Http_response->get_status_line()+"\" from " + Http_request.get_hostname();
+						log->add(info3);
+						if(Http_response->get_status()==200){
+							std::string info4(std::to_string(Http_response->get_uid()));
+							info4 = info4 + ": not cacheable because request say no store";
+							log->add(info4);
+						}
+						if(Http_response->get_status()==304){
+							test("304304304304304304304304304304304304304304304304304304304304304304304304304304304304\r\n");
+							test_server->send_header(exist_response->get_response(),client_fd);
+							test_server->send_message(client_fd,exist_response->get_content());
+							std::string info6(std::to_string(Http_request.get_uid()));
+							info6 = info6+": Responding \""+exist_response->get_status_line()+"\"";
+							log->add(info6);
+						}
+						else{
+							test_server->send_header(Http_response->get_response(),client_fd);
+							test_server->send_message(client_fd,Http_response->get_content());
+
+							std::string info6(std::to_string(Http_response->get_uid()));
+							info6 = info6+": Responding \""+Http_response->get_status_line()+"\"";
+							log->add(info6);
+						}
+						delete Http_response;
+					}
+					else{
+						//can directly send back if fresh
+						long now = (long)get_current_time();
+						if(eres.get_maxage()>0 && eres.get_date()>0 && (eres.get_maxage()+eres.get_date())<now){	
+							//fresh
+							info5+=", valid";
+							log->add(info5);
+							test_server->send_header(exist_response->get_response(),client_fd);
+							test_server->send_message(client_fd,exist_response->get_content());
+							std::string info6(std::to_string(Http_request.get_uid()));
+							info6 = info6+": Responding \""+exist_response->get_status_line()+"\"";
+							log->add(info6);								
+						}	
+						else if(eres.get_maxage()==0 && eres.get_expires()>now){
+							//fresh
+							info5+=", valid";
+							log->add(info5);
+							test_server->send_header(exist_response->get_response(),client_fd);
+							test_server->send_message(client_fd,exist_response->get_content());	
+							std::string info6(std::to_string(Http_request.get_uid()));
+							info6 = info6+": Responding \""+exist_response->get_status_line()+"\"";
+							log->add(info6);								
+						}
+						else if(eres.get_maxage()==0 && eres.get_expires()==0){
+							//fresh
+							info5+=", valid";
+							log->add(info5);
+							test_server->send_header(exist_response->get_response(),client_fd);
+							test_server->send_message(client_fd,exist_response->get_content());	
+							std::string info6(std::to_string(Http_request.get_uid()));
+							info6 = info6+": Responding \""+exist_response->get_status_line()+"\"";
+							log->add(info6);
+						}
+						else{
+							//not fresh
+							test_server->send_header(Http_request.get_request(),socket_fd);
+							std::string info2(std::to_string(Http_request.get_uid()));
+							info2= info2+": Requesting \""+Http_request.get_request_line()+"\" from " + Http_request.get_hostname();
+							log->add(info2);
+
+							response * Http_response = new response(Http_request.get_uid());
+							test_server->recv_response_header(Http_response,socket_fd);
+							test_server->recv_message(socket_fd,Http_response->get_content(),Http_response->get_length());
+
+							std::string info3(std::to_string(Http_response->get_uid()));
+							info3= info3+": Received \""+Http_response->get_status_line()+"\" from " + Http_request.get_hostname();
+							log->add(info3);
+							if(Http_response->get_status()==200){
+								std::string info4(std::to_string(Http_response->get_uid()));
+								info4 = info4 + ": not cacheable because request say no store";
+								log->add(info4);
+							}
+
+							test_server->send_header(Http_response->get_response(),client_fd);
+							test_server->send_message(client_fd,Http_response->get_content());
+
+							std::string info6(std::to_string(Http_response->get_uid()));
+							info6 = info6+": Responding \""+Http_response->get_status_line()+"\"";
+							log->add(info6);
+
+							delete Http_response;
+						}				
+					}
+				}				
+			}
 		}
 		else if(Http_request.get_method().compare("CONNECT")==0){
 			//std::cout<<"************************\r\n";
@@ -130,6 +539,9 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			}
 			if(sign==0){
 				std::cout<<"Tunnel closed"<<std::endl;
+				std::string temp(std::to_string(Http_request.get_uid()));
+				temp+="Tunnel closed";
+				log->add(temp);
 				close(socket_fd);	
 			}		
 		}
@@ -154,9 +566,6 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			std::cout<<"************************\r\n";
 			std::cout<<Http_request.get_request();
 			std::cout<<Http_request.get_content()->size()<<std::endl;
-			for(int i = 0;i<126;++i){
-				std::cout<<Http_request.get_content()->at(i);
-			}
 			std::cout<<"************************\r\n";
 			response Http_response(Http_request.get_uid());
 			test_server->recv_response_header(&Http_response,socket_fd);
@@ -174,6 +583,7 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 			}
 		}	
 		close(client_fd);
+/*		
 		std::cout<<"thread "<<std::this_thread::get_id()<<" end"<<std::endl;
 		std::cout<<"------------------------------------\r\n";
 		std::set<std::thread::id>::iterator it = threads->find(std::this_thread::get_id());
@@ -183,13 +593,13 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 		else{
 			std::cout<<"thread missing in set\r\n";
 		}
+*/
 }
 
 int main(int argc, char ** argv){
 	//std::string hr("CONNECT www.google.com:443 HTTP/1.1\r\nHost: www.google.com\r\n\r\n");
 	std::string path("/mnt/d/test/HTTP_proxy");
 	Log log(path);
-	log.add("test2");
 	Cache cache(1000000);//1M cache
 	proxy test_server(12345);	
 	test_server.bind_addr();
@@ -201,10 +611,10 @@ int main(int argc, char ** argv){
 			std::cout<<"accept error\r\n";
 			continue ;
 		}
-		//deal_request(&test_server,client_fd);
+		//deal_request(&test_server,client_fd,&threads,&cache,&log);
 		
 
-		std::thread th(deal_request,&test_server,client_fd,&threads,&cache);
+		std::thread th(deal_request,&test_server,client_fd,&threads,&cache,&log);
 		std::set<std::thread::id>::iterator it = threads.find(th.get_id()); 
 		if(it!=threads.end()){
 			std::cout<<"repeat thread id\r\n";
@@ -214,6 +624,7 @@ int main(int argc, char ** argv){
 			threads.insert(th.get_id());
 		}
 		th.detach();
+
 		//std::cout<<"end"<<std::endl;
 	}
 	
@@ -222,12 +633,17 @@ int main(int argc, char ** argv){
 
 /*
 int main(int argc, char ** argv){
-	std::string time("Thu, 01 Mar 2018 19:13:15 GMT");
+	std::string time("Thu, 01 Mar 2018 20:49:15 GMT");
 	std::cout<<time<<std::endl;
 	time_t temp = parse_gmt_time(time);
 	std::cout<<temp<<std::endl;
-	struct tm * timeinfo = gmtime(&temp);
+	struct tm * timeinfo = localtime(&temp);
 	std::cout<<asctime(timeinfo)<<std::endl;
+
+
+	temp = get_current_time();
+	std::cout<<temp<<std::endl;
+	std::cout<<get_UTC_time(0);
 	return EXIT_SUCCESS;
 }
 */
