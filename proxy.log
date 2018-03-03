@@ -1,3 +1,0 @@
-1: "GET http://vcm-182.vm.duke.edu:8000 HTTP/1.1" from 127.0.0.1 @ Sat Mar  3 00:34:02 2018
-1: Requesting "GET http://vcm-182.vm.duke.edu:8000 HTTP/1.1" from vcm-182.vm.duke.edu
-1: NOTE HTTP/1.1 502 Bad Gateway
