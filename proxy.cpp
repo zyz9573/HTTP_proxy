@@ -396,11 +396,14 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 					info2= info2+": Requesting \""+Http_request.get_request_line()+"\" from " + Http_request.get_hostname();
 					log->add(info2);					
 
+					std::cout<<"we are here\r\n";
+
 					response * Http_response = new response(Http_request.get_uid());
 					try{
 						test_server->recv_response_header(Http_response,socket_fd);
 					}
 					catch(std::string err){
+						std::cout<<"catch it\r\n";
 						test_server->send_header(bad_gateway,client_fd);
 						err= std::to_string(Http_request.get_uid()) +": NOTE " +err;
 						log->add(err);
@@ -498,7 +501,6 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 							log->add(info4);
 						}
 						if(Http_response->get_status()==304){
-							test("304304304304304304304304304304304304304304304304304304304304304304304304304304304304\r\n");
 							test_server->send_header(exist_response->get_response(),client_fd);
 							test_server->send_message(client_fd,exist_response->get_content());
 							std::string info6(std::to_string(Http_request.get_uid()));
@@ -698,17 +700,6 @@ void deal_request(proxy * test_server,int client_fd,std::set<std::thread::id>* t
 		close(client_fd);
 		return ;
 	}
-/*		
-		std::cout<<"thread "<<std::this_thread::get_id()<<" end"<<std::endl;
-		std::cout<<"------------------------------------\r\n";
-		std::set<std::thread::id>::iterator it = threads->find(std::this_thread::get_id());
-		if(it!=threads->end()){
-			threads->erase(it);
-		}
-		else{
-			std::cout<<"thread missing in set\r\n";
-		}
-*/
 }
 
 int main(int argc, char ** argv){

@@ -286,7 +286,6 @@ public:
 		catch(...){
 			return -1;
 		}
-		
 	}
 	int add_kv(std::string temp){//might be repeat
 		try{
@@ -499,19 +498,21 @@ public:
 		try{
 			status_line = http_response;
 			size_t filter = http_response.find_first_of(" ");
+			if(filter==std::string::npos){return -1;}
 			agreement = http_response.substr(0,filter);
 			http_response = http_response.substr(filter+1);
 			filter = http_response.find_first_of(" ");
+			if(filter==std::string::npos){return -1;}
 			std::string temp = http_response.substr(0,filter);
 			status = (size_t)atoi(temp.c_str());
 			http_response = http_response.substr(filter+1);
 			filter = http_response.find_first_of(" ");
 			detail = http_response.substr(0,filter);
+			return 0;
 		}
 		catch(...){
 			return -1;
 		}
-		return 0;
 	}
 	int add_kv(std::string temp){
 		try{
@@ -932,7 +933,6 @@ public:
   		server_in.sin_family = AF_INET;
   		server_in.sin_port = htons(port);
 		memcpy(&server_in.sin_addr, host_info->h_addr_list[0], host_info->h_length);
-		std::cout<<"hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh"<<host_info->h_length<<std::endl;
 		int bind_status = bind(host_socket_fd,(struct sockaddr *)&server_in,sizeof(server_in));
 		if(bind_status<0){
 			std::cout<<"bind fail"<<std::endl;
