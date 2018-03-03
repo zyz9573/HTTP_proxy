@@ -1,0 +1,36 @@
+INPORTANT: this file will guide you test this proxy, some case will offer bash file for you to test, others are not
+Sorry we are not familiar with writting bash file.
+
+VERY FIRST: set your browser with proxy and run proxy by type sudo docker-compose up
+
+1.1 GET
+go to http://people.duke.edu/~tkb13/courses/ece650/
+you can also test GET method by run offered bash file
+
+1.2 POST
+go to http://www.csm-testcenter.org/test?do=show&subdo=common&test=file_upload
+then upload some file, if success, this website will show you upload file successfully or let you download your uploaded file
+
+1.3 Connect
+go to Google and search thing
+
+2.1 cache the response
+run 
+echo -e "GET http://people.duke.edu/~tkb13/courses/ece650/resources/awesome.txt HTTP/1.1\r\nHost: people.duke.edu\r\nCache-Control: no-cache, no-store\r\n\r\n" | nc $HOSTNAME 12345
+you will see not cacheable because request say no cache and no store in proxy.log
+run
+echo -e "GET http://people.duke.edu/~tkb13/courses/ece650/resources/awesome.txt HTTP/1.1\r\nHost: people.duke.edu\r\n\r\n" | nc $HOSTNAME 12345
+you will see cached in proxy.log
+
+2.2 rules of expiration time
+go to http://cdn.optimizely.com/js/310987714.js and fresh this website
+if you use some tools like wireshark or HTTP HEADER VIEWER you will see the response this website give back have Cache-Control: max-age=120 so if you wait 2 min and then refresh you will see 304 Not Modified in proxy.log, it is part of expiration rule. If the response have Expires key and current time is larger than its value, this proxy will request original server to give response even it has it in cache
+
+2.3 rules of must revalidation
+run the bash file and I have write 
+echo -e "GET http://people.duke.edu/~tkb13/courses/ece650/resources/awesome.txt HTTP/1.1\r\nHost: people.duke.edu\r\nCache-Control: must-revalidate\r\n\r\n" | nc $1 12345 &
+many times. 
+So the file will be stored in cache but every time it need to revalidate, so the proxy will send it to original server and because this file don't chage so you will see 304 Not Modified in proxy.log
+
+EXTRA：
+You can just run the bash and see some straightfoward result but you also can just go to some huge website and use search tool to find some specified word in proxy.log and you will find what you want.

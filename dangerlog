@@ -1,0 +1,35 @@
+6Your code should be robust to external failures
+we used try catch structure to deal with exception, for every thread. we use this in parse_request_line function, add_kv function amd parse_response_line function for we used standard format to parse it but it will be some malformed request and response so we need to handle it. you can see it in proxy.log if such circumstance happens. We will record it and release all resources, close socket then return, end this thread.
+
+7You should know the exception guarantees you make
+get_current_time---no throw gurantee
+parse_gmt_time---no throw gurantee
+all function in class cache_control---no throw gurantee
+
+class request:
+parse_request_line---strong gurantee
+add_kv---strong gurantee
+other function---no throw gurantee
+
+class response:
+parse_status_line---strong gurantee
+add_kv---strong gurantee
+other function---no throw gurantee
+
+class Cache:
+all function---no throw gurantee
+
+class proxy:
+recv_request_header---strong gurantee
+recv_response_header---strong gurantee
+all other function---no throw gurantee
+
+class log:
+all function---no throw gurantee
+
+maxfdp---no throw gurantee
+get_UTC_time---no throw gurantee
+UIDPLUS---no throw gurantee
+deal_request---strong gurantee
+
+main---strong gurantee
